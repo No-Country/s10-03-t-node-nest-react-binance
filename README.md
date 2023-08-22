@@ -16,9 +16,7 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/dusk/30/web.png" alt="web"/> FrontEnd
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Eduardo ](https://github.com/Edu568)
-  
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Yael Romero](https://github.com/Rai5559) 
+- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Eduardo ](https://github.com/Edu568) 
 
 - [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Victor Fernandez](https://github.com/vic-ferr)
 
@@ -30,7 +28,7 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/30/external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry.png" alt="external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry"/> BackEnd
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Marco](https://github.com/MarkMarda)
+- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Yael Romero](https://github.com/Rai5559)
 
 - [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/>  Nilo](https://github.com/nilovili)
 
@@ -74,6 +72,8 @@ Dependencias:
 - <img width="20" height="20" src="https://img.icons8.com/color/20/nestjs.png" alt="nestjs"/> [NestsJS](https://nestjs.com/)
 
 - <img width="20" height="20" src="https://img.icons8.com/color/20/postgreesql.png" alt="postgreesql"/> [Postgresql](https://www.postgresql.org/)
+
+- <img width="20" height="20" src="https://user-images.githubusercontent.com/30929568/112730670-de09a480-8f58-11eb-9875-0d9ebb87fbd6.png" alt="postgreesql"/> [TypeORM](https://typeorm.io)
 
 - Dependencias:
 

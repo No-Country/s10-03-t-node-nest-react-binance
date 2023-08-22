@@ -16,11 +16,11 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/dusk/30/web.png" alt="web"/> FrontEnd
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Edu](https://github.com/Edu568)
+- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Eduardo ](https://github.com/Edu568)
   
 - [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Yael Romero](https://github.com/Rai5559) 
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Vic Fer](https://github.com/vic-ferr)
+- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Victor Fernandez](https://github.com/vic-ferr)
 
 - [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Maria Eugenia Costa](https://github.com/eugenia1984)
 
@@ -61,7 +61,8 @@
 
 - <img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> [Typescript](https://www.typescriptlang.org/)
 
-- <img width="20" height="20" src="https://img.icons8.com/color/20/material-ui.png" alt="material-ui"/> [MUI](https://mui.com/)
+- <img width="20" height="20" src="https://img.icons8.com/color/20/material-ui.png" alt="material-ui"/> [MUI](https://mui.com/), Material UI icons
+
 
 Dependencias:
 

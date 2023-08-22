@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Box, Button, ButtonProps } from '@mui/material'
+import { Button, ButtonProps } from '@mui/material'
 import { colorBtn, sizeBtn, variantBtn } from '../../../utils/types'
 
 interface PrimaryButtonProps extends ButtonProps {

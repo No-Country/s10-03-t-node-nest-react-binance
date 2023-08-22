@@ -19,6 +19,9 @@ interface PrimaryButtonProps extends ButtonProps {
  * @prop size: by default it's medium
  * @prop colorBtn: by default it's primary
  * @prop icon: a component that displays an icon
+ * 
+ * Example to change the color:
+ * <PrimaryButton ariaLabelText="boton" text="Button test" sx={{background: 'rgb(234, 236, 239)'}}/>
  */
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   text,

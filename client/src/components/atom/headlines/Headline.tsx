@@ -16,6 +16,8 @@ interface HeadlineH1Props {
  * h2, h3, h4, h5, h6
  * @prop alignText: optional, to align the text.By default: left, values: 
  * 'center' | 'inherit' | 'justify' | 'left' | 'right'
+ * 
+ * Example: <Headline text="Binance" alignText="center" />
  */
 const Headline: React.FC<HeadlineH1Props> = ({
   text,

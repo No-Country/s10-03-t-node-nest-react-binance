@@ -1,7 +1,6 @@
 import { HashRouter, Routes, Route } from "react-router-dom"
 import Header from "./components/molecule/header/Header"
 import Footer from "./components/molecule/footer/Footer"
-import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Market from "./pages/Market"
@@ -17,13 +16,12 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={ <Login /> } />
-        <Route path="/home" element={ <Home /> } />
-        <Route path="/register" element={ <Register /> } />
         <Route path="/market" element={ <Market /> } />
         <Route path="/feed" element={ <Feed /> } />
         <Route path="/services" element={ <Services /> } />
         <Route path="/wallets" element={ <Wallets /> } />
         <Route path="/profile" element={ <Profile /> } />
+        <Route path="/register" element={ <Register /> } />
         <Route path="*" element={ <NotFound /> } />
       </Routes>
       <Footer />

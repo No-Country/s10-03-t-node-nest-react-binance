@@ -2,10 +2,8 @@ import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Grid, Link, } from '@mui/material'
 import BarChartIcon from '@mui/icons-material/BarChart'
-import RssFeedIcon from '@mui/icons-material/RssFeed'
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows'
 import ClearIcon from '@mui/icons-material/Clear'
-import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices'
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet'
 import { NAVBAR_STYLES } from './NavBarStyles'
 import BuyDepositModal from './BuyDepositModal'
@@ -41,19 +39,7 @@ const NavBar: React.FC<NavBarProps> = () => {
               onClick={ () => navigate('/market') }
               sx={ linkStyle('/market') }
             >
-              <BarChartIcon fontSize="large" />
-            </Link>
-          }
-        </Grid>
-        <Grid item>
-          { !openBuySellModal &&
-            <Link
-              aria-label="ir a feed"
-              component="button"
-              onClick={ () => navigate('/feed') }
-              sx={ linkStyle('/feed') }
-            >
-              <RssFeedIcon fontSize="large" />
+              <BarChartIcon fontSize="large" /> <br /> Mercado
             </Link>
           }
         </Grid>
@@ -77,24 +63,12 @@ const NavBar: React.FC<NavBarProps> = () => {
         <Grid item>
           { !openBuySellModal &&
             <Link
-              aria-label="ir a servicios"
-              component="button"
-              onClick={ () => navigate('/services') }
-              sx={ linkStyle('/services') }
-            >
-              <MiscellaneousServicesIcon fontSize="large" />
-            </Link>
-          }
-        </Grid>
-        <Grid item>
-          { !openBuySellModal &&
-            <Link
               aria-label="ir a cartera"
               component="button"
               onClick={ () => navigate('/wallets') }
               sx={ linkStyle('/wallets') }
             >
-              <AccountBalanceWalletIcon fontSize="large" />
+              <AccountBalanceWalletIcon fontSize="large" /> <br /> Billetera
             </Link>
           }
         </Grid>

@@ -1,6 +1,6 @@
 import { HashRouter, Routes, Route } from "react-router-dom"
-import Header from "./components/molecule/header/HEader"
-import Footer from "./components/molecule/footer/Footer."
+import Header from "./components/molecule/header/Header"
+import Footer from "./components/molecule/footer/Footer"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"

@@ -27,9 +27,7 @@ const Footer: React.FC<FooterProps> = () => {
           xs={ 12 }
           sx={ FOOTER_STYLES.gridNavBar }
         >
-          <Typography>
-            <NavBar />
-          </Typography>
+          <NavBar />
         </Grid>
       </Grid>
     </footer>

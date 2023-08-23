@@ -1,12 +1,15 @@
 export const HEADER_STYLES = {
-  container: { 
+  container: {
     margin: '0 auto'
   },
-  containerLogo: { 
+  containerLogo: {
     padding: '0.5rem 0.75rem',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-start' 
+    justifyContent: 'flex-start'
+  },
+  linkLogo: {
+    textDecoration: 'none'
   },
   logo: {
     textTransform: 'uppercase',
@@ -16,11 +19,14 @@ export const HEADER_STYLES = {
     marginLeft: '0.25rem',
     fontSize: '16px'
   },
-  containerAvatar: { 
+  containerAvatar: {
     padding: '0.5rem 0.75rem',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center' 
+    justifyContent: 'center'
+  },
+  linkAvatar: {
+    color: '#1E2329'
   },
   containerNavBar: {
     display: 'flex',

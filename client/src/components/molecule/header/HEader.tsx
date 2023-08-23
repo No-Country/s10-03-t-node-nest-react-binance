@@ -3,6 +3,7 @@ import { Box, Grid } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { HEADER_STYLES } from './HeaderStyles'
 import NavBar from '../navbar/NavBar'
+import { Link } from 'react-router-dom'
 
 interface HeaderProps { }
 
@@ -20,8 +21,14 @@ const Header: React.FC<HeaderProps> = () => {
           sm={ 3 }
           sx={ HEADER_STYLES.containerLogo }
         >
-          <img width="40" height="40" src="/binance-64.png" alt="Binance cryptocurrency logo" />
-          <Box component="span" sx={ HEADER_STYLES.logo }> Binance</Box>
+          <Link
+            to="/market"
+            aria-label="ir a mercados"
+            style={ HEADER_STYLES.linkLogo }
+          >
+            <img width="40" height="40" src="/binance-64.png" alt="Binance cryptocurrency logo" />
+            <Box component="span" sx={ HEADER_STYLES.logo }> Binance</Box>
+          </Link>
         </Grid>
         <Grid
           item
@@ -39,7 +46,13 @@ const Header: React.FC<HeaderProps> = () => {
           sm={ 1 }
           sx={ HEADER_STYLES.containerAvatar }
         >
-          <AccountCircleIcon fontSize="large" />
+          <Link
+            to="/profile"
+            aria-label="ir al perfil"
+            style={HEADER_STYLES.linkAvatar}
+          >
+            <AccountCircleIcon fontSize="large" />
+          </Link>
         </Grid>
       </Grid>
     </header>

@@ -25,9 +25,6 @@ export const HEADER_STYLES = {
     alignItems: 'center',
     justifyContent: 'center'
   },
-  linkAvatar: {
-    color: '#1E2329'
-  },
   containerNavBar: {
     display: 'flex',
     flexDirection: 'column',

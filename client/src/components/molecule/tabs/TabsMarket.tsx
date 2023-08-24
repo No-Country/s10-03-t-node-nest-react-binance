@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-// import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import MarketComponet from '../marketComponet/MarketComponet';
 
@@ -39,7 +38,7 @@ function a11yProps(index: number) {
 }
 
 export default function TabsMarket() {
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState(1);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);

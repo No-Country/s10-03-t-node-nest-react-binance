@@ -13,7 +13,7 @@ interface CoinData {
 
 }
 
-const MarketComponet: React.FC = () => { // Corregir la definición de la función de componente
+const MarketComponet: React.FC = () => {
     const [coinsData, setCoinsData] = useState<CoinData[]>([]);
 
     const fetchData = async () => {

@@ -18,8 +18,10 @@ const LoginScreen: React.FC = () => {
   };
 
   const handleLoginClick = () => {
-    // Aquí puedes agregar la lógica para manejar el inicio de sesión
+    navigate("/market")
   };
+
+
 
   return (
     <Container maxWidth="xs">
@@ -46,15 +48,13 @@ const LoginScreen: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       )}
-      <Button
-        variant="contained"
-        color="primary"
-        fullWidth
-        onClick={showPasswordInput ? handleLoginClick : handleNextClick}
-        style={{ marginBottom: '10px' }}
-      >
-        {showPasswordInput ? 'Iniciar sesión' : 'Siguiente'}
-      </Button>
+      <PrimaryButton
+        text={!showPasswordInput ? 'Siguiente' : 'Iniciar sesión'}
+        ariaLabelText="Continuar con google"
+        onClick={(showPasswordInput ? handleLoginClick : handleNextClick)}
+        style={{
+          marginBottom: '20px',
+        }}/>
       <Box sx={loginStyle.or}>
         <Typography sx={{ px: 2, color: 'black', py: 3 }}>
           ____________________or__________________

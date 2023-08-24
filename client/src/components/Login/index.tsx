@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button, TextField, Typography, Container, Box } from '@mui/material';
 import PrimaryButton from '../atom/buttons/PrimaryButton';
 import GoogleIcon from '@mui/icons-material/Google';
+import { LOGIN_STYLES } from '../template/login-form/LoginFormStyles';
 import { loginStyle } from './loginStyle';
 
 const LoginScreen: React.FC = () => {
@@ -69,7 +70,7 @@ const LoginScreen: React.FC = () => {
           marginBottom: '20px',
         }}/>
       <Typography variant="h4" align="start" gutterBottom style={{marginTop:"55px", marginBottom:"20px"}}>
-        Create Binance Account
+        <Link to="/register" style={LOGIN_STYLES.link}>Crear cuenta en Binance</Link>
       </Typography>
     </Container>
   );

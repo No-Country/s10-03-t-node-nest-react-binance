@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Box, Grid, IconButton, Menu, MenuItem } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import AccountCircle from '@mui/icons-material/AccountCircle'
 import { HEADER_STYLES } from './HeaderStyles'
 import NavBar from '../navbar/NavBar'
 
@@ -28,11 +27,6 @@ const Header: React.FC<HeaderProps> = () => {
     handleClose()
   }
 
-  const handleProfile = () => {
-    navigate("/profile")
-    handleClose()
-  }
-
   return (
     <header>
       <Grid container maxWidth="lg" sx={ HEADER_STYLES.container } >
@@ -42,12 +36,12 @@ const Header: React.FC<HeaderProps> = () => {
             <Box component="span" sx={ HEADER_STYLES.logo }> Binance</Box>
           </Link>
         </Grid>
-        <Grid item xs={ 4 } sm={ 8 } sx={ HEADER_STYLES.containerNavBar } >
+        <Grid item xs={ 4 } sm={ 7 } sx={ HEADER_STYLES.containerNavBar } >
           <Box sx={ HEADER_STYLES.navBar }>
             <NavBar />
           </Box>
         </Grid>
-        <Grid item xs={ 2 } sm={ 1 } sx={ HEADER_STYLES.containerAvatar } >
+        <Grid item xs={ 2 } sm={ 2 } sx={ HEADER_STYLES.containerAvatar } >
           { auth &&
             <>
               <IconButton
@@ -74,10 +68,8 @@ const Header: React.FC<HeaderProps> = () => {
                 } }
                 open={ Boolean(anchorEl) }
                 onClose={ handleClose }
+                sx={{top: '40px'}}
               >
-                <MenuItem onClick={ handleProfile }>
-                  <AccountCircle sx={ { marginRight: '12px' } } /> Mi perfil
-                </MenuItem>
                 <MenuItem onClick={ handleLogOut }>
                   <ArrowBackIcon sx={ { marginRight: '12px' } } /> Salir
                 </MenuItem>

@@ -8,25 +8,13 @@ interface FooterProps { }
 const Footer: React.FC<FooterProps> = () => {
   return (
     <footer>
-      <Grid
-        container
-        maxWidth="lg"
-        sx={ FOOTER_STYLES.container }
-      >
-        <Grid
-          item
-          xs={ 12 }
-          sx={ FOOTER_STYLES.gridYear }
-        >
+      <Grid container maxWidth="lg" sx={ FOOTER_STYLES.container } >
+        <Grid item xs={ 12 } sx={ FOOTER_STYLES.gridYear } >
           <Typography>
             Binance &copy; { new Date().getFullYear() }
           </Typography>
         </Grid>
-        <Grid
-          item
-          xs={ 12 }
-          sx={ FOOTER_STYLES.gridNavBar }
-        >
+        <Grid item xs={ 12 } sx={ FOOTER_STYLES.gridNavBar } >
           <NavBar />
         </Grid>
       </Grid>

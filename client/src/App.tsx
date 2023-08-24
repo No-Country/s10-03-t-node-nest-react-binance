@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route } from "react-router-dom"
-import Header from "./components/molecule/header/HEader"
+import Header from "./components/molecule/header/Header"
 import Footer from "./components/molecule/footer/Footer"
 import Login from "./pages/Login"
 import Register from "./pages/Register"

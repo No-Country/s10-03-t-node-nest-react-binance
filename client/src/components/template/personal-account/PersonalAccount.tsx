@@ -1,65 +1,76 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Typography, Container, Box, TextField } from '@mui/material'
 import PrimaryButton from '../../atom/buttons/PrimaryButton'
+import { PERSONAL_STYLES } from './PersonalAccountStyles'
 
-interface PersonalAccountProps {
-
-}
+interface PersonalAccountProps { }
 
 const PersonalAccount: React.FC<PersonalAccountProps> = () => {
+  const navigate = useNavigate()
+  const handleContinue = () => {
+    // TODO: hay que hacer bien lo de crear la cuenta personal
+    // TODO: antes del navigate que salga algun cartel avisando el ok o no
+    navigate('/market')
+  }
+
   return (
-    <>
-      <Container maxWidth="sm" sx={ { display: 'flex', alignContent: 'center', width: '100%' } }>
-        <Box sx={ {
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          border: '1px solid #ddd',
-          padding: '20px',
-          borderRadius: '5px', // Cambiar de 5px a 0 para un recuadro rectangular
-          my: 3, // Espacio vertical entre elementos
-        } }>
-          <Typography variant="h1" component="h1" gutterBottom>
-            Create Personal Account
+    <main style={ PERSONAL_STYLES.main }>
+      <Container maxWidth="sm" sx={ PERSONAL_STYLES.container }>
+        <Box sx={ PERSONAL_STYLES.boxContainer }>
+          <Typography
+            variant="h1"
+            component="h1"
+            mb={ 4 }
+          >
+            Crear una cuenta personal
           </Typography>
-
-          <TextField id="filled-basic" label="Email/Phone Number" variant="filled" style={ { borderRadius: 0, width: '70%', marginBottom: '20px' } } />
-
-          <Typography variant="body1" style={ { fontSize: '10px' } } component="h1" gutterBottom>
-            By creating an Account, I Agree to Binance's
-            <Typography variant="body1" style={ { fontSize: '10px', fontWeight: 'bold', display: 'inline' } }>
-              Terms of Service
+          <form style={ { maxWidth: '400px' } }>
+            <TextField
+              id="filled-basic"
+              label="Correo / Teléfono"
+              variant="filled"
+              style={ { borderRadius: 0, width: '70%', marginBottom: '20px' } } />
+            <Typography
+              variant="body1"
+              my={ 2 }
+              gutterBottom>
+              Al crear una cuenta, acepto las
+              <Box component="span" sx={ PERSONAL_STYLES.textBold }>
+                condiciones de servicio
+              </Box>
+              y las
+              <Box component="span" sx={ PERSONAL_STYLES.textBold }>
+                política de privacidad
+              </Box>
+              de
+              <Box component="span" sx={ PERSONAL_STYLES.textBold }>
+                Binance
+              </Box>
             </Typography>
-            <Typography variant="body1" style={ { fontSize: '10px', fontWeight: 'normal', display: 'inline' } }> and </Typography>
-            <Typography variant="body1" style={ { fontSize: '10px', fontWeight: 'bold', display: 'inline', marginBottom: '20px' } }>
-              Privacy Policy
-            </Typography>
-          </Typography>
-
-          <Link style={ { marginBottom: '20px', marginTop: '35px', width: '80%' } } to={ '/continue' }>
             <PrimaryButton
-              text='Next'
-              ariaLabelText=''
+              text='Continuar'
+              ariaLabelText='Continuar'
               variant='contained'
               color='primary'
-              size='medium'
+              onClick={ handleContinue }
             />
-          </Link>
-
-          <Link to={ '' } style={ {
-            margin: '25px',
-            marginLeft: '10px',
-            width: '100%',
-            background: 'white',
-            color: 'black',
-            textDecoration: 'none',
-            marginBottom: '250px'
-          } }> Not looking for personal account? <span style={ { color: 'gold' } }>Sing up for an entity account</span></Link>
+          </form>
+          <Typography my={ 2 }>
+            Si no quieres una cuenta personal,
+            <Link
+              to={ '/register/continue' }
+              style={ PERSONAL_STYLES.link }
+              aria-label='inscribirse en cuenta entidad'
+            >
+              <Box component="span">
+                inscríbete en una cuenta de entidad
+              </Box>
+            </Link>
+          </Typography>
         </Box>
       </Container>
-    </>
+    </main>
   )
 }
 

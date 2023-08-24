@@ -1,0 +1,7 @@
+.card {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    height: 20%;
+    background-color: rgb(72, 80, 80);
+}

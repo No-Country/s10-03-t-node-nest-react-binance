@@ -1,11 +1,12 @@
 import { HashRouter, Routes, Route } from "react-router-dom"
-import Header from "./components/molecule/header/Header"
+import Header from "./components/molecule/header/HEader"
 import Footer from "./components/molecule/footer/Footer"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Market from "./pages/Market"
 import Wallets from "./pages/Wallets"
 import NotFound from "./pages/NotFound"
+import CreatePersonalAccount from "./pages/CreatePersonalAccount"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/market" element={ <Market /> } />
         <Route path="/wallets" element={ <Wallets /> } />
         <Route path="/register" element={ <Register /> } />
+        <Route path="/register/continue" element={ <CreatePersonalAccount /> } />
         <Route path="*" element={ <NotFound /> } />
       </Routes>
       <Footer />

@@ -1,20 +1,20 @@
 
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { MARKET_STYLES } from './MarketComponetSttyles'
 
 interface CoinData {
-    uuid: string;
-    name: string;
-    iconUrl: string;
-    symbol: string;
-    price: string;
-    sparkline: string & [string];
-
+    uuid: string
+    name: string
+    iconUrl: string
+    symbol: string
+    price: string
+    change: string
 }
 
 const MarketComponet: React.FC = () => {
-    const [coinsData, setCoinsData] = useState<CoinData[]>([]);
+    const [coinsData, setCoinsData] = useState<CoinData[]>([])
+    const URL = "https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0"
 
     const fetchData = async () => {
         const headersList = {
@@ -24,65 +24,69 @@ const MarketComponet: React.FC = () => {
         };
 
         try {
-            const response = await fetch("https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=yhjMzLPhuIDl&timePeriod=24h&tiers%5B0%5D=1&orderBy=marketCap&orderDirection=desc&limit=50&offset=0", {
+            const response = await fetch(URL, {
                 method: "GET",
                 headers: headersList
             });
 
             if (response.ok) {
-                const data: { data: { coins: CoinData[] } } = await response.json();
-
-                console.log(data);
-                setCoinsData(data.data.coins);
+                const data: { data: { coins: CoinData[] } } = await response.json()
+                setCoinsData(data.data.coins)
             } else {
-                throw new Error('La respuesta de la red no fue exitosa.');
+                throw new Error('La respuesta de la red no fue exitosa.')
             }
         } catch (error) {
-            console.error("Error al obtener los datos:", error);
+            console.error("Error al obtener los datos:", error)
         }
-    };
+    }
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        fetchData()
+    }, [])
 
     return (
         <div>
-            {coinsData.map(item => (
+            { coinsData.map(item => {
+                const itemChange: number = +(parseFloat(item.change).toFixed(2))
+                const price = parseFloat(item.price).toFixed(2)
 
-
-                <Box key={item.uuid} sx={{ display: 'flex', bgcolor: '#3C3C3A' }}>
-
-                    <Card sx={{ width: 365, margin: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px', color: '' }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-
-                            <CardMedia
-                                sx={{ width: 25 }}
-                                component='img'
-                                image={item.iconUrl}
-                                height={25}
-                                alt="coin"
-                            />
-                            <CardContent component='div' sx={{ display: 'flex', flexDirection: 'column', marginLeft: 2 }}>
-                                <Typography variant="h4" component='span'>{item.name}</Typography>
-                                <Typography variant="h3" component='span' color="initial">{item.symbol}</Typography>
-                            </CardContent>
-
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '1rem' }}>
-                            <Typography variant="h4" component='span'> $ {item.sparkline.slice(0, 1)}</Typography>
-
-                            <Typography variant="h4" component='span'> $ {item.price.substring(0, 5)}</Typography>
-
-                        </Box>
-                    </Card>
-
-                </Box>
-            ))
+                return (
+                    <Grid container key={ item.uuid } sx={ MARKET_STYLES.box }>
+                        <Card sx={ MARKET_STYLES.card }>
+                            <Grid item xs={ 7 } sm={ 6 } sx={ MARKET_STYLES.girdItem }>
+                                <CardMedia
+                                    sx={ { width: 25 } }
+                                    component='img'
+                                    image={ item.iconUrl }
+                                    height={ 25 }
+                                    alt="coin"
+                                />
+                                <CardContent component='div' sx={ MARKET_STYLES.cardContent }>
+                                    <Typography variant="h4">
+                                        { item.name }
+                                    </Typography>
+                                    <Typography color="initial">
+                                        { item.symbol }
+                                    </Typography>
+                                </CardContent>
+                            </Grid>
+                            <Grid item xs={ 6 } sm={ 6 } sx={ MARKET_STYLES.boxPrice }>
+                                <Typography variant="h4" >
+                                    <Box component="span" sx={ { color: itemChange > 0 ? '#03A66D' : '#CF304A' } }>
+                                        { itemChange > 0 && '+ ' }{ itemChange } %
+                                    </Box>
+                                </Typography>
+                                <Typography variant="h4" >
+                                    $ { price }
+                                </Typography>
+                            </Grid>
+                        </Card>
+                    </Grid>
+                )
+            })
             }
         </div >
-
-    );
+    )
 }
 
-export default MarketComponet;
+export default MarketComponet

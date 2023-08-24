@@ -10,7 +10,6 @@ interface CoinData {
     symbol: string
     price: string
     sparkline: string & [string]
-
 }
 
 const CardsComponents: React.FC = () => {
@@ -51,7 +50,7 @@ const CardsComponents: React.FC = () => {
                 coinsData.map(item => (
                     <Card key={ item.uuid } sx={ CARDS_STYLES.card } >
                         <Grid container sx={ CARDS_STYLES.gridContainer }>
-                            <Grid item xs={ 6 }>
+                            <Grid item xs={ 6 } sx={ CARDS_STYLES. gridItem}>
                                 <CardMedia
                                     sx={ { width: 50 } }
                                     component='img'
@@ -68,7 +67,7 @@ const CardsComponents: React.FC = () => {
                                     </Typography>
                                 </CardContent>
                             </Grid>
-                            <Grid item xs={ 6 }>
+                            <Grid item xs={ 6 } sx={ CARDS_STYLES. gridItem}>
                                 <Typography variant="h4" color="initial">
                                     { item.price.substring(0, 6) }
                                 </Typography>

@@ -28,7 +28,7 @@ const LoginForm = () => {
           } } >
             <Link to={ '/register/continue' }>
               <PrimaryButton
-                text='Sing up with Email or Phone'
+                text='Insgresa con correo o telefono'
                 ariaLabelText=''
                 variant='contained'
                 color='primary'

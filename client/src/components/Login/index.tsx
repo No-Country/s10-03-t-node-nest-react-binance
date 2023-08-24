@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, TextField, Typography, Container, Box } from '@mui/material';
 import PrimaryButton from '../atom/buttons/PrimaryButton';
 import GoogleIcon from '@mui/icons-material/Google';
 import { loginStyle } from './loginStyle';
 
 const LoginScreen: React.FC = () => {
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPasswordInput, setShowPasswordInput] = useState(false);

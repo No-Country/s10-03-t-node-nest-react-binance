@@ -1,82 +1,67 @@
-import * as React from 'react'
-import { Button, ImageList, Typography, Container, Box } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { ImageList, Typography, Container, Box, ImageListItem } from '@mui/material'
+import { Link, useNavigate } from 'react-router-dom'
 import { LOGIN_STYLES } from './LoginFormStyles'
 import PrimaryButton from '../../atom/buttons/PrimaryButton'
-
+import Person2Icon from '@mui/icons-material/Person2'
+import GoogleIcon from '@mui/icons-material/Google'
 
 const LoginForm = () => {
+  const navigate = useNavigate()
   return (
-    <>
+    <main style={ { minHeight: '80vh' } }>
       <Container maxWidth="sm" sx={ LOGIN_STYLES.container }>
         <Box sx={ LOGIN_STYLES.box }>
-          <ImageList sx={ { width: 200, height: 250 } }>
-            <img
-              src={ '../../public/binance-64.png' }
-              srcSet={ '' }
-              alt='logo de Binance'
-              loading="lazy"
-              style={ { width: '200%', height: 'auto' } }
-            />
+          <ImageList sx={ { width: 120, height: 120 } }>
+            <ImageListItem>
+              <img
+                src={ '../../public/binance-64.png' }
+                alt='logo de Binance'
+                loading="lazy"
+                style={ { width: '200%', height: 'auto' } }
+              />
+            </ImageListItem>
           </ImageList>
-          <Typography variant="h6" component="h1" gutterBottom>
+          <Typography sx={ LOGIN_STYLES.txt }>
             Inscríbete para conseguir 100 USDT de descuento en la comisión de trading
           </Typography>
-          <Box sx={ {
-            display: 'flex',
-            flexDirection: 'column',
-          } } >
-            <Link to={ '/register/continue' }>
-              <PrimaryButton
-                text='Insgresa con correo o telefono'
-                ariaLabelText=''
-                variant='contained'
-                color='primary'
-                size='medium'
-              />
-            </Link>
-            <Box sx={ { display: 'flex', alignItems: 'center', my: 2 } }>
-              <hr style={ { flex: 1, borderTop: '1px solid black' } } />
-              <Typography sx={ { px: 2, color: 'black' } }>
+          <Box sx={ LOGIN_STYLES.btnContainer } >
+            <PrimaryButton
+              text='Ingresa con correo o telefono'
+              ariaLabelText=''
+              variant='contained'
+              color='primary'
+              icon={ <Person2Icon /> }
+              onClick={ () => navigate('/register/continue') }
+            />
+            <Box sx={ LOGIN_STYLES.boxText }>
+              <Typography sx={ { px: 2, color: 'black', py: 3 } }>
                 ____________________or__________________
               </Typography>
-              <hr style={ { flex: 1, borderTop: '1px solid black' } } />
             </Box>
-            <Link to={ '/continue' }>
-              <Button
-                sx={ LOGIN_STYLES.btnGoogle }
-                variant="contained">
-                Continuar con google
-              </Button>
-            </Link>
-            <Link
-              to={ '' }
-              style={ {
-                margin: '25px',
-                marginLeft: '10px',
-                width: '100%',
-                background: 'white',
-                color: 'black',
-                textDecoration: 'none'
-              } }
-            >
-              ¿Ya tiene una cuenta? <span style={ { color: 'gold' } }>Iniciar sesión</span></Link>
-            <Link
-              to={ '' }
-              style={ {
-                margin: '25px',
-                marginLeft: '10px',
-                width: '100%',
-                background: 'white',
-                color: 'black',
-                textDecoration: 'none'
-              } }>
-              ¿Necesita una cuenta? <span style={ { color: 'gold' } }>Registrarse</span>
-            </Link>
+            <PrimaryButton
+              text='Continuar con google'
+              ariaLabelText='Continuar con google'
+              variant='contained'
+              color='secondary'
+              icon={ <GoogleIcon /> }
+              onClick={ () => navigate('/continue') }
+            />
+            <Typography sx={ LOGIN_STYLES.txtLink } >
+              ¿Ya tiene una cuenta?
+              <Link to={ '' } style={ LOGIN_STYLES.link } aria-label='iniciar sesion'>
+                Iniciar sesión
+              </Link>
+            </Typography>
+            <Typography sx={ LOGIN_STYLES.txtLink }>
+              ¿Necesita una cuenta?
+              <Link to={ '' } style={ LOGIN_STYLES.link } aria-label='registrarse'>
+                Registrarse
+              </Link>
+            </Typography>
           </Box>
         </Box>
       </Container>
-    </>
+    </main>
   )
 }
 

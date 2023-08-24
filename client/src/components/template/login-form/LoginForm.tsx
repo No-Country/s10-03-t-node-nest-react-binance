@@ -48,7 +48,7 @@ const LoginForm = () => {
             />
             <Typography sx={ LOGIN_STYLES.txtLink } >
               ¿Ya tiene una cuenta?
-              <Link to={ '' } style={ LOGIN_STYLES.link } aria-label='iniciar sesion'>
+              <Link to={ '/login' } style={ LOGIN_STYLES.link } aria-label='iniciar sesion'>
                 Iniciar sesión
               </Link>
             </Typography>

@@ -10,16 +10,18 @@ export const loginStyle = {
         justifyContent: 'center',
         margin: 'rem 1rem 0',
         color: "red",
-        
+
     },
     button: {
         margin: '2rem 1rem 0',
     },
-    or:{
+    or: {
         display: 'flex',
         justifyContent: 'center',
         margin: '1rem 0rem 0',
     },
-    
-    
+    typography: {
+        marginTop: '55px',
+        marginBottom: '20px'
+    }
 }

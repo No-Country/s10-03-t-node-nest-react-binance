@@ -1,5 +1,4 @@
 import { HashRouter, Routes, Route } from "react-router-dom"
-import Header from "./components/molecule/header/Header"
 import Footer from "./components/molecule/footer/Footer"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
@@ -8,6 +7,7 @@ import Wallets from "./pages/Wallets"
 import NotFound from "./pages/NotFound"
 import CreatePersonalAccount from "./pages/CreatePersonalAccount"
 import LoginView from "./components/Login"
+import Header from "./components/molecule/header/HEader"
 
 function App() {
   return (

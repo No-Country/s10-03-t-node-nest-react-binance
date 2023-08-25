@@ -7,6 +7,8 @@ import GoogleIcon from '@mui/icons-material/Google'
 
 const LoginForm = () => {
   const navigate = useNavigate()
+
+
   return (
     <main style={ { minHeight: '80vh' } }>
       <Container maxWidth="sm" sx={ LOGIN_STYLES.container }>
@@ -26,7 +28,7 @@ const LoginForm = () => {
           </Typography>
           <Box sx={ LOGIN_STYLES.btnContainer } >
             <PrimaryButton
-              text='Ingresa con correo o telefono'
+              text='Regístrate con correo o telefono'
               ariaLabelText=''
               variant='contained'
               color='primary'
@@ -52,12 +54,7 @@ const LoginForm = () => {
                 Iniciar sesión
               </Link>
             </Typography>
-            <Typography sx={ LOGIN_STYLES.txtLink }>
-              ¿Necesita una cuenta?
-              <Link to={ '' } style={ LOGIN_STYLES.link } aria-label='registrarse'>
-                Registrarse
-              </Link>
-            </Typography>
+            
           </Box>
         </Box>
       </Container>

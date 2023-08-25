@@ -8,10 +8,14 @@ import NotFound from "./pages/NotFound"
 import CreatePersonalAccount from "./pages/CreatePersonalAccount"
 import LoginView from "./components/Login"
 import Header from "./components/molecule/header/HEader"
+import { AuthProvider } from "./context/AuthContext"
 
 function App() {
   return (
     <HashRouter>
+      <AuthProvider>
+      
+      
       <Header />
       <Routes>
         <Route path="/" element={ <Login /> } />
@@ -23,6 +27,7 @@ function App() {
         <Route path="*" element={ <NotFound /> } />
       </Routes>
       <Footer />
+      </AuthProvider>
     </HashRouter>
   )
 }

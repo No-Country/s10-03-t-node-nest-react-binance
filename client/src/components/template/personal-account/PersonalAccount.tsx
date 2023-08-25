@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom'
-import { Typography, Container, Box, TextField, Alert, AlertTitle,Snackbar } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { Typography, Container, Box, TextField, Alert, AlertTitle } from '@mui/material'
 import PrimaryButton from '../../atom/buttons/PrimaryButton'
 import { PERSONAL_STYLES } from './PersonalAccountStyles'
+import useAuth from '../../hooks/useAuth';
 
 interface PersonalAccountProps { }
 
 const PersonalAccount: React.FC<PersonalAccountProps> = () => {
+
+  //  const { registerAuth } = useAuth();
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -42,8 +45,8 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
     setShowMessage(true)
     setTimeout(() => {
       navigate('/market')
-      
     }, 3000);
+    // await registerAuth({password, email})
     
   };
 

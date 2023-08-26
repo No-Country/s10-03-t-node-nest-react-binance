@@ -10,7 +10,14 @@ interface PersonalAccountProps { }
 
 const PersonalAccount: React.FC<PersonalAccountProps> = () => {
 
-  //  const { registerAuth } = useAuth();
+  const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
+ 
+  if (!auth) {
+      // Manejar el caso en que el contexto no esté definido
+      return null; // O mostrar un mensaje apropiado, redirigir, etc.
+  }
+ 
+  const { registerAuth } = auth;
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,7 +53,8 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
     setTimeout(() => {
       navigate('/market')
     }, 3000);
-    // await registerAuth({password, email})
+    
+     await registerAuth(password, email)
     
   };
 

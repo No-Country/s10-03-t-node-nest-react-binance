@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 interface Auth {
     auth: string,
-    registerAuth: () => void
+    registerAuth: (email:string, password: string) => void
    
 }
 
@@ -21,8 +21,9 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const navigate = useNavigate()
     const [auth, setauth] = useState('')
     
-    const registerAuth = () => {
-        setauth('hola')
+    const registerAuth = (email:string, password: string) => {
+        console.log(email, password);
+        
         navigate('/market')
     };
 
@@ -33,6 +34,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             value={{
                 auth,
                 registerAuth,
+                
                 
     
                 }}

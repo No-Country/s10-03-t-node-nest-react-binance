@@ -83,7 +83,6 @@ Dependencias:
 
 - <img width="20" height="20" src="https://img.icons8.com/color/20/figma--v1.png" alt="figma--v1"/> Figma
 
-### Testing
 
 
 ---
@@ -107,12 +106,29 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 ### Funcionalidades para el MVP:
 
-(En contrucción....)
+- Registro
+
+- Logueo
+
+- Ver la pantalla de mercado y guardar favoritos
 
 ### SPRINT 1 - Funcionalidades:
 
+- Crear el Footer, Header y Navbar
+
+- Pantalla de Login y Registro, la maquetación, sin la funcionalidad
+
+- Pantalla de mercado, por el momento se trae la inforamcion desde una API publica, para luego unir con el Back 
+
+- Creacion de base de datos para login y registro
+
 ### SPRINT 2 - Funcionalidades: 
 
+- Se ajusta tanto el login como el registro para poder conectar back y front
+
+- Se ajusta la pagina de market para traer la informacion de las monedas ya con el back y dejar la API
+
+- Se pasa a un context tanto la informacion de login como las monedas, y se hacen los ajustes en la parte de login, los condiconales para mostrar o no el navbar dependiendo de si esta logueado o no. Tambien se ajusta como se muestra la moneda en la pagina de market.
 ### SPRINT 3 - Funcionalidades:
 
 ### SPRINT 4 - Funcionalidades:

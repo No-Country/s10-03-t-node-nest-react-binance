@@ -1,6 +1,6 @@
 import React from 'react'
 import TabsMarket from '../components/molecule/tabs/TabsMarket'
-import CardsComponents from '../components/molecule/cardscomponent/CardComponets'
+import CardsComponents from '../components/molecule/cardscomponent/CardComponents'
 
 interface MarketProps { }
 

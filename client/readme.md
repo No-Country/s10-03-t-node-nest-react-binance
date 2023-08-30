@@ -1,3 +1,21 @@
+## Componentes reutilizables en la app
+
+## Loader
+
+1. Importamos **useLoader** de `context/LoaderProvider`, ejemplo:
+
+`import { useLoader } from '../../../context/LoaderProvider'`
+
+2. Desestructuramos **addLoading** y **removeLoading** :
+
+`const { addLoading, removeLoading } = useLoader()`
+
+3. Se utiliza cuando realizamos alguna solicitud al back, al inicio: `addLoading()` y cunado ya esta la respuesta ok: `removeLoading()`
+
+Como esta en un contexto que engloba a toda la app, se puede utilizar en todos los componentes.
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

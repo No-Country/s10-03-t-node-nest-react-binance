@@ -55,12 +55,12 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
       </Box>
       <DialogActions sx={ BUY_SELL_STYLES.dialogActions }>
         <Grid container sx={ BUY_SELL_STYLES.actionsContainer }>
-          <Grid item xs={ 2 }>
+          <Grid item xs={ 3 }>
             <Button aria-label="comprar" onClick={ handleBuy } sx={ BUY_SELL_STYLES.actionsBtn } >
               <AddIcon />
             </Button>
           </Grid>
-          <Grid item xs={ 10 }>
+          <Grid item xs={ 9 }>
             <DialogTitle id="compra-title" sx={ BUY_SELL_STYLES.title }>
               Comprar
             </DialogTitle>
@@ -72,12 +72,12 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
           </Grid>
         </Grid>
         <Grid container sx={ BUY_SELL_STYLES.actionsContainer }>
-          <Grid item xs={ 2 }>
+          <Grid item xs={ 3 }>
             <Button aria-label="vender" onClick={ handleSell } sx={ BUY_SELL_STYLES.actionsBtn } >
               <RemoveIcon />
             </Button>
           </Grid>
-          <Grid item xs={ 10 }>
+          <Grid item xs={ 9 }>
             <DialogTitle id="vender-title" sx={ BUY_SELL_STYLES.title }>
               Vender
             </DialogTitle>
@@ -89,12 +89,12 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
           </Grid>
         </Grid>
         <Grid container sx={ BUY_SELL_STYLES.actionsContainerLast }>
-          <Grid item xs={ 2 }>
+          <Grid item xs={ 3 }>
             <Button aria-label="depositar" onClick={ handleDeposit } sx={ BUY_SELL_STYLES.actionsBtn } >
               <ArrowDownwardIcon />
             </Button>
           </Grid>
-          <Grid item xs={ 10 }>
+          <Grid item xs={ 9 }>
             <DialogTitle id="depositar-title" sx={ BUY_SELL_STYLES.title }>
               Depositar
             </DialogTitle>

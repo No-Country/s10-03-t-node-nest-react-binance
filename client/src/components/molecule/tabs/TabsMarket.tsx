@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Tab, Tabs } from '@mui/material'
-import MarketComponet from '../marketComponet/MarketComponet'
+import MarketComponet from '../marketComponet/MarketComponent'
 
 interface TabPanelProps {
     children?: React.ReactNode

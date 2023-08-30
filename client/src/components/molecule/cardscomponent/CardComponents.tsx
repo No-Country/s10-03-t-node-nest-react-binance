@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { useApiContext } from '../../../context/FetchContext';
+import { useApiContext } from '../../../context/FetchContext'
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import { CARDS_STYLES } from './CardsComponentsStyles'
 
@@ -19,7 +19,8 @@ const CardsComponents: React.FC = () => {
                                     component='img'
                                     image={item.iconUrl}
                                     height={50}
-                                    alt="coin"
+                                    width={50}
+                                    alt={item.name}
                                 />
                                 <CardContent >
                                     <Typography variant="h3" color="initial">

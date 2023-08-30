@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Tab, Tabs } from '@mui/material'
-import MarketComponet from '../marketComponet/MarketComponent'
+import MarketComponent from '../coins-talble/CoinsTable'
 
 interface TabPanelProps {
     children?: React.ReactNode
@@ -50,10 +50,10 @@ export default function TabsMarket() {
                 </Tabs>
             </Box>
             <CustomTabPanel value={ value } index={ 0 }>
-                Item One
+                Mis favoritos
             </CustomTabPanel>
             <CustomTabPanel value={ value } index={ 1 }>
-                <MarketComponet />
+                <MarketComponent />
             </CustomTabPanel>
         </Box>
     )

@@ -8,7 +8,6 @@ import GoogleIcon from '@mui/icons-material/Google'
 const LoginForm = () => {
   const navigate = useNavigate()
 
-
   return (
     <main style={ { minHeight: '80vh' } }>
       <Container maxWidth="sm" sx={ LOGIN_STYLES.container }>
@@ -54,7 +53,7 @@ const LoginForm = () => {
                 Iniciar sesión
               </Link>
             </Typography>
-            
+
           </Box>
         </Box>
       </Container>

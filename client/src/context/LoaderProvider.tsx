@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
-import { Backdrop, Box, CircularProgress,  Typography } from '@mui/material'
+import { Backdrop, Box, CircularProgress, Typography } from '@mui/material'
 import useLoading from '../hooks/useLoading'
+import LoadingBars from '../components/atom/LoadingBars'
 
 const defaultContext = {
   addLoading: () => { },
@@ -20,13 +21,18 @@ export const LoaderContext = createContext<AppContextProps>(defaultContext)
 
 export const useLoader = () => useContext(LoaderContext)
 
-const LoaderProvider = ({ children }: LoaderProviderProps) => {
+const LoaderProvider = (
+  { children }: LoaderProviderProps
+) => {
   const [loading, addLoading, removeLoading] = useLoading()
 
   return (
     <LoaderContext.Provider value={ { addLoading, removeLoading } }>
       <Backdrop
-        sx={ { color: 'primary', zIndex: (theme) => theme.zIndex.modal + 1 } }
+        sx={ {
+          color: 'primary',
+          zIndex: (theme) => theme.zIndex.modal + 1
+        } }
         open={ loading }
       >
         <Box
@@ -38,10 +44,7 @@ const LoaderProvider = ({ children }: LoaderProviderProps) => {
             gap: '1.25rem'
           } }
         >
-          <CircularProgress size="3rem" />
-          <Typography sx={ { fontWeight: '600', color: 'primary', letterSpacing: '1px' } }>
-            Cargando...
-          </Typography>
+          <LoadingBars />
         </Box>
       </Backdrop>
       { children }

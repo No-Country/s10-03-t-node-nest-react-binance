@@ -194,7 +194,7 @@ export default function CoinsTable() {
                                                 <Box component="span" sx={ COINS_TABLE_STYLES.symbol }>
                                                     { coinsData.symbol }
                                                 </Box>
-                                                <Box component="span">
+                                                <Box component="span"  sx={ COINS_TABLE_STYLES.name }>
                                                     { coinsData.name }
                                                 </Box>
                                             </Box>

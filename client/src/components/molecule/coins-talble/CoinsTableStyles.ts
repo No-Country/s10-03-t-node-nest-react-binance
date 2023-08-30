@@ -5,8 +5,13 @@ export const COINS_TABLE_STYLES = {
     margin: '0 auto'
   },
   symbol: {
+    fontWeight: '600',
+    fontSize: '14px',
+    marginLeft: '2px'
+  },
+  name: {
     fontWeight: '400',
-    fontSize: '12px',
+    fontSize: '14px',
     marginLeft: '2px'
   },
   tableRow: {

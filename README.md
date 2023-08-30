@@ -128,6 +128,8 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - Se ajusta la pagina de market para traer la informacion de las monedas ya con el back y dejar la API
 
+- Se rediseña la tabla que muestra las monedas, apra poder reagruparlas por la información que muestra en columnas, siempre manteniendo mobile first, es responsive en todos los dispositivos.
+
 - Se pasa a un context tanto la informacion de login como las monedas, y se hacen los ajustes en la parte de login, los condiconales para mostrar o no el navbar dependiendo de si esta logueado o no. Tambien se ajusta como se muestra la moneda en la pagina de market.
 
 - Se crea un contexto para un estado general de carga, asi cuando se está realizando el llamado de datos, se pone la pantalla griseada y se ve una animación similar a la de Binance de las barras al cargar. Asi el usuario sabe que se esta haciendo una carga o busqueda.

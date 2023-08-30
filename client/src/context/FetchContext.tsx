@@ -22,7 +22,6 @@ export const ApiProvider: React.FC<ChildrenApiProps> = ({ children
         try {
             addLoading()
             const response = await fetch(URL)
-            console.log(response)
             if (response.ok) {
                 const dataReponse = await response.json()
 

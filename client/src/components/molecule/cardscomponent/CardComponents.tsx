@@ -32,7 +32,7 @@ const CardsComponents: React.FC = () => {
                             </Grid>
                             <Grid item xs={6} sx={CARDS_STYLES.gridItem}>
                                 <Typography variant="h4" color="initial">
-                                    {item.price.substring(0, 6)}
+                                    {item.currentPrice.substring(0, 6)}
                                 </Typography>
                                 <CardActions sx={{ width: 100 }} >
                                     <Button variant='contained' size='small' aria-label="comprar">

@@ -190,11 +190,13 @@ export default function CoinsTable() {
                                                     alt={ coinsData.name.toString() }
                                                 />
                                             </Box>
-                                            <Box component="span">
-                                                { coinsData.name }
-                                            </Box>
-                                            <Box component="span" sx={ COINS_TABLE_STYLES.symbol }>
-                                                { coinsData.symbol }
+                                            <Box component="div" sx={ COINS_TABLE_STYLES.containerIconName }>
+                                                <Box component="span" sx={ COINS_TABLE_STYLES.symbol }>
+                                                    { coinsData.symbol }
+                                                </Box>
+                                                <Box component="span">
+                                                    { coinsData.name }
+                                                </Box>
                                             </Box>
                                         </TableCell>
                                         <TableCell align="right" sx={ COINS_TABLE_STYLES.tableCell }>

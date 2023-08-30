@@ -1,8 +1,8 @@
 export const COINS_TABLE_STYLES = {
-  table: { 
-    minWidth: 270, 
-    maxWidth: 780, 
-    margin: '0 auto' 
+  table: {
+    minWidth: 270,
+    maxWidth: 780,
+    margin: '0 auto'
   },
   symbol: {
     fontWeight: '400',
@@ -40,6 +40,14 @@ export const COINS_TABLE_STYLES = {
     alignItems: 'center',
     justifyContent: 'flex-start',
     gap: '4px'
+  },
+  containerIconName: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    alignContent: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'flex-start'
   },
   tableCellChange: {
     display: {

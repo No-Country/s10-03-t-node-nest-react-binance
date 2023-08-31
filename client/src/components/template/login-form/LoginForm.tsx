@@ -15,7 +15,7 @@ const LoginForm = () => {
           <ImageList sx={ { width: 120, height: 120 } }>
             <ImageListItem>
               <img
-                src={ '../../public/binance-64.png' }
+                src={ '../../binance-64.png' }
                 alt='logo de Binance'
                 loading="lazy"
                 style={ { width: '200%', height: 'auto' } }

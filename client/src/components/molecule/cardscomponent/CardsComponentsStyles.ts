@@ -1,17 +1,18 @@
 export const CARDS_STYLES = {
   div: {
     display: 'flex',
-    overflowX: 'auto',
+    // overflowX: 'auto',
     width: '100%',
     height: '20%',
-    backgroundColor: 'rgb(72, 80, 80)'
+    // backgroundColor: 'rgb(72, 80, 80)'
   },
   card: {
-    margin: 2,
+    mb: 4,
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '2px',
-    minWidth: '280px'
+    padding: '4px',
+    minWidth: '280px',
+    background: 'linear-gradient(to bottom, #ffe580, #fff1ff, #ffffff);'
   },
   gridContainer: {
     width: '300px',

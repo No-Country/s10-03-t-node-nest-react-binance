@@ -5,13 +5,13 @@ import { Order } from '../../../utils/types'
 import { CoinData } from '../../../models/CoinDataResponse'
 import { useApiContext } from '../../../context/FetchContext'
 import { COINS_TABLE_STYLES } from './CoinsTableStyles'
+import BuyModalCoins from '../modals/BuyCoinModal'
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) return -1
     if (b[orderBy] > a[orderBy]) return 1
     return 0
 }
-
 
 function getComparator<Key extends keyof any>(
     order: Order,
@@ -24,7 +24,6 @@ function getComparator<Key extends keyof any>(
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
-
 
 function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
     const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
@@ -97,13 +96,19 @@ function CoinsTableHead(props: CoinsTableProps) {
                 )) }
             </TableRow>
         </TableHead>
-    );
+    )
 }
 
 export default function CoinsTable() {
+    const { coinsData } = useApiContext()
     const [order, setOrder] = React.useState<Order>('asc')
     const [orderBy, setOrderBy] = React.useState<keyof CoinData>('currentPrice')
-    const { coinsData } = useApiContext()
+    const [openModal, setOpenModal] = React.useState(false)
+
+    const handleClickOpen = () => setOpenModal(true)
+    const handleClose = () => setOpenModal(false)
+
+
 
     const handleRequestSort = (
         event: React.MouseEvent<unknown>,
@@ -114,21 +119,9 @@ export default function CoinsTable() {
         setOrderBy(property);
     };
 
-    const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-        const selectedIndex = selected.indexOf(name)
-        let newSelected: readonly string[] = []
-
-        if (selectedIndex === -1) {
-            newSelected = newSelected.concat(selected, name)
-        } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(selected.slice(1))
-        } else if (selectedIndex === selected.length - 1) {
-            newSelected = newSelected.concat(selected.slice(0, -1))
-        } else if (selectedIndex > 0) {
-            newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
-        }
-
-        setSelected(newSelected)
+    const handleClick = (event: React.MouseEvent<unknown>, coinData: CoinData) => {
+        console.log('coinData: ', coinData)
+        handleClickOpen()
     };
 
     const visibleRows = useMemo(() => stableSort(coinsData, getComparator(order, orderBy)), [order, orderBy, coinsData])
@@ -169,7 +162,7 @@ export default function CoinsTable() {
                                 return (
                                     <TableRow
                                         hover
-                                        onClick={ (event) => handleClick(event, coinsData.name.toString()) }
+                                        onClick={ (event) => handleClick(event, coinsData) }
                                         role="checkbox"
                                         tabIndex={ -1 }
                                         key={ coinsData.name }
@@ -194,7 +187,7 @@ export default function CoinsTable() {
                                                 <Box component="span" sx={ COINS_TABLE_STYLES.symbol }>
                                                     { coinsData.symbol }
                                                 </Box>
-                                                <Box component="span"  sx={ COINS_TABLE_STYLES.name }>
+                                                <Box component="span" sx={ COINS_TABLE_STYLES.name }>
                                                     { coinsData.name }
                                                 </Box>
                                             </Box>
@@ -203,12 +196,7 @@ export default function CoinsTable() {
                                             { price }
                                         </TableCell>
                                         <TableCell align="right" sx={ COINS_TABLE_STYLES.tableCellChange }>
-                                            <Box
-                                                component="span"
-                                                sx={ {
-                                                    color: itemChange > 0 ? '#03A66D' : '#CF304A'
-                                                } }
-                                            >
+                                            <Box component="span" sx={ { color: itemChange > 0 ? '#03A66D' : '#CF304A' } }>
                                                 { itemChange > 0 && '+' }{ itemChange } %
                                             </Box>
                                         </TableCell>
@@ -222,6 +210,13 @@ export default function CoinsTable() {
                     </Table>
                 </TableContainer>
             </Paper>
+            { openModal &&
+                <BuyModalCoins
+                    handleClickOpen={ handleClickOpen }
+                    handleClose={ handleClose }
+                    openModal={ openModal }
+                />
+            }
         </Box>
     )
 }

@@ -1,0 +1,22 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+}
+
+.cupones {
+    text-align: center;
+}
+
+.pagos {
+    text-align: center;
+}
+
+.section {
+    background: linear-gradient(to bottom, #32322f, #32322f, #33332f, #33332e, #33332e, #35352f, #373631, #393832, #3d3c35, #404039, #44443c, #484840);
+}

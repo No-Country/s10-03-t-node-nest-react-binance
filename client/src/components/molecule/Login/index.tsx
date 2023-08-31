@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 import { TextField, Typography, Container, Box } from '@mui/material'
-import PrimaryButton from '../atom/buttons/PrimaryButton'
+import PrimaryButton from '../../atom/buttons/PrimaryButton'
 import GoogleIcon from '@mui/icons-material/Google'
-import { LOGIN_STYLES } from '../template/login-form/LoginFormStyles'
+import { LOGIN_STYLES } from '../../template/login-form/LoginFormStyles'
 import { loginStyle } from './loginStyle'
 
 const LoginScreen: React.FC = () => {
@@ -13,8 +13,8 @@ const LoginScreen: React.FC = () => {
   const [password, setPassword] = useState('')
   const [showPasswordInput, setShowPasswordInput] = useState(false)
   const [error, setError] = useState(false)
-  const [message, setMessage] = useState({text: '', msg: ''})
-  const [welcomeMessage, setWelcomeMessage] = useState({text: ''})
+  const [message, setMessage] = useState({ text: '', msg: '' })
+  const [welcomeMessage, setWelcomeMessage] = useState({ text: '' })
   const [showMessage, setShowMessage] = useState(false)
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -47,7 +47,7 @@ const LoginScreen: React.FC = () => {
     setShowPasswordInput(true)
   }
   const handleLoginClick = async () => {
-    if(!password || password.length < 6 ){
+    if (!password || password.length < 6) {
       setError(true);
       setMessage({
         text: 'El password es obligatorio y debe tener mas de 6 caracteres',
@@ -66,11 +66,11 @@ const LoginScreen: React.FC = () => {
       navigate('/market')
     })
 
-    axios.post('https://binance-production.up.railway.app/api/v1/auth/login', {email, password})
-    .then(res => {
-      console.log(res);
-    })
-    
+    axios.post('https://binance-production.up.railway.app/api/v1/auth/login', { email, password })
+      .then(res => {
+        console.log(res);
+      })
+
   }
 
   return (

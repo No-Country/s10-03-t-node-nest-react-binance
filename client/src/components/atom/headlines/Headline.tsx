@@ -3,7 +3,7 @@ import { Typography } from '@mui/material'
 import { Alignment, HeadlineType } from '../../../utils/types'
 
 
-interface HeadlineH1Props {
+interface HeadlineProps {
   text: string
   alignText?: Alignment
   type?: HeadlineType
@@ -19,7 +19,7 @@ interface HeadlineH1Props {
  * 
  * Example: <Headline text="Binance" alignText="center" />
  */
-const Headline: React.FC<HeadlineH1Props> = ({
+const Headline: React.FC<HeadlineProps> = ({
   text,
   alignText,
   type

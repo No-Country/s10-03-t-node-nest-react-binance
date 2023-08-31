@@ -1,15 +1,24 @@
 import React from 'react'
+import { Grid } from '@mui/material'
 import TabsMarket from '../components/molecule/tabs/TabsMarket'
-import CardsComponents from '../components/molecule/cardscomponent/CardComponents'
+import HeroMarket from '../components/template/hero-market/HeroMarket'
 
 interface MarketProps { }
 
 const Market: React.FC<MarketProps> = () => {
   return (
-    <div>
-      <CardsComponents />
-      <TabsMarket />
-    </div>
+    <main style={ { margin: '1rem auto' } }>
+      <Grid
+        container
+        maxWidth="lg"
+        sx={ { margin: '0 auto', width: '100%' } }
+      >
+        <HeroMarket />
+      </Grid>
+      <Grid container maxWidth="lg" sx={ { margin: '0 auto' } }>
+        <TabsMarket />
+      </Grid>
+    </main>
   )
 }
 

@@ -84,16 +84,16 @@ export const binanceTheme = createTheme({
     h1: {
       fontSize: '32px',
       lineHeight: '40px',
-      fontWeight: 600,
+      fontWeight: '800',
       color: '#1E2329',
-      margin: '0'
+      margin: '20px auto'
     },
     h2: {
       fontSize: '24px',
       lineHeight: '32px',
-      fontWeight: 600,
+      fontWeight: 700,
       color: '#1E2329',
-      margin: '0'
+      margin: '18px auto'
     },
     h3: {
       fontSize: '18px',

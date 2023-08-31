@@ -13,6 +13,7 @@ import {
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import { TransitionProps } from '@mui/material/transitions'
 import { BUY_SELL_STYLES } from './BuySellModalStyles'
@@ -37,6 +38,7 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
 }) => {
   const handleBuy = () => console.log('comprar')
   const handleDeposit = () => console.log('depositar')
+  const handleSell = () => console.log('vender')
 
   return (
     <Dialog
@@ -53,35 +55,52 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
       </Box>
       <DialogActions sx={ BUY_SELL_STYLES.dialogActions }>
         <Grid container sx={ BUY_SELL_STYLES.actionsContainer }>
-          <Grid item xs={ 2 }>
+          <Grid item xs={ 3 }>
             <Button aria-label="comprar" onClick={ handleBuy } sx={ BUY_SELL_STYLES.actionsBtn } >
               <AddIcon />
             </Button>
           </Grid>
-          <Grid item xs={ 10 }>
+          <Grid item xs={ 9 }>
             <DialogTitle id="compra-title" sx={ BUY_SELL_STYLES.title }>
-              Compra
+              Comprar
             </DialogTitle>
             <DialogContent sx={ BUY_SELL_STYLES.content }>
               <DialogContentText id="compra-description" >
-                Compra criptomonedas con USD
+                Compra activos con ARS
               </DialogContentText>
             </DialogContent>
           </Grid>
         </Grid>
-        <Grid container>
-          <Grid item xs={ 2 }>
+        <Grid container sx={ BUY_SELL_STYLES.actionsContainer }>
+          <Grid item xs={ 3 }>
+            <Button aria-label="vender" onClick={ handleSell } sx={ BUY_SELL_STYLES.actionsBtn } >
+              <RemoveIcon />
+            </Button>
+          </Grid>
+          <Grid item xs={ 9 }>
+            <DialogTitle id="vender-title" sx={ BUY_SELL_STYLES.title }>
+              Vender
+            </DialogTitle>
+            <DialogContent sx={ BUY_SELL_STYLES.content }>
+              <DialogContentText id="vender-description">
+                Vende activos a ARS
+              </DialogContentText>
+            </DialogContent>
+          </Grid>
+        </Grid>
+        <Grid container sx={ BUY_SELL_STYLES.actionsContainerLast }>
+          <Grid item xs={ 3 }>
             <Button aria-label="depositar" onClick={ handleDeposit } sx={ BUY_SELL_STYLES.actionsBtn } >
               <ArrowDownwardIcon />
             </Button>
           </Grid>
-          <Grid item xs={ 10 }>
+          <Grid item xs={ 9 }>
             <DialogTitle id="depositar-title" sx={ BUY_SELL_STYLES.title }>
               Depositar
             </DialogTitle>
             <DialogContent sx={ BUY_SELL_STYLES.content }>
               <DialogContentText id="depositar-description">
-                Depositar con moneda flat y criptomonedas
+                Deposita moneda fiat o Criptomonedas
               </DialogContentText>
             </DialogContent>
           </Grid>

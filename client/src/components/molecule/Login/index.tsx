@@ -68,7 +68,7 @@ const LoginScreen: React.FC = () => {
         userOrEmail: 'n@prueba.com',
         password: 'string',
       });
-      console.log(response.data)
+      navigate('/market')
     } catch (error) {
       console.log('Error en el inicio de sesion', error);
       

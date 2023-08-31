@@ -1,15 +1,14 @@
 import React from 'react'
 // import CardsComponents from '../../molecule/cardscomponent/CardComponents'
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel, Pagination } from 'swiper/modules';
-import "swiper/css";
-import "./styleSlider.css";
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { useApiContext } from "../../../context/FetchContext";
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Mousewheel, Pagination } from 'swiper/modules'
+import "swiper/css"
+import "./styleSlider.css"
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+import { useApiContext } from "../../../context/FetchContext"
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
-
-import { CARDS_STYLES } from "../../molecule/cardscomponent/CardsComponentsStyles";
+import { CARDS_STYLES } from "../../molecule/cardscomponent/CardsComponentsStyles"
 
 
 const SliderCupones: React.FC = () => {
@@ -17,7 +16,6 @@ const SliderCupones: React.FC = () => {
     return (
         <>
             <Swiper
-
                 rewind={true}
                 pagination={{
                     clickable: true,
@@ -28,7 +26,6 @@ const SliderCupones: React.FC = () => {
 
 
                 {coinsData.slice(0, 4).map((coin) => (
-
                     <SwiperSlide key={coin.uuid}>
                         <Box>
                             <Card sx={CARDS_STYLES.card} >
@@ -65,10 +62,9 @@ const SliderCupones: React.FC = () => {
                         </Box>
                     </SwiperSlide>
                 ))}
-
             </Swiper>
         </>
-    );
+    )
 }
 
 export default SliderCupones

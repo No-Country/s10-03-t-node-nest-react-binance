@@ -6,23 +6,22 @@ import Market from "./pages/Market"
 import Wallets from "./pages/Wallets"
 import NotFound from "./pages/NotFound"
 import CreatePersonalAccount from "./pages/CreatePersonalAccount"
-import LoginView from "./components/Login"
+import LoginView from "./components/molecule/Login"
 import Header from "./components/molecule/header/Header"
 import { AuthProvider } from "./context/AuthContext"
 import { ApiProvider } from "./context/FetchContext"
-import Sales from "./components/Sales"
+import Sales from "./components/template/Sales"
 
 function App() {
   return (
     <HashRouter>
       <AuthProvider>
-
         <ApiProvider>
           <Header />
           <Routes>
             <Route path="/" element={ <Login /> } />
             <Route path="/login" element={ <LoginView /> } />
-            <Route path="/sales" element={ <Sales />} />
+            <Route path="/sales" element={ <Sales /> } />
             <Route path="/market" element={ <Market /> } />
             <Route path="/wallets" element={ <Wallets /> } />
             <Route path="/register" element={ <Register /> } />

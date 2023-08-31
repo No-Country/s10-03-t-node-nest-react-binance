@@ -1,9 +1,9 @@
-import React from 'react';
-import { useApiContext } from "../../../context/FetchContext";
+import React from 'react'
+import { useApiContext } from "../../../context/FetchContext"
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 
 const ListaSeguimiento: React.FC = () => {
-    const { coinsData } = useApiContext();
+    const { coinsData } = useApiContext()
     return (
         <>
             <Grid container justifyContent="center">
@@ -55,7 +55,7 @@ const ListaSeguimiento: React.FC = () => {
                 ))}
             </Grid>
         </>
-    );
+    )
 }
 
-export default ListaSeguimiento;
+export default ListaSeguimiento

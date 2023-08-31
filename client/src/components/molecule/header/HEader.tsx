@@ -22,8 +22,8 @@ const Header: React.FC<HeaderProps> = () => {
   const handleClose = () => setAnchorEl(null)
 
   const handleLogOut = () => {
-    setAuth(false)
-    navigate("/market")
+    
+    navigate("/")
     handleClose()
   }
 

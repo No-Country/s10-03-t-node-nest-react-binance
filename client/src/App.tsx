@@ -11,6 +11,7 @@ import Header from "./components/molecule/header/Header"
 import { AuthProvider } from "./context/AuthContext"
 import { ApiProvider } from "./context/FetchContext"
 import Sales from "./components/template/Sales"
+import Buy from "./pages/Compra"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={ <Login /> } />
             <Route path="/login" element={ <LoginView /> } />
             <Route path="/sales" element={ <Sales /> } />
+            <Route path="/buy" element={<Buy />} />
             <Route path="/market" element={ <Market /> } />
             <Route path="/wallets" element={ <Wallets /> } />
             <Route path="/register" element={ <Register /> } />

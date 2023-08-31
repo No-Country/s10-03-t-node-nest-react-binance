@@ -6,6 +6,7 @@ import PrimaryButton from '../../atom/buttons/PrimaryButton'
 import GoogleIcon from '@mui/icons-material/Google'
 import { LOGIN_STYLES } from '../../template/login-form/LoginFormStyles'
 import { loginStyle } from './loginStyle'
+import { AuthProvider } from '../../../context/AuthContext'
 
 const LoginScreen: React.FC = () => {
   const navigate = useNavigate()
@@ -19,6 +20,7 @@ const LoginScreen: React.FC = () => {
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidEmail = emailRegex.test(email);
+  const {loginWithGoogle} = AuthProvider;
 
 
   const handleNextClick = () => {
@@ -77,6 +79,10 @@ const LoginScreen: React.FC = () => {
     
   }
 
+  const handleGoogleLogin = async () => {
+    await loginWithGoogle()
+  }
+
   return (
     <Container maxWidth="xs">
       <Typography variant="h4" align="left" gutterBottom sx={ loginStyle.typography }>
@@ -119,6 +125,7 @@ const LoginScreen: React.FC = () => {
         ariaLabelText="Continuar con google"
         variant="contained"
         color="secondary"
+        onClick={handleGoogleLogin}
         icon={ <GoogleIcon /> }
         style={ {
           marginBottom: '20px',

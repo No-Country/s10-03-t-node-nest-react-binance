@@ -17,6 +17,7 @@ import RemoveIcon from '@mui/icons-material/Remove'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import { TransitionProps } from '@mui/material/transitions'
 import { BUY_SELL_STYLES } from './BuySellModalStyles'
+import { useNavigate } from 'react-router-dom'
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -32,13 +33,17 @@ interface BuyDepositModalProps {
   handleCloseBuyDepositModal: () => void
 }
 
+
+
 const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
   openBuyDepositModal,
   handleCloseBuyDepositModal
 }) => {
-  const handleBuy = () => console.log('comprar')
+
+  const navigate = useNavigate()
+  const handleBuy = () => navigate('/buy')
   const handleDeposit = () => console.log('depositar')
-  const handleSell = () => console.log('vender')
+  const handleSell = () => navigate('/sales')
 
   return (
     <Dialog

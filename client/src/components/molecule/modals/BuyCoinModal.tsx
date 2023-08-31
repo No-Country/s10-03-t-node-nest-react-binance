@@ -1,67 +1,124 @@
-import * as React from 'react'
-import {Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography  } from '@mui/material'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Box, Button, Dialog, DialogContent, DialogActions, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
+import StarIcon from '@mui/icons-material/Star'
+import { CoinData } from '../../../models/CoinDataResponse'
+import { BUY_FAV_MODAL } from './BuyCoinModalStyles'
 
-interface BuyModalCoinsProps {
-  handleClickOpen: () => void
+interface BuyCoinModalProps {
   handleClose: () => void
   openModal: boolean
+  cointToShow: CoinData
 }
-const BuyModalCoins:React.FC<BuyModalCoinsProps> = ({
-  handleClickOpen,
+const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
   handleClose,
-  openModal
+  openModal,
+  cointToShow
 }) => {
+  const navigate = useNavigate()
+  const handleClick = () => navigate(`/buy?coin=${ uuid }`)
+  const [isFavorite, setIsFavorite] = useState<boolean>(true)
 
+  const handleFavorite = () => setIsFavorite(isFavorite => !isFavorite)
+
+  const {
+    uuid,
+    symbol,
+    name,
+    color,
+    iconUrl,
+    currentPrice,
+    change,
+    marketCap
+  } = cointToShow
   return (
-    <div>
-      {/* <Button variant="outlined" onClick={ handleClickOpen }>
-        Open dialog
-      </Button> */}
+    <section id="modal-favorito-comprar">
       <Dialog
         onClose={ handleClose }
-        aria-labelledby="customized-dialog-title"
+        aria-labelledby="cerrar modal"
         open={ openModal }
       >
-        <DialogTitle sx={ { m: 0, p: 2 } } id="customized-dialog-title">
-          Modal title
-        </DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={ handleClose }
-          sx={ {
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          } }
+        <Box
+          component="div"
+          sx={ BUY_FAV_MODAL.container }
         >
-          <CloseIcon />
-        </IconButton>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
+          <IconButton
+            aria-label="close"
+            onClick={ handleClose }
+            sx={ { color: (theme) => theme.palette.grey[500], } }
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <Box
+          sx={ BUY_FAV_MODAL.title }
+          id="buy-icon-modal-title"
+        >
+          <Box>
+            <Typography
+              component="h2"
+              sx={ BUY_FAV_MODAL.titleH2 }
+            >
+              { symbol }
+            </Typography>
+            <Typography
+              component="h3"
+              sx={ BUY_FAV_MODAL.titleH3 }
+            >
+              { name }
+            </Typography>
+          </Box>
+          <Box>
+            <Box
+              component="span"
+              sx={ BUY_FAV_MODAL.icon }
+              onClick={ handleFavorite }
+            >
+              { isFavorite ?
+                <StarIcon sx={ { color: color } } fontSize="large" />
+                : <StarBorderIcon sx={ { color: color } } fontSize="large" />
+              }
+            </Box>
+          </Box>
+        </Box>
+        <DialogContent
+          sx={ { padding: '12px 24px 12px 32px' } }
+        >
+          <Typography
+            sx={ BUY_FAV_MODAL.text }
+          >
+            ${ marketCap }
           </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          <Box>
+            <img src={ iconUrl } alt={ name } width="100" height="100" />
+          </Box>
+          <Typography
+            sx={ BUY_FAV_MODAL.text }
+          >
+            { currentPrice }
           </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-            magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-            ullamcorper nulla non metus auctor fringilla.
+          <Typography
+            sx={ BUY_FAV_MODAL.text }
+          >
+            { change }%
           </Typography>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={ handleClose }>
-            Save changes
+        <DialogActions
+          sx={ { padding: '0px 24px 12px 32px' } }
+        >
+          <Button
+            autoFocus
+            onClick={ handleClick }
+            aria-label="Comprar"
+          >
+            Comprar
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </section>
   )
 }
-export default BuyModalCoins
+export default BuyCoinModal

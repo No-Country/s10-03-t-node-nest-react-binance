@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import { visuallyHidden } from '@mui/utils'
 import { Order } from '../../../utils/types'
 import { CoinData } from '../../../models/CoinDataResponse'
 import { useApiContext } from '../../../context/FetchContext'
 import { COINS_TABLE_STYLES } from './CoinsTableStyles'
-import BuyModalCoins from '../modals/BuyCoinModal'
+import BuyCoinModal from '../modals/BuyCoinModal'
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) return -1
@@ -101,9 +101,10 @@ function CoinsTableHead(props: CoinsTableProps) {
 
 export default function CoinsTable() {
     const { coinsData } = useApiContext()
-    const [order, setOrder] = React.useState<Order>('asc')
-    const [orderBy, setOrderBy] = React.useState<keyof CoinData>('currentPrice')
-    const [openModal, setOpenModal] = React.useState(false)
+    const [order, setOrder] = useState<Order>('asc')
+    const [orderBy, setOrderBy] = useState<keyof CoinData>('currentPrice')
+    const [openModal, setOpenModal] = useState(false)
+    const [cointToShow, setCoinToShow] = useState<CoinData>(null)
 
     const handleClickOpen = () => setOpenModal(true)
     const handleClose = () => setOpenModal(false)
@@ -120,7 +121,7 @@ export default function CoinsTable() {
     };
 
     const handleClick = (event: React.MouseEvent<unknown>, coinData: CoinData) => {
-        console.log('coinData: ', coinData)
+        setCoinToShow(coinData)
         handleClickOpen()
     };
 
@@ -211,10 +212,11 @@ export default function CoinsTable() {
                 </TableContainer>
             </Paper>
             { openModal &&
-                <BuyModalCoins
-                    handleClickOpen={ handleClickOpen }
+                <BuyCoinModal
+                    // handleClickOpen={ handleClickOpen }
                     handleClose={ handleClose }
                     openModal={ openModal }
+                    cointToShow={ cointToShow }
                 />
             }
         </Box>

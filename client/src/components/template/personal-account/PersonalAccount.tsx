@@ -82,6 +82,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
       return
     }
     setShowPassword(true)
+    
 
   };
 

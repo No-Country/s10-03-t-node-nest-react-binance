@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 import { TextField, Typography, Container, Box } from '@mui/material'
 import PrimaryButton from '../atom/buttons/PrimaryButton'
@@ -11,9 +12,66 @@ const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPasswordInput, setShowPasswordInput] = useState(false)
+  const [error, setError] = useState(false)
+  const [message, setMessage] = useState({text: '', msg: ''})
+  const [welcomeMessage, setWelcomeMessage] = useState({text: ''})
+  const [showMessage, setShowMessage] = useState(false)
 
-  const handleNextClick = () => setShowPasswordInput(true)
-  const handleLoginClick = () => navigate("/market")
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const isValidEmail = emailRegex.test(email);
+
+
+  const handleNextClick = () => {
+    if ([email].includes('')) {
+      setError(true)
+      setMessage({
+        text: 'El email es obligatorio',
+        msg: 'Email'
+      })
+      setTimeout(() => {
+        setError(false)
+      }, 3000);
+      return
+    }
+    if (!isValidEmail) {
+      setError(true)
+      setMessage({
+        text: 'El email contiene caracteres invalidos',
+        msg: 'Email invalido'
+      })
+      setTimeout(() => {
+        setError(false)
+      }, 3000);
+      return
+    }
+    setShowPasswordInput(true)
+  }
+  const handleLoginClick = async () => {
+    if(!password || password.length < 6 ){
+      setError(true);
+      setMessage({
+        text: 'El password es obligatorio y debe tener mas de 6 caracteres',
+        msg: 'password invalido'
+      })
+      setTimeout(() => {
+        setError(false)
+      }, 3000)
+      return
+    }
+    setWelcomeMessage({
+      text: 'Bienvenido'
+    });
+    setShowMessage(true)
+    setTimeout(() => {
+      navigate('/market')
+    })
+
+    axios.post('https://binance-production.up.railway.app/api/v1/auth/login', {email, password})
+    .then(res => {
+      console.log(res);
+    })
+    
+  }
 
   return (
     <Container maxWidth="xs">

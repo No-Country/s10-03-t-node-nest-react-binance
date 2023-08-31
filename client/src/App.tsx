@@ -10,6 +10,7 @@ import LoginView from "./components/Login"
 import Header from "./components/molecule/header/Header"
 import { AuthProvider } from "./context/AuthContext"
 import { ApiProvider } from "./context/FetchContext"
+import Sales from "./components/Sales"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={ <Login /> } />
             <Route path="/login" element={ <LoginView /> } />
+            <Route path="/sales" element={ <Sales />} />
             <Route path="/market" element={ <Market /> } />
             <Route path="/wallets" element={ <Wallets /> } />
             <Route path="/register" element={ <Register /> } />

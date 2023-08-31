@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import { Typography, Container, Box, TextField, Alert, AlertTitle } from '@mui/material'
@@ -46,15 +47,53 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
       }, 3000);
       return
     }
-    setWelcomeMessage({
-      text: 'Bienvenido'
-    });
-    setShowMessage(true)
-    setTimeout(() => {
-      navigate('/market')
-    }, 3000);
 
-    await registerAuth(password, email)
+    try {
+      const response = await axios.post('https://binance-production.up.railway.app/api/v1/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+         body: JSON.stringify({
+          email,
+          password,
+        }),
+      })
+      if(response.ok) {
+        setWelcomeMessage({
+          text: 'Bienvenido'
+        });
+        setShowMessage(true)
+        setTimeout(() => {
+          navigate('/market')
+        }, 3000);
+
+        await registerAuth(password, email);
+      } else {
+        setError(true);
+        setMessage({
+          text: 'Error al registrarse. Por favor, intenta nuevamente más tarde.',
+          msg: 'Error de registro'
+        });
+        setTimeout(() => {
+          setError(false);
+        }, 3000);
+      }
+    } catch (error) {
+      console.error('Error registering:', error);
+      setError(true);
+      setMessage({
+        text: 'Error al registrarse. Por favor, intenta nuevamente más tarde.',
+        msg: 'Error de registro'
+      });
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
+
+
+    
+    
 
   };
 

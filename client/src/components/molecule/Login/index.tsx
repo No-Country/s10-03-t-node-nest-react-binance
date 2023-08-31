@@ -62,15 +62,19 @@ const LoginScreen: React.FC = () => {
       text: 'Bienvenido'
     });
     setShowMessage(true)
-    setTimeout(() => {
-      navigate('/market')
-    })
+    
+    try {
+      const response = await axios.post('https://binance-production.up.railway.app/api/v1/auth/login', {
+        userOrEmail: 'n@prueba.com',
+        password: 'string',
+      });
+      console.log(response.data)
+    } catch (error) {
+      console.log('Error en el inicio de sesion', error);
+      
+    }
 
-    axios.post('https://binance-production.up.railway.app/api/v1/auth/login', { email, password })
-      .then(res => {
-        console.log(res);
-      })
-
+    
   }
 
   return (

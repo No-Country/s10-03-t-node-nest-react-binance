@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 interface AuthMethods {
-    registerAuth: (email: string, password: string) => void;
+    registerAuth: ({ email, password, username, balance, celphone }) => void;
 }
 
 const useAuth = (): AuthMethods | undefined => {

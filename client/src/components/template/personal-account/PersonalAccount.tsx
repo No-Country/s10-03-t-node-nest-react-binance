@@ -28,6 +28,10 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
   const [welcomeMessage, setWelcomeMessage] = useState({ text: '' })
   const [showMessage, setShowMessage] = useState(false)
 
+  let  username = "string"
+  let balance = 0
+  let celphone = 0
+  
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isValidEmail = emailRegex.test(email);
 
@@ -50,16 +54,19 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
 
     try {
       const response = await axios.post('https://binance-production.up.railway.app/api/v1/users/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-         body: JSON.stringify({
+        
+         
           email,
           password,
-        }),
+          username,
+          balance ,
+          celphone
+          
+        
       })
-      if(response.ok) {
+      
+      console.log(response)
+      if(response) {
         setWelcomeMessage({
           text: 'Bienvenido'
         });
@@ -68,7 +75,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
           navigate('/market')
         }, 3000);
 
-        await registerAuth(password, email);
+        registerAuth( { email, password, username, balance, celphone });
       } else {
         setError(true);
         setMessage({

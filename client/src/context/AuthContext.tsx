@@ -4,8 +4,8 @@ import { firebaseAuth } from '../firebase/index';
 import { GoogleAuthProvider,signInWithPopup } from 'firebase/auth';
 
 interface Auth {
-    auth: string
-    registerAuth: (email:string, password: string) => void
+    auth: {}
+    registerAuth: ({ email, password, username, balance, celphone }) => void
    
 }
 
@@ -25,20 +25,32 @@ export const useAuth = () => {
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const navigate = useNavigate()
-    const [auth, setauth] = useState('')
+    const [auth, setauth] = useState({
+        email: '',
+        password: '',
+        username: '',
+        balance: 0,
+        celphone: 0
+    })
     
-    const registerAuth = (email:string, password: string) => {
-        console.log(email, password);
+    const registerAuth = (data: { email:string, password:string, username: string, balance: number, celphone: number}) => {
+        
+        setauth((prevState) => ({
+            ...prevState,
+            ...data
+          }));
+        console.log(data);
+        console.log(auth);
         navigate('/market')
     }
 
-    const loginWithGoogle = () => {
-      const googleProvider =  new GoogleAuthProvider()
-      return signInWithPopup(firebaseAuth, googleProvider )
-    }
+    // const loginWithGoogle = () => {
+    //   const googleProvider =  new GoogleAuthProvider()
+    //   return signInWithPopup(firebaseAuth, googleProvider )
+    // }
 
     return (
-        <AuthContext.Provider value={{ auth, registerAuth,loginWithGoogle}} >
+        <AuthContext.Provider value={{ auth, registerAuth}} >
             {children}
         </AuthContext.Provider>
     )

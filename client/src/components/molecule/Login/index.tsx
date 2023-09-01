@@ -7,21 +7,20 @@ import GoogleIcon from '@mui/icons-material/Google'
 import { LOGIN_STYLES } from '../../template/login-form/LoginFormStyles'
 import { loginStyle } from './loginStyle'
 import { AuthProvider } from '../../../context/AuthContext'
+import { emailRegex } from '../../../utils/constants'
 
 const LoginScreen: React.FC = () => {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [showPasswordInput, setShowPasswordInput] = useState(false)
-  const [error, setError] = useState(false)
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [showPasswordInput, setShowPasswordInput] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
   const [message, setMessage] = useState({ text: '', msg: '' })
   const [welcomeMessage, setWelcomeMessage] = useState({ text: '' })
-  const [showMessage, setShowMessage] = useState(false)
+  const [showMessage, setShowMessage] = useState<boolean>(false)
 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const isValidEmail = emailRegex.test(email);
-  const {loginWithGoogle} = AuthProvider;
-
+  const isValidEmail = emailRegex.test(email)
+  const {loginWithGoogle} = AuthProvider; // TODO no esta en el Provider
 
   const handleNextClick = () => {
     if ([email].includes('')) {
@@ -48,6 +47,7 @@ const LoginScreen: React.FC = () => {
     }
     setShowPasswordInput(true)
   }
+
   const handleLoginClick = async () => {
     if (!password || password.length < 6) {
       setError(true);
@@ -66,6 +66,7 @@ const LoginScreen: React.FC = () => {
     setShowMessage(true)
     
     try {
+      // TODO esta constante no se reutiliza en ningun lugar
       const response = await axios.post('https://binance-production.up.railway.app/api/v1/auth/login', {
         userOrEmail: 'n@prueba.com',
         password: 'string',

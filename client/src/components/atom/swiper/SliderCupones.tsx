@@ -1,5 +1,4 @@
 import React from 'react'
-// import CardsComponents from '../../molecule/cardscomponent/CardComponents'
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Mousewheel, Pagination } from 'swiper/modules'
 import "swiper/css"
@@ -16,42 +15,38 @@ const SliderCupones: React.FC = () => {
     return (
         <>
             <Swiper
-                rewind={true}
-                pagination={{
-                    clickable: true,
-                }}
-                loop={true}
-                modules={[Mousewheel, Pagination]}
+                rewind={ true }
+                pagination={ { clickable: true } }
+                loop={ true }
+                modules={ [Mousewheel, Pagination] }
                 className="mySwiper">
-
-
-                {coinsData.slice(0, 4).map((coin) => (
-                    <SwiperSlide key={coin.uuid}>
+                { coinsData.slice(0, 4).map((coin) => (
+                    <SwiperSlide key={ coin.uuid }>
                         <Box>
-                            <Card sx={CARDS_STYLES.card} >
-                                <Grid container sx={CARDS_STYLES.gridContainer}>
-                                    <Grid item xs={6} sx={CARDS_STYLES.gridItem}>
+                            <Card sx={ CARDS_STYLES.card } >
+                                <Grid container sx={ CARDS_STYLES.gridContainer }>
+                                    <Grid item xs={ 6 } sx={ CARDS_STYLES.gridItem }>
                                         <CardMedia
-                                            sx={{ width: 50 }}
+                                            sx={ { width: 50 } }
                                             component='img'
-                                            image={coin.iconUrl}
-                                            height={50}
-                                            alt={coin.name}
+                                            image={ coin.iconUrl }
+                                            height={ 50 }
+                                            alt={ coin.name }
                                         />
                                         <CardContent >
                                             <Typography variant="h3" color="initial">
-                                                {coin.name}
+                                                { coin.name }
                                             </Typography>
                                             <Typography variant="h3" color="initial">
-                                                {coin.symbol}
+                                                { coin.symbol }
                                             </Typography>
                                         </CardContent>
                                     </Grid>
-                                    <Grid item xs={6} sx={CARDS_STYLES.gridItem}>
+                                    <Grid item xs={ 6 } sx={ CARDS_STYLES.gridItem }>
                                         <Typography variant="h4" color="initial">
-                                            {coin.currentPrice.substring(0, 6)}
+                                            { coin.currentPrice.substring(0, 6) }
                                         </Typography>
-                                        <CardActions sx={{ width: 100 }} >
+                                        <CardActions sx={ { width: 100 } } >
                                             <Button variant='contained' size='small' aria-label="comprar">
                                                 Comprar
                                             </Button>
@@ -61,7 +56,7 @@ const SliderCupones: React.FC = () => {
                             </Card>
                         </Box>
                     </SwiperSlide>
-                ))}
+                )) }
             </Swiper>
         </>
     )

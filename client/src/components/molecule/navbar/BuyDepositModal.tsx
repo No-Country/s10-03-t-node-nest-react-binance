@@ -33,8 +33,6 @@ interface BuyDepositModalProps {
   handleCloseBuyDepositModal: () => void
 }
 
-
-
 const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
   openBuyDepositModal,
   handleCloseBuyDepositModal

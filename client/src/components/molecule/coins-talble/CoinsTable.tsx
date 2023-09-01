@@ -109,8 +109,6 @@ export default function CoinsTable() {
     const handleClickOpen = () => setOpenModal(true)
     const handleClose = () => setOpenModal(false)
 
-
-
     const handleRequestSort = (
         event: React.MouseEvent<unknown>,
         property: keyof CoinData,

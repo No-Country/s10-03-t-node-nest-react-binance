@@ -1,8 +1,7 @@
 import React from "react"
 import { Container, Typography } from "@mui/material"
 import { salesStyle } from "./salesStyle"
-import SearchBar from
-  "../../molecule/searchBar"
+import SearchBar from "../../molecule/searchBar"
 import TabsSales from "../../molecule/tabs/TabsSales"
 
 const Sales = () => {

@@ -1,22 +1,16 @@
-import * as React from 'react';
-import axios from 'axios';
-import { useState } from "react";
+import React, { useState } from 'react'
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Typography, Container, Box, TextField, Alert, AlertTitle } from '@mui/material'
 import PrimaryButton from '../../atom/buttons/PrimaryButton'
 import { PERSONAL_STYLES } from './PersonalAccountStyles'
-import useAuth from '../../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth'
+import { emailRegex } from '../../../utils/constants'
 
 interface PersonalAccountProps { }
 
 const PersonalAccount: React.FC<PersonalAccountProps> = () => {
-
-  const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
-
-  if (!auth) {
-    // Manejar el caso en que el contexto no esté definido
-    return null; // O mostrar un mensaje apropiado, redirigir, etc.
-  }
+  const auth = useAuth() // Usar el hook useAuth para obtener el contexto
 
   const { registerAuth } = auth;
 
@@ -32,8 +26,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
   let balance = 0
   let celphone = 0
   
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const isValidEmail = emailRegex.test(email);
+  const isValidEmail = emailRegex.test(email)
 
   const navigate = useNavigate()
 
@@ -54,18 +47,14 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
 
     try {
       const response = await axios.post('https://binance-production.up.railway.app/api/v1/users/register', {
-        
-         
           email,
           password,
           username,
           balance ,
           celphone
-          
-        
       })
       
-      console.log(response)
+      console.log(response) // TODO: borrar
       if(response) {
         setWelcomeMessage({
           text: 'Bienvenido'
@@ -87,21 +76,16 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
         }, 3000);
       }
     } catch (error) {
-      console.error('Error registering:', error);
-      setError(true);
+      console.error('Error registering:', error) // TODO: borrar
+      setError(true)
       setMessage({
         text: 'Error al registrarse. Por favor, intenta nuevamente más tarde.',
         msg: 'Error de registro'
       });
       setTimeout(() => {
-        setError(false);
-      }, 3000);
+        setError(false)
+      }, 3000)
     }
-
-
-    
-    
-
   };
 
   const handleNextClick = () => {
@@ -128,11 +112,12 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
       return
     }
     setShowPassword(true)
-  
+  }
 
-  };
-
-
+  if (!auth) {
+    // Manejar el caso en que el contexto no esté definido
+    return null; // O mostrar un mensaje apropiado, redirigir, etc.
+  }
 
   return (
     <main style={ PERSONAL_STYLES.main }>
@@ -154,7 +139,6 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
               value={ email }
               onChange={ (e) => setEmail(e.target.value) }
             />
-
             {
               error &&
               <Alert severity="error">
@@ -162,7 +146,6 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
                 { message.text } — <strong>{ message.msg }</strong>
               </Alert>
             }
-
             {
               showPassword && (
                 <TextField
@@ -175,7 +158,6 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
                 />
               )
             }
-
             {
               showMessage &&
               <Alert severity="success">
@@ -183,7 +165,6 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
                 { welcomeMessage.text } — <strong>Registro con Exito! Seras redireccionado al Market</strong>
               </Alert>
             }
-
             <Typography
               variant="body1"
               my={ 2 }
@@ -208,9 +189,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
               color='primary'
               onClick={ (showPassword ? handleRegister : handleNextClick) }
             />
-
           </form>
-
         </Box>
       </Container>
     </main>

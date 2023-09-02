@@ -12,6 +12,6 @@ import { CryptoHistoriesModule } from '../crypto-histories/crypto-histories.modu
   ],
   providers: [CryptocurrenciesService],
   controllers: [CryptocurrenciesController],
-  exports: [CryptocurrenciesService],
+  exports: [CryptocurrenciesService, TypeOrmModule],
 })
 export class CryptocurrenciesModule {}

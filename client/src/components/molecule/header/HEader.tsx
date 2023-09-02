@@ -5,13 +5,13 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { HEADER_STYLES } from './HeaderStyles'
 import NavBar from '../navbar/NavBar'
+import useAuth from './../../../hooks/useAuth'
 
 interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
-  // TODO: para despues manejar globalmente si esta logueado o no
-  // por ahora lo dejo harcodeado a true
-  const [auth, setAuth] = React.useState(true)
+  const { isLogueado, setIsLogueado } = useAuth()
+  console.log(isLogueado)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const navigate = useNavigate()
 
@@ -22,7 +22,7 @@ const Header: React.FC<HeaderProps> = () => {
   const handleClose = () => setAnchorEl(null)
 
   const handleLogOut = () => {
-    
+    setIsLogueado(false)
     navigate("/")
     handleClose()
   }
@@ -38,11 +38,11 @@ const Header: React.FC<HeaderProps> = () => {
         </Grid>
         <Grid item xs={ 4 } sm={ 7 } sx={ HEADER_STYLES.containerNavBar } >
           <Box sx={ HEADER_STYLES.navBar }>
-            <NavBar />
+            { isLogueado && <NavBar /> }
           </Box>
         </Grid>
         <Grid item xs={ 2 } sm={ 2 } sx={ HEADER_STYLES.containerAvatar } >
-          { auth &&
+          { isLogueado &&
             <>
               <IconButton
                 size="large"
@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = () => {
                 } }
                 open={ Boolean(anchorEl) }
                 onClose={ handleClose }
-                sx={{top: '40px'}}
+                sx={ { top: '40px' } }
               >
                 <MenuItem onClick={ handleLogOut }>
                   <ArrowBackIcon sx={ { marginRight: '12px' } } /> Salir

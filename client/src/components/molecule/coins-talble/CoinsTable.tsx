@@ -115,8 +115,8 @@ export default function CoinsTable() {
     ) => {
         const isAsc = orderBy === property && order === 'asc'
         setOrder(isAsc ? 'desc' : 'asc')
-        setOrderBy(property);
-    };
+        setOrderBy(property)
+    }
 
     const handleClick = (event: React.MouseEvent<unknown>, coinData: CoinData) => {
         setCoinToShow(coinData)
@@ -211,7 +211,6 @@ export default function CoinsTable() {
             </Paper>
             { openModal &&
                 <BuyCoinModal
-                    // handleClickOpen={ handleClickOpen }
                     handleClose={ handleClose }
                     openModal={ openModal }
                     cointToShow={ cointToShow }

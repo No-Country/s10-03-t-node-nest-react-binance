@@ -37,11 +37,10 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
   openBuyDepositModal,
   handleCloseBuyDepositModal
 }) => {
-
   const navigate = useNavigate()
   const handleBuy = () => navigate('/buy')
-  const handleDeposit = () => console.log('depositar')
-  const handleSell = () => navigate('/sales')
+  const handleDeposit = () => navigate('/deposit')
+  const handleSell = () => navigate('/sell')
 
   return (
     <Dialog

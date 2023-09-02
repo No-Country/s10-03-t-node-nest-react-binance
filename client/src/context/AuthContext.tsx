@@ -1,7 +1,7 @@
 import React, { ReactNode, createContext, useState, useContext } from 'react'
-import { useNavigate } from "react-router-dom"
 import { firebaseAuth } from '../firebase/index'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { RegisterAuth } from '../models/RegisterAuth'
 
 interface Auth {
     auth: {}
@@ -21,8 +21,7 @@ export const useAuth = () => {
 }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const navigate = useNavigate()
-    const [auth, setauth] = useState({
+    const [auth, setauth] = useState<RegisterAuth>({
         email: '',
         password: '',
         username: '',
@@ -30,14 +29,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         celphone: 0
     })
 
-    const registerAuth = (data: { email: string, password: string, username: string, balance: number, celphone: number }) => {
-
+    const registerAuth = (data: RegisterAuth) => {
         setauth((prevState) => ({
             ...prevState,
             ...data
-        }));
-        console.log(data, auth) // TODO: borrar
-        navigate('/market')
+        }))
     }
 
     // const loginWithGoogle = () => {
@@ -53,5 +49,4 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 }
 
 export { AuthProvider }
-
 export default AuthContext

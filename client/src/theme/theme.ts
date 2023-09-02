@@ -36,25 +36,24 @@ export interface CustomStyleProps {
 
 declare module '@mui/material/styles' {
   interface TypographyVariants {
-    anchor: React.CSSProperties;
+    anchor: React.CSSProperties
   }
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
-    anchor?: React.CSSProperties;
+    anchor?: React.CSSProperties
   }
 }
 
 // Update the Typography's variant prop options
 declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
-    anchor: true;
+    anchor: true
   }
 }
 
 export const binanceTheme = createTheme({
   palette: {
-    //Custom colors to use with the theme alone
     primaryYellow: '#FCD535',
     primaryYellowDark: '#C99400',
     textBlack: '#1E2329',
@@ -391,16 +390,6 @@ export const binanceTheme = createTheme({
         })
       }
     },
-    MuiTypography: {
-      styleOverrides: {
-        //@ts-ignore
-        'anchor': {
-          ':hover': {
-            cursor: 'pointer'
-          }
-        }
-      }
-    },
     MuiDialog: {
       styleOverrides: {
         paper: {
@@ -437,15 +426,6 @@ export const binanceTheme = createTheme({
         }
       }
     },
-    MuiDatePicker: { // fix popper wont open
-      defaultProps: {
-        PopperProps: {
-          sx: {
-            height: 0
-          }
-        }
-      }
-    },
     MuiChip: {
       styleOverrides: {
         colorPrimary: ({ theme }) => ({
@@ -466,5 +446,4 @@ export const binanceTheme = createTheme({
       }
     }
   }
-}
-)
+})

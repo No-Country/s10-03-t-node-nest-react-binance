@@ -11,28 +11,25 @@ interface PersonalAccountProps { }
 
 const PersonalAccount: React.FC<PersonalAccountProps> = () => {
   const auth = useAuth() // Usar el hook useAuth para obtener el contexto
+  const { registerAuth } = auth
 
-  const { registerAuth } = auth;
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(false);
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
   const [message, setMessage] = useState({ text: '', msg: '' });
   const [welcomeMessage, setWelcomeMessage] = useState({ text: '' })
-  const [showMessage, setShowMessage] = useState(false)
+  const [showMessage, setShowMessage] = useState<boolean>(false)
 
-  let  username = "string"
-  let balance = 0
-  let celphone = 0
-  
+  const username = "string"
+  const balance = 0
+  const celphone = 0
+
   const isValidEmail = emailRegex.test(email)
 
   const navigate = useNavigate()
 
   const handleRegister = async () => {
-    // TODO: hay que hacer bien lo de crear la cuenta personal
-    // TODO: antes del navigate que salga algun cartel avisando el ok o no
     if (!password || password.length < 6) {
       setError(true);
       setMessage({
@@ -47,15 +44,15 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
 
     try {
       const response = await axios.post('https://binance-production.up.railway.app/api/v1/users/register', {
-          email,
-          password,
-          username,
-          balance ,
-          celphone
+        email,
+        password,
+        username,
+        balance,
+        celphone
       })
-      
+
       console.log(response) // TODO: borrar
-      if(response) {
+      if (response) {
         setWelcomeMessage({
           text: 'Bienvenido'
         });
@@ -64,7 +61,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
           navigate('/market')
         }, 3000);
 
-        registerAuth( { email, password, username, balance, celphone });
+        registerAuth({ email, password, username, balance, celphone });
       } else {
         setError(true);
         setMessage({
@@ -116,7 +113,12 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
 
   if (!auth) {
     // Manejar el caso en que el contexto no esté definido
-    return null; // O mostrar un mensaje apropiado, redirigir, etc.
+    return (
+      <Alert severity="error">
+        <AlertTitle>Error</AlertTitle>
+        No se puede registrar
+      </Alert>
+    )
   }
 
   return (
@@ -152,6 +154,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
                   id="filled-basic"
                   label="password"
                   variant="filled"
+                  type="password"
                   style={ { borderRadius: 0, width: '70%', marginBottom: '20px' } }
                   value={ password }
                   onChange={ (e) => setPassword(e.target.value) }

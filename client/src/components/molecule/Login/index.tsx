@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
-import { TextField, Typography, Container, Box } from '@mui/material'
+import { TextField, Typography, Container, Box, Alert, AlertTitle } from '@mui/material'
 import PrimaryButton from '../../atom/buttons/PrimaryButton'
 import GoogleIcon from '@mui/icons-material/Google'
 import { LOGIN_STYLES } from '../../template/login-form/LoginFormStyles'
 import { loginStyle } from './loginStyle'
-import { AuthProvider } from '../../../context/AuthContext'
+// import { AuthProvider } from '../../../context/AuthContext'
 import { emailRegex } from '../../../utils/constants'
+import useAuth from '../../../hooks/useAuth'
 
 const LoginScreen: React.FC = () => {
+  const auth = useAuth() // Usar el hook useAuth para obtener el contexto
+  const { login } = auth
+
+ 
   const navigate = useNavigate()
-  const [email, setEmail] = useState<string>('')
+  const [userOrEmail, setUserOrEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [showPasswordInput, setShowPasswordInput] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
@@ -19,11 +24,13 @@ const LoginScreen: React.FC = () => {
   const [welcomeMessage, setWelcomeMessage] = useState({ text: '' })
   const [showMessage, setShowMessage] = useState<boolean>(false)
 
-  const isValidEmail = emailRegex.test(email)
-  const {loginWithGoogle} = AuthProvider; // TODO no esta en el Provider
+  const isValidEmail = emailRegex.test(userOrEmail)
+  // const {loginWithGoogle} = AuthProvider; // TODO no esta en el Provider
 
+ 
+  
   const handleNextClick = () => {
-    if ([email].includes('')) {
+    if ([userOrEmail].includes('')) {
       setError(true)
       setMessage({
         text: 'El email es obligatorio',
@@ -67,10 +74,12 @@ const LoginScreen: React.FC = () => {
     
     try {
       // TODO esta constante no se reutiliza en ningun lugar
-      const response = await axios.post('https://binance-production.up.railway.app/api/v1/auth/login', {
-        userOrEmail: 'n@prueba.com',
-        password: 'string',
+      const { data } = await axios.post('https://binance-production.up.railway.app/api/v1/auth/login', {
+        userOrEmail,
+        password
       });
+      login(data);
+      
       navigate('/market')
     } catch (error) {
       console.log('Error en el inicio de sesion', error);
@@ -80,9 +89,9 @@ const LoginScreen: React.FC = () => {
     
   }
 
-  const handleGoogleLogin = async () => {
-    await loginWithGoogle()
-  }
+  // const handleGoogleLogin = async () => {
+  //   await loginWithGoogle()
+  // }
 
   return (
     <Container maxWidth="xs">
@@ -94,10 +103,17 @@ const LoginScreen: React.FC = () => {
         variant="outlined"
         fullWidth
         margin="normal"
-        value={ email }
-        onChange={ (e) => setEmail(e.target.value) }
+        value={ userOrEmail }
+        onChange={ (e) => setUserOrEmail(e.target.value) }
         style={ { marginBottom: '20px' } }
       />
+       {
+              error &&
+              <Alert severity="error">
+                <AlertTitle>Error</AlertTitle>
+                { message.text } — <strong>{ message.msg }</strong>
+              </Alert>
+            }
       { showPasswordInput && (
         <TextField
           label="Contraseña"
@@ -109,6 +125,13 @@ const LoginScreen: React.FC = () => {
           onChange={ (e) => setPassword(e.target.value) }
         />
       ) }
+      {
+              showMessage &&
+              <Alert severity="success">
+                <AlertTitle>Success</AlertTitle>
+                { welcomeMessage.text } — <strong>Registro con Exito! Seras redireccionado al Market</strong>
+              </Alert>
+            }
       <PrimaryButton
         text={ !showPasswordInput ? 'Siguiente' : 'Iniciar sesión' }
         ariaLabelText="Continuar con google"
@@ -126,7 +149,7 @@ const LoginScreen: React.FC = () => {
         ariaLabelText="Continuar con google"
         variant="contained"
         color="secondary"
-        onClick={handleGoogleLogin}
+        // onClick={handleGoogleLogin}
         icon={ <GoogleIcon /> }
         style={ {
           marginBottom: '20px',

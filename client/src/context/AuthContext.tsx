@@ -1,11 +1,12 @@
-import React, { ReactNode, createContext, useState, useContext } from 'react'
-import { firebaseAuth } from '../firebase/index'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { RegisterAuth } from '../models/RegisterAuth'
+import React, { ReactNode, createContext, useState, } from 'react'
+// import { firebaseAuth } from '../firebase/index'
+// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { LoginAuth, RegisterAuth } from '../models/RegisterAuth'
 
 interface Auth {
-    auth: {}
+    auth: RegisterAuth
     registerAuth: ({ email, password, username, balance, celphone }) => void
+    login: ({ userOrEmail, password }) => void
 }
 
 interface AuthProviderProps {
@@ -14,11 +15,11 @@ interface AuthProviderProps {
 
 export const AuthContext = createContext<Auth | undefined>(undefined)
 
-export const useAuth = () => {
-    const context = useContext(AuthContext)
-    if (!context) throw new Error("There is no auth provider")
-    return context
-}
+// export const useAuth = () =>  {
+//     const context = useContext(AuthContext)
+//     if (!context) throw new Error("There is no auth provider")
+//     return context
+// }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [auth, setauth] = useState<RegisterAuth>({
@@ -29,11 +30,19 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         celphone: 0
     })
 
+    const [loginAuth, setLoginAuth] = useState<LoginAuth>({userOrEmail: '', password: ''})
+
+    console.log(loginAuth);
+    
     const registerAuth = (data: RegisterAuth) => {
         setauth((prevState) => ({
             ...prevState,
             ...data
         }))
+    }
+
+    const login = (data: LoginAuth) => {
+        setLoginAuth(data)
     }
 
     // const loginWithGoogle = () => {
@@ -42,7 +51,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // }
 
     return (
-        <AuthContext.Provider value={ { auth, registerAuth } } >
+        <AuthContext.Provider value={ { auth, registerAuth, login } } >
             { children }
         </AuthContext.Provider>
     )

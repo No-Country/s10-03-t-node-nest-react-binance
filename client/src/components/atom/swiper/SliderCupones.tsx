@@ -10,9 +10,28 @@ import "swiper/css"
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import "./styleSlider.css"
-import { Autoplay, Mousewheel, Pagination, Navigation, A11y, FreeMode, EffectCoverflow } from 'swiper/modules'
+import { Autoplay, Mousewheel, Pagination, Navigation, EffectCoverflow } from 'swiper/modules'
 import { useNavigate } from 'react-router-dom'
 
+export const SlideNextButton = () => {
+    const swiper = useSwiper();
+
+    return (
+        <IconButton aria-label="álito" onClick={() => swiper.slideNext()} >
+            <KeyboardArrowRightRoundedIcon sx={{ width: 30, height: 30, color: "primary" }} />
+        </IconButton>
+    );
+}
+
+export const SlidePrevButton = () => {
+    const swiper = useSwiper();
+
+    return (
+        <IconButton aria-label="" onClick={() => swiper.slidePrev()} >
+            <KeyboardArrowLeftRoundedIcon sx={{ width: 30, height: 30, color: "primary" }} />
+        </IconButton>
+    );
+}
 
 const SliderCupones: React.FC = () => {
     const { coinsData } = useApiContext();
@@ -23,7 +42,6 @@ const SliderCupones: React.FC = () => {
                 cssMode={true}
                 loop={true}
                 mousewheel={true}
-                // freeMode={true}
                 autoplay={{
                     delay: 4000,
                     disableOnInteraction: false,
@@ -54,10 +72,8 @@ const SliderCupones: React.FC = () => {
                         spaceBetween: 5,
                     },
                 }}
-                modules={[Autoplay, Mousewheel, Pagination, Navigation, A11y, FreeMode, EffectCoverflow]}
+                modules={[Autoplay, Mousewheel, Pagination, Navigation, EffectCoverflow]}
                 className="mySwiper">
-
-
                 {coinsData.slice(0, 5).map((coin) => (
                     <SwiperSlide key={coin.uuid}>
                         <Box>
@@ -92,72 +108,19 @@ const SliderCupones: React.FC = () => {
                                     </Grid>
                                 </Grid>
                             </Card>
-                            {/* <Card sx={CARDS_STYLES.card}>
-                                <CardActionArea>
-                                    <CardMedia
-                                        sx={{ width: 50 }}
-                                        component='img'
-                                        image={coin.iconUrl}
-                                        height={50}
-                                        alt={coin.name}
-                                    />
-                                    <CardContent>
-                                        <Typography variant="h3" color="initial">
-                                            {coin.name}
-                                        </Typography>
-                                        <Typography variant="h3" color="initial">
-                                            {coin.symbol}
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                                            species, ranging across all continents except Antarctica
-                                        </Typography>
-                                        <ConfirmationNumberTwoToneIcon />
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card> */}
-
                         </Box>
-
                     </SwiperSlide>
-
                 ))}
                 <div className='swiper-div-buttons'>
                     <div > <SlidePrevButton /></div>
                     <div ><SlideNextButton /></div>
                 </div>
-
-
             </Swiper>
         </>
     )
 }
 
-
-
 export default SliderCupones
 
 
-export const SlideNextButton = () => {
-    const swiper = useSwiper();
-
-    return (
-        <IconButton aria-label="álito" onClick={() => swiper.slideNext()} >
-            <KeyboardArrowRightRoundedIcon sx={{ width: 30, height: 30, color: "primary" }} />
-        </IconButton>
-
-    );
-}
-
-export const SlidePrevButton = () => {
-    const swiper = useSwiper();
-
-    return (
-
-
-        <IconButton aria-label="" onClick={() => swiper.slidePrev()} >
-            <KeyboardArrowLeftRoundedIcon sx={{ width: 30, height: 30, color: "primary" }} />
-        </IconButton>
-    );
-}
 

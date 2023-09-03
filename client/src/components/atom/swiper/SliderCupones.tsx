@@ -1,10 +1,13 @@
 import React from 'react'
+<<<<<<< HEAD
 import { useApiContext } from "../../../context/FetchContext"
 import { Box, Card, CardActions, CardContent, CardMedia, Typography, IconButton, Grid, Button } from '@mui/material'
 import { CARDS_STYLES } from "../../molecule/cardscomponent/CardsComponentsStyles"
 import { useSwiper } from 'swiper/react'
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
 import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
+=======
+>>>>>>> development
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import 'swiper/css/pagination'
@@ -20,6 +23,7 @@ const SliderCupones: React.FC = () => {
     return (
         <>
             <Swiper
+<<<<<<< HEAD
                 cssMode={true}
                 loop={true}
                 mousewheel={true}
@@ -60,32 +64,46 @@ const SliderCupones: React.FC = () => {
 
                 {coinsData.slice(0, 5).map((coin) => (
                     <SwiperSlide key={coin.uuid}>
+=======
+                rewind={ true }
+                pagination={ { clickable: true } }
+                loop={ true }
+                modules={ [Mousewheel, Pagination] }
+                className="mySwiper">
+                { coinsData.slice(0, 4).map((coin) => (
+                    <SwiperSlide key={ coin.uuid }>
+>>>>>>> development
                         <Box>
-                            <Card sx={CARDS_STYLES.card} >
-                                <Grid container sx={CARDS_STYLES.gridContainer}>
-                                    <Grid item xs={6} sx={CARDS_STYLES.gridItem}>
+                            <Card sx={ CARDS_STYLES.card } >
+                                <Grid container sx={ CARDS_STYLES.gridContainer }>
+                                    <Grid item xs={ 6 } sx={ CARDS_STYLES.gridItem }>
                                         <CardMedia
-                                            sx={{ width: 50 }}
+                                            sx={ { width: 50 } }
                                             component='img'
-                                            image={coin.iconUrl}
-                                            height={50}
-                                            alt={coin.name}
+                                            image={ coin.iconUrl }
+                                            height={ 50 }
+                                            alt={ coin.name }
                                         />
                                         <CardContent >
                                             <Typography variant="h3" color="initial">
-                                                {coin.name}
+                                                { coin.name }
                                             </Typography>
                                             <Typography variant="h3" color="initial">
-                                                {coin.symbol}
+                                                { coin.symbol }
                                             </Typography>
                                         </CardContent>
                                     </Grid>
-                                    <Grid item xs={6} sx={CARDS_STYLES.gridItem}>
+                                    <Grid item xs={ 6 } sx={ CARDS_STYLES.gridItem }>
                                         <Typography variant="h4" color="initial">
-                                            {coin.currentPrice.substring(0, 6)}
+                                            { coin.currentPrice.substring(0, 6) }
                                         </Typography>
+<<<<<<< HEAD
                                         <CardActions sx={{ width: 100 }} >
                                             <Button onClick={() => navigate(`/buy?coin=${coin.uuid}`)} variant='contained' size='small' aria-label="comprar">
+=======
+                                        <CardActions sx={ { width: 100 } } >
+                                            <Button variant='contained' size='small' aria-label="comprar">
+>>>>>>> development
                                                 Comprar
                                             </Button>
                                         </CardActions>
@@ -120,6 +138,7 @@ const SliderCupones: React.FC = () => {
                         </Box>
 
                     </SwiperSlide>
+<<<<<<< HEAD
 
                 ))}
                 <div className='swiper-div-buttons'>
@@ -128,6 +147,9 @@ const SliderCupones: React.FC = () => {
                 </div>
 
 
+=======
+                )) }
+>>>>>>> development
             </Swiper>
         </>
     )

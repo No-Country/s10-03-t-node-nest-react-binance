@@ -25,27 +25,78 @@ export class UsersService {
   async createUser(createUserDto: CreateUserDTO) {
     try {
       const { username, email, celphone } = createUserDto;
+
+      // Comprobar que se envió al menos uno de los campos: username, email, celphone
       if (!(username || email || celphone)) {
         return createResponse({
-          error: false,
+          error: true,
           message: 'Debe enviar al menos username, email, celphone',
         });
       }
-      const hashedPassword = await bcrypt.hash(createUserDto.password, 10); // 1 es el número de rondas de salting, puedes ajustarlo si lo prefieres
+
+      // Comprobar si el username ya existe
+      if (username) {
+        const existingUserByUsername = await this.usersRepository.findOne({
+          where: { username },
+        });
+        if (existingUserByUsername) {
+          return createResponse({
+            error: true,
+            message: 'El nombre de usuario ya existe',
+          });
+        }
+      }
+
+      // Comprobar si el email ya existe
+      if (email) {
+        const existingUserByEmail = await this.usersRepository.findOne({
+          where: { email },
+        });
+        if (existingUserByEmail) {
+          return createResponse({
+            error: true,
+            message: 'El email ya está en uso',
+          });
+        }
+      }
+
+      // Comprobar si el celphone ya existe
+      if (celphone) {
+        const existingUserByCelphone = await this.usersRepository.findOne({
+          where: { celphone },
+        });
+        if (existingUserByCelphone) {
+          return createResponse({
+            error: true,
+            message: 'El número de teléfono celular ya está en uso',
+          });
+        }
+      }
+
+      // Si todo está bien, continua con el proceso de creación del usuario
+      const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
       const user = new UserEntity();
-      user.username = createUserDto.username;
-      user.email = createUserDto.email;
+      user.username = username;
+      user.email = email;
+      user.celphone = celphone;
       user.passwordHash = hashedPassword;
       user.balance = createUserDto.balance;
+
       const data = await this.usersRepository.save(user);
+      if (!data) {
+        return createResponse({
+          error: true,
+          message: 'Ocurrió un error al registrar',
+        });
+      }
       return createResponse({
         data: data,
         message: 'Registro Exitoso',
       });
     } catch (error) {
       return createResponse({
-        error: error,
-        message: 'Ocurrio un error al registrar',
+        error: true,
+        message: 'Ocurrió un error al registrar',
       });
     }
   }

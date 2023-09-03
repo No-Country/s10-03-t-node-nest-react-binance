@@ -39,13 +39,11 @@ export class CreateUserDTO {
   balance?: number;
 
   @IsOptional()
-  @IsNumber()
+  @IsString()
   @ApiProperty({
     description: 'numero de celular',
   })
-  celphone?: number;
-
-  
+  celphone?: string;
 }
 
 // DTO para actualizar un usuario

@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { CryptocurrencyEntity } from '../cryptocurrencies/entity/cryptocurrencies.entity';
 
-@Entity('crypto_histories')
+@Entity({ name: 'crypto_histories' })
 export class CryptoHistoryEntity {
   @PrimaryGeneratedColumn()
   id: number;

@@ -7,16 +7,19 @@ import Wallets from "./pages/Wallets"
 import NotFound from "./pages/NotFound"
 import CreatePersonalAccount from "./pages/CreatePersonalAccount"
 import LoginView from "./components/molecule/Login"
-import Header from "./components/molecule/header/Header"
+
 import { AuthProvider } from "./context/AuthContext"
 import { ApiProvider } from "./context/FetchContext"
 import Sales from "./pages/Sell"
 import Buy from "./pages/Buy"
-import Deposit from "./pages/DEposit"
+import { GoogleAuthContextProvider } from "./context/googleContext"
+import Header from "./components/molecule/header/HEader"
+import Deposit from "./pages/Deposit"
 
 function App() {
   return (
     <HashRouter>
+      <GoogleAuthContextProvider>
       <AuthProvider>
         <ApiProvider>
           <Header />
@@ -35,6 +38,7 @@ function App() {
         </ApiProvider>
         <Footer />
       </AuthProvider>
+      </GoogleAuthContextProvider>
     </HashRouter>
   )
 }

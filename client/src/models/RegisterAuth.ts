@@ -5,3 +5,8 @@ export interface RegisterAuth {
   balance?: number
   celphone?: number
 }
+
+export interface LoginAuth {
+  userOrEmail: string
+  password: string
+}

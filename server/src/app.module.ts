@@ -10,6 +10,7 @@ import { enviroments } from './core/config/enviroments';
 import config from './core/config/config';
 import * as Joi from 'joi';
 import { ScheduleModule } from '@nestjs/schedule';
+import { UserFavoritesModule } from './modules/user-favorites/user-favorites.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     TransactionsModule,
     CryptoHistoriesModule,
     DatabaseModule,
+    UserFavoritesModule,
   ],
   controllers: [],
   providers: [],

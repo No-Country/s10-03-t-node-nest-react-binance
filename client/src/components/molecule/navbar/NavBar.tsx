@@ -11,7 +11,7 @@ import BuyDepositModal from './BuyDepositModal'
 interface NavBarProps { }
 
 const NavBar: React.FC<NavBarProps> = () => {
-  const [openBuySellModal, setOpenBuySellModal] = useState(false)
+  const [openBuySellModal, setOpenBuySellModal] = useState<boolean>(false)
   const navigate = useNavigate()
   const location = useLocation()
 

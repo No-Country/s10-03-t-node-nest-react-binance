@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { Backdrop, Box, CircularProgress, Typography } from '@mui/material'
+import { Backdrop, Box } from '@mui/material'
 import useLoading from '../hooks/useLoading'
 import LoadingBars from '../components/atom/LoadingBars'
 
@@ -21,9 +21,9 @@ export const LoaderContext = createContext<AppContextProps>(defaultContext)
 
 export const useLoader = () => useContext(LoaderContext)
 
-const LoaderProvider = (
-  { children }: LoaderProviderProps
-) => {
+const LoaderProvider: React.FC<LoaderProviderProps> = ({ 
+  children 
+}) => {
   const [loading, addLoading, removeLoading] = useLoading()
 
   return (

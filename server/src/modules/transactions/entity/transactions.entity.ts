@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-@Entity('transactions')
+@Entity({ name: 'transactions' })
 export class TransactionEntity {
   @PrimaryGeneratedColumn()
   id: number;

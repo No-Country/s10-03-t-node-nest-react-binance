@@ -1,63 +1,53 @@
-import React, { ReactNode, createContext, useState, useContext } from 'react'
-import { useNavigate } from "react-router-dom"
-import { firebaseAuth } from '../firebase/index';
-import { GoogleAuthProvider,signInWithPopup } from 'firebase/auth';
+import React, { ReactNode, createContext, useState } from "react";
+// import { firebaseAuth } from '../firebase/index'
+// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { LoginAuth, RegisterAuth } from "../models/RegisterAuth";
 
 interface Auth {
-    auth: {}
-    registerAuth: ({ email, password, username, balance, celphone }) => void
-   
+  auth: RegisterAuth;
+  registerAuth: ({ email, password, username, balance, celphone }) => void;
+  login: ({ userOrEmail, password }) => void;
 }
 
 interface AuthProviderProps {
-    children: ReactNode
+  children: ReactNode;
 }
 
-
-
-export const AuthContext = createContext<Auth | undefined>(undefined);
-
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if(!context) throw new Error ("There is no auth provider")
-    return context
-}
+const AuthContext = createContext<Auth | undefined>(undefined);
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const navigate = useNavigate()
-    const [auth, setauth] = useState({
-        email: '',
-        password: '',
-        username: '',
-        balance: 0,
-        celphone: 0
-    })
-    
-    const registerAuth = (data: { email:string, password:string, username: string, balance: number, celphone: number}) => {
-        
-        setauth((prevState) => ({
-            ...prevState,
-            ...data
-          }));
-        console.log(data);
-        console.log(auth);
-        navigate('/market')
-    }
+  const [auth, setauth] = useState<RegisterAuth>({
+    email: "",
+    password: "",
+    username: "",
+    balance: 0,
+    celphone: 0,
+  });
 
-    // const loginWithGoogle = () => {
-    //   const googleProvider =  new GoogleAuthProvider()
-    //   return signInWithPopup(firebaseAuth, googleProvider )
-    // }
+  const [loginAuth, setLoginAuth] = useState<LoginAuth>({
+    userOrEmail: "",
+    password: "",
+  });
 
-    return (
-        <AuthContext.Provider value={{ auth, registerAuth}} >
-            {children}
-        </AuthContext.Provider>
-    )
-}
+  console.log(loginAuth);
 
-export {
-    AuthProvider
-}
+  const registerAuth = (data: RegisterAuth) => {
+    setauth((prevState) => ({
+      ...prevState,
+      ...data,
+    }));
+  };
 
-export default AuthContext
+  const login = (data: LoginAuth) => {
+    setLoginAuth(data);
+  };
+
+  return (
+    <AuthContext.Provider value={{ auth, registerAuth, login }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export { AuthProvider };
+export default AuthContext;

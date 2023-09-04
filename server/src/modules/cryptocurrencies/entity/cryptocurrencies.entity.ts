@@ -1,8 +1,9 @@
 import { CryptoHistoryEntity } from 'src/modules/crypto-histories/crypto-histories.entity';
 import { TransactionEntity } from 'src/modules/transactions/entity/transactions.entity';
+import { UserFavoritesEntity } from 'src/modules/user-favorites/entity/user-favorites.entity';
 import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
 
-@Entity('cryptocurrencies')
+@Entity({ name: 'cryptocurrencies' })
 export class CryptocurrencyEntity {
   @PrimaryColumn({ length: 255 })
   uuid: string;
@@ -33,4 +34,10 @@ export class CryptocurrencyEntity {
 
   @OneToMany(() => CryptoHistoryEntity, (history) => history.crypto)
   histories: CryptoHistoryEntity[];
+
+  @OneToMany(
+    () => UserFavoritesEntity,
+    (userFavorite) => userFavorite.cryptocurrency,
+  )
+  userFavorites: UserFavoritesEntity[];
 }

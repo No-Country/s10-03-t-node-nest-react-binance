@@ -1,31 +1,80 @@
 import React from 'react'
-// import CardsComponents from '../../molecule/cardscomponent/CardComponents'
+import { useApiContext } from "../../../context/FetchContext"
+import { Box, Card, CardActions, CardContent, CardMedia, Typography, IconButton, Grid, Button } from '@mui/material'
+import { CARDS_STYLES } from "../../molecule/cardscomponent/CardsComponentsStyles"
+import { useSwiper } from 'swiper/react'
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded'
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded'
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Mousewheel, Pagination } from 'swiper/modules'
 import "swiper/css"
-import "./styleSlider.css"
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-import { useApiContext } from "../../../context/FetchContext"
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
-import { CARDS_STYLES } from "../../molecule/cardscomponent/CardsComponentsStyles"
+import "./styleSlider.css"
+import { Autoplay, Mousewheel, Pagination, Navigation, EffectCoverflow } from 'swiper/modules'
+import { useNavigate } from 'react-router-dom'
 
+export const SlideNextButton = () => {
+    const swiper = useSwiper();
+
+    return (
+        <IconButton aria-label="álito" onClick={() => swiper.slideNext()} >
+            <KeyboardArrowRightRoundedIcon sx={{ width: 30, height: 30, color: "primary" }} />
+        </IconButton>
+    );
+}
+
+export const SlidePrevButton = () => {
+    const swiper = useSwiper();
+
+    return (
+        <IconButton aria-label="" onClick={() => swiper.slidePrev()} >
+            <KeyboardArrowLeftRoundedIcon sx={{ width: 30, height: 30, color: "primary" }} />
+        </IconButton>
+    );
+}
 
 const SliderCupones: React.FC = () => {
     const { coinsData } = useApiContext();
+    const navigate = useNavigate()
     return (
         <>
             <Swiper
-                rewind={true}
-                pagination={{
-                    clickable: true,
-                }}
+                cssMode={true}
                 loop={true}
-                modules={[Mousewheel, Pagination]}
+                mousewheel={true}
+                autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                }}
+                pagination={{ clickable: true, }}
+                breakpoints={{
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                        navigation: false,
+                    },
+                    640: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    },
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 5,
+                    },
+                    900: {
+                        slidesPerView: 1.9,
+                        spaceBetween: 2,
+                        navigation: true
+                    },
+
+                    1024: {
+                        slidesPerView: 2,
+                        spaceBetween: 5,
+                    },
+                }}
+                modules={[Autoplay, Mousewheel, Pagination, Navigation, EffectCoverflow]}
                 className="mySwiper">
-
-
-                {coinsData.slice(0, 4).map((coin) => (
+                {coinsData.slice(0, 5).map((coin) => (
                     <SwiperSlide key={coin.uuid}>
                         <Box>
                             <Card sx={CARDS_STYLES.card} >
@@ -52,7 +101,7 @@ const SliderCupones: React.FC = () => {
                                             {coin.currentPrice.substring(0, 6)}
                                         </Typography>
                                         <CardActions sx={{ width: 100 }} >
-                                            <Button variant='contained' size='small' aria-label="comprar">
+                                            <Button onClick={() => navigate(`/buy?coin=${coin.uuid}`)} variant='contained' size='small' aria-label="comprar">
                                                 Comprar
                                             </Button>
                                         </CardActions>
@@ -62,9 +111,16 @@ const SliderCupones: React.FC = () => {
                         </Box>
                     </SwiperSlide>
                 ))}
+                <div className='swiper-div-buttons'>
+                    <div > <SlidePrevButton /></div>
+                    <div ><SlideNextButton /></div>
+                </div>
             </Swiper>
         </>
     )
 }
 
 export default SliderCupones
+
+
+

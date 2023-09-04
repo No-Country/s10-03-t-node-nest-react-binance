@@ -7,23 +7,28 @@ import Wallets from "./pages/Wallets"
 import NotFound from "./pages/NotFound"
 import CreatePersonalAccount from "./pages/CreatePersonalAccount"
 import LoginView from "./components/molecule/Login"
-import Header from "./components/molecule/header/Header"
+
 import { AuthProvider } from "./context/AuthContext"
 import { ApiProvider } from "./context/FetchContext"
-import Sales from "./components/template/Sales"
-import Buy from "./pages/Compra"
+import Sales from "./pages/Sell"
+import Buy from "./pages/Buy"
+import { GoogleAuthContextProvider } from "./context/googleContext"
+import Header from "./components/molecule/header/HEader"
+import Deposit from "./pages/Deposit"
 
 function App() {
   return (
     <HashRouter>
+      <GoogleAuthContextProvider>
       <AuthProvider>
         <ApiProvider>
           <Header />
           <Routes>
             <Route path="/" element={ <Login /> } />
             <Route path="/login" element={ <LoginView /> } />
-            <Route path="/sales" element={ <Sales /> } />
-            <Route path="/buy" element={<Buy />} />
+            <Route path="/sell" element={ <Sales /> } />
+            <Route path="/buy" element={ <Buy /> } />
+            <Route path="/deposit" element={ <Deposit />} />
             <Route path="/market" element={ <Market /> } />
             <Route path="/wallets" element={ <Wallets /> } />
             <Route path="/register" element={ <Register /> } />
@@ -33,6 +38,7 @@ function App() {
         </ApiProvider>
         <Footer />
       </AuthProvider>
+      </GoogleAuthContextProvider>
     </HashRouter>
   )
 }

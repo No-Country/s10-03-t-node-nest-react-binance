@@ -182,7 +182,7 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 ---
 
-## ¿Cómo veo en local el FRont y el back ?
+## ¿Cómo veo en local el Front y el Back ?
 
 - 1ro: copiar el repositorio con: `git clone https://github.com/No-Country/s10-03-t-node-nest-react-binance.git`
 
@@ -194,8 +194,8 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 En development: ```$ npm run start```
 
+(watch mode)
 ```
-# watch mode
 $ npm run start:dev
 ```
 
@@ -203,18 +203,18 @@ En modo produccion: ```$ npm run start:prod```
 
 -> Para los test:
 
+(unit tests)
 ```
-# unit tests
 $ npm run test
 ```
 
+(e2e tests)
 ```
-# e2e tests
 $ npm run test:e2e
 ```
 
+(test coverage)
 ```
-# test coverage
 $ npm run test:cov
 ```
 

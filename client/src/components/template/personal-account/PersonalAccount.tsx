@@ -46,6 +46,10 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
       }, 3000);
       return
     }
+    
+    
+
+
     setWelcomeMessage({
       text: 'Bienvenido'
     });

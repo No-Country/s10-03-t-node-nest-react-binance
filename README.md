@@ -73,17 +73,17 @@ Dependencias:
 
 ### BackEnd
 
-- <img width="20" height="20" src="https://img.icons8.com/color/20/nodejs.png" alt="nodejs"/> [NodeJS](https://nodejs.org/en)
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/nodejs.png" alt="nodejs"/> NodeJS](https://nodejs.org/en)
 
-- <img width="20" height="20" src="https://img.icons8.com/color/20/nestjs.png" alt="nestjs"/> [NestsJS](https://nestjs.com/)
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/nestjs.png" alt="nestjs"/> NestsJS](https://nestjs.com/)
 
-- <img width="20" height="20" src="https://img.icons8.com/color/20/postgreesql.png" alt="postgreesql"/> [Postgresql](https://www.postgresql.org/)
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/postgreesql.png" alt="postgreesql"/> Postgresql](https://www.postgresql.org/)
 
-- <img width="20" height="20" src="https://user-images.githubusercontent.com/30929568/112730670-de09a480-8f58-11eb-9875-0d9ebb87fbd6.png" alt="postgreesql"/> [TypeORM](https://typeorm.io)
+- [<img width="20" height="20" src="https://user-images.githubusercontent.com/30929568/112730670-de09a480-8f58-11eb-9875-0d9ebb87fbd6.png" alt="postgreesql"/> TypeORM](https://typeorm.io)
 
 Dependencias:
 
-- <img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> [Typescript](https://www.typescriptlang.org/)
+- [<img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> Typescript](https://www.typescriptlang.org/)
 
 - [jest](https://jestjs.io/)
 
@@ -91,7 +91,7 @@ Dependencias:
 
 - [prettier](https://prettier.io/)
 
-- [<img width="20" height="20" src="https://img.icons8.com/color/20/eslint.png" alt="eslint"/> ESLint}(https://eslint.org/)   
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/eslint.png" alt="eslint"/> ESLint](https://eslint.org/)   
 
 - testing
 

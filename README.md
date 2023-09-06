@@ -35,9 +35,9 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/dotty/30/web.png" alt="web"/> UX/UI
 
-- Paulo Crosetti
+- [Paulo Crosetti](https://www.linkedin.com/in/paulo-crosetti)
 
-- Maria Belen Fernandez Morales
+- [Maria Belen Fernandez Morales](https://www.linkedin.com/in/belen-fernandez-morales9
 
 
 ---

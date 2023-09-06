@@ -147,7 +147,7 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - Ver la pantalla de mercado y guardar favoritos
 
-### SPRINT 1 - Funcionalidades:
+### <img width="30" height="30" src="https://img.icons8.com/external-flaticons-flat-flat-icons/30/external-sprint-project-management-flaticons-flat-flat-icons.png" alt="external-sprint-project-management-flaticons-flat-flat-icons"/> SPRINT 1 - Funcionalidades:
 
 - Crear el Footer, Header y Navbar
 
@@ -157,7 +157,7 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - Creacion de base de datos para login y registro
 
-### SPRINT 2 - Funcionalidades: 
+### <img width="30" height="30" src="https://img.icons8.com/external-flaticons-flat-flat-icons/30/external-sprint-project-management-flaticons-flat-flat-icons.png" alt="external-sprint-project-management-flaticons-flat-flat-icons"/>  SPRINT 2 - Funcionalidades: 
 
 - Se ajusta tanto el login como el registro para poder conectar back y front
 
@@ -169,13 +169,13 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - Se crea un contexto para un estado general de carga, asi cuando se está realizando el llamado de datos, se pone la pantalla griseada y se ve una animación similar a la de Binance de las barras al cargar. Asi el usuario sabe que se esta haciendo una carga o busqueda.
 
-### SPRINT 3 - Funcionalidades:
+### <img width="30" height="30" src="https://img.icons8.com/external-flaticons-flat-flat-icons/30/external-sprint-project-management-flaticons-flat-flat-icons.png" alt="external-sprint-project-management-flaticons-flat-flat-icons"/>  SPRINT 3 - Funcionalidades:
 
 - Se completa la funcionalidad para agregar o sacar monedas favoritas
 
 - Se continua con las paginas de compra y venta 
 
-### SPRINT 4 - Funcionalidades:
+### <img width="30" height="30" src="https://img.icons8.com/external-flaticons-flat-flat-icons/30/external-sprint-project-management-flaticons-flat-flat-icons.png" alt="external-sprint-project-management-flaticons-flat-flat-icons"/>  SPRINT 4 - Funcionalidades:
 
 - Se realiza la página de billetera
 
@@ -185,7 +185,7 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - 1ro: copiar el repositorio con: `git clone https://github.com/No-Country/s10-03-t-node-nest-react-binance.git`
 
-- 2do: Para el **Back** ir al repositorio **server** y ya dentro:
+- <img width="30" height="30" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/30/external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry.png" alt="external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry"/> 2do: Para el **Back** ir al repositorio **server** y ya dentro:
 
 -> Instación de dependencias:  ```$ npm install```
 
@@ -217,7 +217,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-- 3ro.: para el **Front**, ir al repositorio en **client** y ya dentro:
+- <img width="30" height="30" src="https://img.icons8.com/dusk/30/web.png" alt="web"/>  3ro.: para el **Front**, ir al repositorio en **client** y ya dentro:
 
 -> Instación de dependencias:  ```$ npm install```
 

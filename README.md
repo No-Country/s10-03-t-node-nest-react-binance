@@ -81,7 +81,7 @@ Dependencias:
 
 - <img width="20" height="20" src="https://user-images.githubusercontent.com/30929568/112730670-de09a480-8f58-11eb-9875-0d9ebb87fbd6.png" alt="postgreesql"/> [TypeORM](https://typeorm.io)
 
-- Dependencias:
+Dependencias:
 
 - <img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> [Typescript](https://www.typescriptlang.org/)
 

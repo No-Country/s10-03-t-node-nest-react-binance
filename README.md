@@ -145,8 +145,14 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - Logueo
 
-- Ver la pantalla de mercado y guardar favoritos
+- Ver la pantalla de mercado, seleccionar/deseleccionar favoritos e ir a compra
 
+- Ver la pantalla de compra
+
+- Ver la pantalla de venta 
+
+- Ver la pantalla de billetera
+  
 ### <img width="30" height="30" src="https://img.icons8.com/external-flaticons-flat-flat-icons/30/external-sprint-project-management-flaticons-flat-flat-icons.png" alt="external-sprint-project-management-flaticons-flat-flat-icons"/> SPRINT 1 - Funcionalidades:
 
 - Crear el Footer, Header y Navbar

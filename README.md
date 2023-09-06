@@ -119,7 +119,6 @@ Dependencias:
 
 - <img width="20" height="20" src="https://img.icons8.com/color/20/figma--v1.png" alt="figma--v1"/> Figma
 
-- <img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> [Typescript](https://www.typescriptlang.org/)
 
 ---
 

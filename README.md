@@ -37,7 +37,7 @@
 
 - [Paulo Crosetti](https://www.linkedin.com/in/paulo-crosetti)
 
-- [Maria Belen Fernandez Morales](https://www.linkedin.com/in/belen-fernandez-morales9
+- [Maria Belen Fernandez Morales](https://www.linkedin.com/in/belen-fernandez-morales)
 
 
 ---

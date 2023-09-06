@@ -85,35 +85,33 @@ Dependencias:
 
 - <img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> [Typescript](https://www.typescriptlang.org/)
 
-- jest
+- [jest](https://jestjs.io/)
 
-- supertest
+- [supertest](https://www.npmjs.com/package/supertest)
 
-- prettier
+- [prettier](https://prettier.io/)
 
-- ESLint   
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/eslint.png" alt="eslint"/> ESLint}(https://eslint.org/)   
 
 - testing
 
-- schematics
+- [schematics](https://www.smartdraw.com/circuit-diagram/schematic-diagram-software.htm?id=66431)
 
 - cli
 
-- bcrypt
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
 
-- class-transformer 
+- class-transformer y class-validator
 
-- class-validator
-
-- joi
+- [joi](https://joi.dev/)
 
 - pg
 
-- reflect-metadata
+- [reflect-metadata](https://www.npmjs.com/package/reflect-metadata)
 
-- rxjs
+- [rxjs](https://rxjs.dev/)
 
-- swagger
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/cloud-function.png" alt="cloud-function"/> swagger](https://swagger.io/)
 
 ### UX/UI
 

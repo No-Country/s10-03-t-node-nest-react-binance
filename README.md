@@ -179,6 +179,8 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - Se continua con las paginas de compra y venta 
 
+- Se agrega la pagina Not Fount que redirige a market en el caso de ser un usuario ya loguedo.
+  
 ### <img width="30" height="30" src="https://img.icons8.com/external-flaticons-flat-flat-icons/30/external-sprint-project-management-flaticons-flat-flat-icons.png" alt="external-sprint-project-management-flaticons-flat-flat-icons"/>  SPRINT 4 - Funcionalidades:
 
 - Se realiza la página de billetera

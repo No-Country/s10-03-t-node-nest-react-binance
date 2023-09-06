@@ -16,7 +16,7 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/dusk/30/web.png" alt="web"/> FrontEnd
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Eduardo ](https://github.com/Edu568) 
+- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Eduardo Arevalo](https://github.com/Edu568) 
 
 - [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Victor Fernandez](https://github.com/vic-ferr)
 
@@ -28,9 +28,7 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/30/external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry.png" alt="external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry"/> BackEnd
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Yael Romero](https://github.com/Rai5559)
-
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/>  Nilo](https://github.com/nilovili)
+- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/>  Nilo Ivan Soruco Guerrero](https://github.com/nilovili)
 
 - [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Miguel](https://github.com/migmm)
 
@@ -39,10 +37,7 @@
 
 - Paulo Crosetti
 
-
-
-## <img width="30" height="30" src="https://img.icons8.com/color-glass/30/test.png" alt="test"/> Tester
-
+- Maria Belen Fernandez Morales
 
 
 ---
@@ -64,6 +59,17 @@
 
 Dependencias:
 
+- [<img width="20" height="20" src="https://img.icons8.com/cute-clipart/20/react-native.png" alt="react"/> react-dom](https://www.npmjs.com/package/react-dom)
+
+- [<img width="20" height="20" src="https://img.icons8.com/cute-clipart/20/react-native.png" alt="react"/> react-router-dom](https://www.npmjs.com/package/react-router-dom)
+
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/firebase.png" alt="firebase"/> firebase](https://firebase.google.com/)
+
+- [swiperjs](https://swiperjs.com/) 
+
+- [axios](https://axios-http.com/)
+
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/redux.png" alt="redux"/> redux](https://redux.js.org/) y [<img width="20" height="20" src="https://img.icons8.com/color/20/redux.png" alt="redux"/> toolkit](https://redux-toolkit.js.org/)
 
 ### BackEnd
 
@@ -77,13 +83,43 @@ Dependencias:
 
 - Dependencias:
 
+- <img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> [Typescript](https://www.typescriptlang.org/)
 
+- jest
+
+- supertest
+
+- prettier
+
+- ESLint   
+
+- testing
+
+- schematics
+
+- cli
+
+- bcrypt
+
+- class-transformer 
+
+- class-validator
+
+- joi
+
+- pg
+
+- reflect-metadata
+
+- rxjs
+
+- swagger
 
 ### UX/UI
 
 - <img width="20" height="20" src="https://img.icons8.com/color/20/figma--v1.png" alt="figma--v1"/> Figma
 
-
+- <img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> [Typescript](https://www.typescriptlang.org/)
 
 ---
 
@@ -136,6 +172,58 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 ### SPRINT 3 - Funcionalidades:
 
+- Se completa la funcionalidad para agregar o sacar monedas favoritas
+
+- Se continua con las paginas de compra y venta 
+
 ### SPRINT 4 - Funcionalidades:
+
+- Se realiza la página de billetera
+
+---
+
+## ¿Cómo veo en local el FRont y el back ?
+
+- 1ro: copiar el repositorio con: `git clone https://github.com/No-Country/s10-03-t-node-nest-react-binance.git`
+
+- 2do: Para el **Back** ir al repositorio **server** y ya dentro:
+
+-> Instación de dependencias:  ```$ npm install```
+
+-> Para correr la app:
+
+En development: ```$ npm run start```
+
+```
+# watch mode
+$ npm run start:dev
+```
+
+En modo produccion: ```$ npm run start:prod```
+
+-> Para los test:
+
+```
+# unit tests
+$ npm run test
+```
+
+```
+# e2e tests
+$ npm run test:e2e
+```
+
+```
+# test coverage
+$ npm run test:cov
+```
+
+- 3ro.: para el **Front**, ir al repositorio en **client** y ya dentro:
+
+-> Instación de dependencias:  ```$ npm install```
+
+-> Para correr la app:
+
+En development: ```$ npm run dev```
 
 ---

@@ -1,81 +1,115 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useNavigate, Link } from 'react-router-dom'
-import { TextField, Typography, Container, Box } from '@mui/material'
-import PrimaryButton from '../../atom/buttons/PrimaryButton'
-import GoogleIcon from '@mui/icons-material/Google'
-import { LOGIN_STYLES } from '../../template/login-form/LoginFormStyles'
-import { loginStyle } from './loginStyle'
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+import {
+  TextField,
+  Typography,
+  Container,
+  Box,
+  Alert,
+  AlertTitle,
+} from "@mui/material";
+import PrimaryButton from "../../atom/buttons/PrimaryButton";
+import GoogleIcon from "@mui/icons-material/Google";
+import { LOGIN_STYLES } from "../../template/login-form/LoginFormStyles";
+import { loginStyle } from "./loginStyle";
+// import { AuthProvider } from '../../../context/AuthContext'
+import { emailRegex } from "../../../utils/constants";
+import useAuth from "../../../hooks/useAuth";
+import useGoogleAuth from "../../../hooks/useGoogleAuth";
 
 const LoginScreen: React.FC = () => {
-  const navigate = useNavigate()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [showPasswordInput, setShowPasswordInput] = useState(false)
-  const [error, setError] = useState(false)
-  const [message, setMessage] = useState({ text: '', msg: '' })
-  const [welcomeMessage, setWelcomeMessage] = useState({ text: '' })
-  const [showMessage, setShowMessage] = useState(false)
+  const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
+  const googleAuth = useGoogleAuth();
+  const { signInWithGoogle } = googleAuth;
+  const { login } = auth;
 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const isValidEmail = emailRegex.test(email);
+  const navigate = useNavigate();
+  const [userOrEmail, setUserOrEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showPasswordInput, setShowPasswordInput] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [message, setMessage] = useState({ text: "", msg: "" });
+  const [welcomeMessage, setWelcomeMessage] = useState({ text: "" });
+  const [showMessage, setShowMessage] = useState<boolean>(false);
 
+  const isValidEmail = emailRegex.test(userOrEmail);
+  // const {loginWithGoogle} = AuthProvider; // TODO no esta en el Provider
 
   const handleNextClick = () => {
-    if ([email].includes('')) {
-      setError(true)
+    if ([userOrEmail].includes("")) {
+      setError(true);
       setMessage({
-        text: 'El email es obligatorio',
-        msg: 'Email'
-      })
+        text: "El email es obligatorio",
+        msg: "Email",
+      });
       setTimeout(() => {
-        setError(false)
+        setError(false);
       }, 3000);
-      return
+      return;
     }
     if (!isValidEmail) {
-      setError(true)
+      setError(true);
       setMessage({
-        text: 'El email contiene caracteres invalidos',
-        msg: 'Email invalido'
-      })
+        text: "El email contiene caracteres invalidos",
+        msg: "Email invalido",
+      });
       setTimeout(() => {
-        setError(false)
+        setError(false);
       }, 3000);
-      return
+      return;
     }
-    setShowPasswordInput(true)
-  }
+    setShowPasswordInput(true);
+  };
+
   const handleLoginClick = async () => {
     if (!password || password.length < 6) {
       setError(true);
       setMessage({
-        text: 'El password es obligatorio y debe tener mas de 6 caracteres',
-        msg: 'password invalido'
-      })
+        text: "El password es obligatorio y debe tener mas de 6 caracteres",
+        msg: "password invalido",
+      });
       setTimeout(() => {
-        setError(false)
-      }, 3000)
-      return
+        setError(false);
+      }, 3000);
+      return;
     }
     setWelcomeMessage({
-      text: 'Bienvenido'
+      text: "Bienvenido",
     });
-    setShowMessage(true)
-    setTimeout(() => {
-      navigate('/market')
-    })
+    setShowMessage(true);
 
-    axios.post('https://binance-production.up.railway.app/api/v1/auth/login', { email, password })
-      .then(res => {
-        console.log(res);
-      })
+    try {
+      // TODO esta constante no se reutiliza en ningun lugar
+      const { data } = await axios.post(
+        "https://binance-production.up.railway.app/api/v1/auth/login",
+        {
+          userOrEmail,
+          password,
+        }
+      );
+      login(data);
 
-  }
+      navigate("/market");
+    } catch (error) {
+      console.log("Error en el inicio de sesion", error);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    await signInWithGoogle();
+
+    navigate("/market");
+  };
 
   return (
     <Container maxWidth="xs">
-      <Typography variant="h4" align="left" gutterBottom sx={ loginStyle.typography }>
+      <Typography
+        variant="h4"
+        align="left"
+        gutterBottom
+        sx={loginStyle.typography}
+      >
         Iniciar sesión
       </Typography>
       <TextField
@@ -83,30 +117,44 @@ const LoginScreen: React.FC = () => {
         variant="outlined"
         fullWidth
         margin="normal"
-        value={ email }
-        onChange={ (e) => setEmail(e.target.value) }
-        style={ { marginBottom: '20px' } }
+        value={userOrEmail}
+        onChange={(e) => setUserOrEmail(e.target.value)}
+        style={{ marginBottom: "20px" }}
       />
-      { showPasswordInput && (
+      {error && (
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          {message.text} — <strong>{message.msg}</strong>
+        </Alert>
+      )}
+      {showPasswordInput && (
         <TextField
           label="Contraseña"
           type="password"
           variant="outlined"
           fullWidth
           margin="normal"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-      ) }
+      )}
+      {showMessage && (
+        <Alert severity="success">
+          <AlertTitle>Success</AlertTitle>
+          {welcomeMessage.text} —{" "}
+          <strong>Registro con Exito! Seras redireccionado al Market</strong>
+        </Alert>
+      )}
       <PrimaryButton
-        text={ !showPasswordInput ? 'Siguiente' : 'Iniciar sesión' }
+        text={!showPasswordInput ? "Siguiente" : "Iniciar sesión"}
         ariaLabelText="Continuar con google"
-        onClick={ (showPasswordInput ? handleLoginClick : handleNextClick) }
-        style={ {
-          marginBottom: '20px',
-        } } />
-      <Box sx={ loginStyle.or }>
-        <Typography sx={ { px: 2, color: 'black', py: 3 } }>
+        onClick={showPasswordInput ? handleLoginClick : handleNextClick}
+        style={{
+          marginBottom: "20px",
+        }}
+      />
+      <Box sx={loginStyle.or}>
+        <Typography sx={{ px: 2, color: "black", py: 3 }}>
           ____________________or__________________
         </Typography>
       </Box>
@@ -115,17 +163,29 @@ const LoginScreen: React.FC = () => {
         ariaLabelText="Continuar con google"
         variant="contained"
         color="secondary"
-        icon={ <GoogleIcon /> }
-        style={ {
-          marginBottom: '20px',
-        } } />
-      <Typography variant="h4" align="left" gutterBottom style={ loginStyle.typography }>
-        <Link to="/register" style={ LOGIN_STYLES.link } aria-label="crear cuenta en Binance">
+        icon={<GoogleIcon />}
+        style={{
+          marginBottom: "20px",
+        }}
+        onClick={handleGoogleLogin}
+      />
+
+      <Typography
+        variant="h4"
+        align="left"
+        gutterBottom
+        style={loginStyle.typography}
+      >
+        <Link
+          to="/register"
+          style={LOGIN_STYLES.link}
+          aria-label="crear cuenta en Binance"
+        >
           Crear cuenta en Binance
         </Link>
       </Typography>
     </Container>
-  )
-}
+  );
+};
 
-export default LoginScreen
+export default LoginScreen;

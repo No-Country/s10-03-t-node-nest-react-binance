@@ -5,7 +5,7 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typograph
 import { CARDS_STYLES } from './CardsComponentsStyles'
 
 const CardsComponents: React.FC = () => {
-    const { coinsData } = useApiContext();
+    const { coinsData } = useApiContext()
 
     return (
         <Box component="div" sx={CARDS_STYLES.div} >

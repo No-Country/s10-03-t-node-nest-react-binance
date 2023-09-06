@@ -3,6 +3,7 @@
 /node_modules
 
 # Logs
+/env
 logs
 *.log
 npm-debug.log*
@@ -36,4 +37,3 @@ lerna-debug.log*
 
 # Env
 .env
-.env.*

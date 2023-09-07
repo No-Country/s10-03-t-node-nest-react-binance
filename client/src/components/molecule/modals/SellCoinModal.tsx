@@ -20,7 +20,7 @@ const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
 }) => {
 
   const navigate = useNavigate()
-  const handleClick = () => navigate(`/buy?coin=${ uuid }`)
+  const handleClick = () => navigate(`/sell?coin=${uuid}`)
   // TODO hay que agarrar al usuario y con eso traer los favoritos 
   // para ver si es favorito o no y setearlo
   const [isFavorite, setIsFavorite] = useState<boolean>(true)
@@ -44,84 +44,84 @@ const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
   return (
     <section id="modal-favorito-comprar">
       <Dialog
-        onClose={ handleClose }
+        onClose={handleClose}
         aria-labelledby="cerrar modal"
-        open={ openModal }
+        open={openModal}
       >
         <Box
           component="div"
-          sx={ BUY_FAV_MODAL.container }
+          sx={BUY_FAV_MODAL.container}
         >
           <IconButton
             aria-label="close"
-            onClick={ handleClose }
-            sx={ { color: (theme) => theme.palette.grey[500], } }
+            onClick={handleClose}
+            sx={{ color: (theme) => theme.palette.grey[500], }}
           >
             <CloseIcon />
           </IconButton>
         </Box>
         <Box
-          sx={ BUY_FAV_MODAL.title }
+          sx={BUY_FAV_MODAL.title}
           id="buy-icon-modal-title"
         >
           <Box>
             <Typography
               component="h2"
-              sx={ BUY_FAV_MODAL.titleH2 }
+              sx={BUY_FAV_MODAL.titleH2}
             >
-              { symbol }
+              {symbol}
             </Typography>
             <Typography
               component="h3"
-              sx={ BUY_FAV_MODAL.titleH3 }
+              sx={BUY_FAV_MODAL.titleH3}
             >
-              { name }
+              {name}
             </Typography>
           </Box>
           <Box>
             <Box
               component="span"
-              sx={ BUY_FAV_MODAL.icon }
-              onClick={ handleFavorite }
+              sx={BUY_FAV_MODAL.icon}
+              onClick={handleFavorite}
             >
-              { isFavorite ?
-                <StarIcon sx={ { color: color } } fontSize="large" />
-                : <StarBorderIcon sx={ { color: color } } fontSize="large" />
+              {isFavorite ?
+                <StarIcon sx={{ color: color }} fontSize="large" />
+                : <StarBorderIcon sx={{ color: color }} fontSize="large" />
               }
             </Box>
           </Box>
         </Box>
         <DialogContent
-          sx={ { padding: '12px 24px 12px 32px' } }
+          sx={{ padding: '12px 24px 12px 32px' }}
         >
           <Typography
-            sx={ BUY_FAV_MODAL.text }
+            sx={BUY_FAV_MODAL.text}
           >
-            ${ marketCap }
+            ${marketCap}
           </Typography>
           <Box>
-            <img src={ iconUrl } alt={ name } width="100" height="100" />
+            <img src={iconUrl} alt={name} width="100" height="100" />
           </Box>
           <Typography
-            sx={ BUY_FAV_MODAL.text }
+            sx={BUY_FAV_MODAL.text}
           >
-            { currentPrice }
+            {currentPrice}
           </Typography>
           <Typography
-            sx={ BUY_FAV_MODAL.text }
+            sx={BUY_FAV_MODAL.text}
           >
-            { change }%
+            {change}%
           </Typography>
         </DialogContent>
         <DialogActions
-          sx={ { padding: '0px 24px 12px 32px' } }
+          sx={{ padding: '0px 24px 12px 32px' }}
         >
           <Button
             autoFocus
-            onClick={ handleClick }
-            aria-label="Comprar"
+            onClick={handleClick}
+            aria-label="Vender"
           >
-            Vender
+            vender
           </Button>
         </DialogActions>
       </Dialog>

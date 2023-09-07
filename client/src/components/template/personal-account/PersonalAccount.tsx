@@ -28,7 +28,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
   const [welcomeMessage, setWelcomeMessage] = useState({ text: "" });
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
-  const username = "string";
+  const username = "string2";
   const balance = 0;
   const celphone = 0;
 
@@ -68,7 +68,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
         });
         setShowMessage(true);
         setTimeout(() => {
-          navigate("/market");
+          navigate("/login");
         }, 3000);
 
         registerAuth({ email, password, username, balance, celphone });
@@ -169,7 +169,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
                 <AlertTitle>Success</AlertTitle>
                 {welcomeMessage.text} —{" "}
                 <strong>
-                  Registro con Exito! Seras redireccionado al Market
+                  Registro con Exito! Seras redireccionado al Login
                 </strong>
               </Alert>
             )}

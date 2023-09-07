@@ -36,6 +36,7 @@ function App() {
             <Route path="/market" element={ <Market /> } />
             <Route path="/wallets" element={ <Wallets /> } />
             <Route path="/register" element={ <Register /> } />
+            <Route path="/agregar-tarjeta" element={ <AgregarTarjeta /> } />
             <Route path="/register/continue" element={ <CreatePersonalAccount /> } />
             <Route path="*" element={ <NotFound /> } />
           </Routes>

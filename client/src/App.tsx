@@ -16,6 +16,7 @@ import { GoogleAuthContextProvider } from "./context/googleContext"
 import Header from "./components/molecule/header/HEader"
 import Deposit from "./pages/Deposit"
 import SellScreen from "./pages/SellScreen"
+import AgregarTarjeta from "./components/template/agregar-tarjeta/AgregarTarjeta"
 import MontoInput from "./pages/BuyScreen"
 
 function App() {

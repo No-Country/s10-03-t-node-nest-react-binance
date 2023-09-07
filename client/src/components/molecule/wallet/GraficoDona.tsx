@@ -1,8 +1,9 @@
-import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import React from 'react'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2'
+import { Typography } from '@mui/material'
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend)
 
 export const data = {
     labels: ['Etherium', 'Bitcoin', 'Tether', 'Cardano', 'Dogecoin'],
@@ -11,7 +12,6 @@ export const data = {
             label: '%',
             data: [65, 10, 9, 6, 10],
             backgroundColor: [
-
                 'rgba(54, 162, 235, 0.9)',
                 'rgba(255, 206, 86, 0.9)',
                 'rgba(75, 192, 192, 0.9)',
@@ -19,7 +19,6 @@ export const data = {
                 'rgba(255, 159, 64, 0.9)',
             ],
             borderColor: [
-
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86,1)',
                 'rgba(75, 192, 192, 1)',
@@ -34,12 +33,15 @@ export const data = {
 const GraficoDona: React.FC = () => {
     return (
         <>
-            <h2>Distribucion de Activos</h2>
-
-            <>
-                <Doughnut data={data} />
-
-            </>
+            <Typography
+                sx={ {
+                    fontWeight: '600',
+                    fontSize: '22px',
+                    marginBottom: '12px'
+                } }>
+                Distribucion de Activos
+            </Typography>
+            <Doughnut data={ data } />
         </>
 
     )

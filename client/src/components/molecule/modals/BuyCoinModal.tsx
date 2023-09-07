@@ -21,14 +21,12 @@ const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
 
   const navigate = useNavigate()
   const handleClick = () => navigate(`/buy?coin=${ uuid }`)
-  // const handleClickSell = () => navigate(``)
-  // TODO hay que agarrar al usuario y con eso traer los favoritos 
-  // para ver si es favorito o no y setearlo
+
+  // TODO hay que agarrar al usuario y con eso traer los favoritos para ver si es favorito o no y setearlo
   const [isFavorite, setIsFavorite] = useState<boolean>(true)
 
   const handleFavorite = () => {
     // TODO aca la logica de agregar de agarrar al usuario
-    console.log('Es favorito? ', isFavorite)
     setIsFavorite(isFavorite => !isFavorite)
   }
 
@@ -123,13 +121,6 @@ const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
             aria-label="Comprar"
           >
             Comprar
-          </Button>
-          <Button
-            autoFocus
-            onClick={ handleClick }
-            aria-label="vender"
-          >
-            Vender
           </Button>
         </DialogActions>
       </Dialog>

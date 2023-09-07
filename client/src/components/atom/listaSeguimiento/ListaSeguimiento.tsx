@@ -1,59 +1,114 @@
 import React from 'react'
-import { useApiContext } from "../../../context/FetchContext"
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { useApiContext } from '../../../context/FetchContext'
+import { Box, Button, Grid, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const ListaSeguimiento: React.FC = () => {
     const { coinsData } = useApiContext()
+    const navigate = useNavigate()
+
     return (
         <>
-            <Grid container justifyContent="center">
-                {coinsData.slice(0, 6).map((coin) => (
-                    <Grid item xs={6} key={coin.uuid}>
-                        <Box sx={{
+            <Grid
+                container
+                maxWidth="lg"
+                sx={ {
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignContent: 'center',
+                } }
+            >
+                { coinsData.slice(0, 6).map((coin) => (
+                    <Grid
+                        item
+                        xs={ 12 }
+                        sm={ 6 }
+                        key={ coin.uuid }
+                    >
+                        <Box sx={ {
                             minWidth: 120,
-                            maxWidth: 780,
-                            margin: '0 auto'
-                        }}>
-                            <Card sx={{
-                                border: '1px solid lightgray',
-                                borderRadius: 2,
-                                boxShadow: 'none',
-                                padding: 1,
-                            }}>
-                                <Grid container>
-                                    <Grid item xs={6}>
-                                        <CardMedia
-                                            sx={{ width: 30 }}
-                                            component='img'
-                                            image={coin.iconUrl}
-                                            height={30}
-                                            alt={coin.name}
-                                        />
-                                        <CardContent >
-                                            <Typography variant="h5" color="initial">
-                                                {coin.name}
-                                            </Typography>
-                                            <Typography variant="h5" color="initial">
-                                                {coin.symbol}
-                                            </Typography>
-                                        </CardContent>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Typography variant="h5" color="initial">
-                                            {coin.currentPrice.substring(0, 6)}
+                            maxWidth: 260,
+                            margin: '4px auto',
+                            border: '1px solid lightgray',
+                            borderRadius: 2,
+                            boxShadow: 'none',
+                        } }>
+                            <Grid
+                                container
+                                sx={ {
+                                    minHeight: '140px'
+                                } }
+                            >
+                                <Grid
+                                    item
+                                    xs={ 6 }
+                                    sx={ {
+                                        padding: '8px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        flexWrap: 'wrap',
+                                        alignContent: 'flex-start',
+                                        justifyContent: 'center',
+                                        alignItems: 'flex-start',
+                                        gap: '8px'
+                                    } }
+                                >
+                                    <Box
+                                        sx={ { width: 30 } }
+                                        component='img'
+                                        src={ coin.iconUrl }
+                                        height={ 30 }
+                                        alt={ coin.name }
+                                    />
+                                    <Box >
+                                        <Typography
+                                            variant="h4"
+                                            color="initial"
+                                        >
+                                            { coin.name }
                                         </Typography>
-                                        <CardActions sx={{ width: 90 }} >
-                                            <Button variant='contained' size='small' aria-label="comprar">
-                                                Comprar
-                                            </Button>
-                                        </CardActions>
-                                    </Grid>
+                                        <Typography
+                                            variant="h5"
+                                            color="initial"
+                                        >
+                                            { coin.symbol }
+                                        </Typography>
+                                    </Box>
                                 </Grid>
-                            </Card>
+                                <Grid
+                                    item
+                                    xs={ 6 }
+                                    sx={ {
+                                        padding: '8px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        flexWrap: 'wrap',
+                                        alignContent: 'center',
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                    } }
+                                >
+                                    <Typography
+                                        variant="h5"
+                                        color="initial"
+                                    >
+                                        { coin.currentPrice.substring(0, 6) }
+                                    </Typography>
+                                    <Button
+                                        variant='contained'
+                                        size='small'
+                                        aria-label="comprar"
+                                        onClick={ () => navigate(`/buy?coin=${ coin.uuid }`) }
+                                    >
+                                        Comprar
+                                    </Button>
+                                </Grid>
+                            </Grid>
                         </Box>
-                    </Grid>
-                ))}
-            </Grid>
+                    </Grid >
+                )) }
+            </Grid >
         </>
     )
 }

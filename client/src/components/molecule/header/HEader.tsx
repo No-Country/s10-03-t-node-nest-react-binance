@@ -11,7 +11,6 @@ interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
   const { isLogueado, setIsLogueado } = useAuth()
-  console.log(isLogueado)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const navigate = useNavigate()
 

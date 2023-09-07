@@ -3,7 +3,6 @@ import { Container, Typography } from '@mui/material'
 import SearchBar from '../components/molecule/searchBar'
 import TabsSales from '../components/molecule/tabs/TabsSales'
 
-
 const Buy = () => {
   return (
     <Container maxWidth="xs">

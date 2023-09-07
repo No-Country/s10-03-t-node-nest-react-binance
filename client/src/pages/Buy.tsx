@@ -15,7 +15,7 @@ const Buy = () => {
           marginBottom: '20px'
         } }
       >
-        Elegir activo a vender
+        Elegir activo a comprar
       </Typography>
       <SearchBar />
       <Typography

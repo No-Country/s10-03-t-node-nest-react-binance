@@ -4,8 +4,8 @@ import { visuallyHidden } from '@mui/utils'
 import { Order } from '../../../utils/types'
 import { CoinData } from '../../../models/CoinDataResponse'
 import { useApiContext } from '../../../context/FetchContext'
-import { COINS_TABLE_STYLES } from './CoinsTableStyles'
-import BuyCoinModal from '../modals/BuyCoinModal'
+import { COINS_TABLE_STYLES } from '../coins-talble/CoinsTableStyles'
+import SellCoinModal from '../modals/SellCoinModal'
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) return -1
@@ -123,7 +123,7 @@ export default function CoinsTable() {
         handleClickOpen()
     };
 
-    const visibleRows = useMemo(() => stableSort(coinsData, getComparator(order, orderBy)), [order, orderBy, coinsData])
+    const visibleRows = useMemo(() => stableSort(coinsData, getComparator(order, orderBy)).slice(0, 3), [order, orderBy, coinsData])
 
     function formatNumberToCurrency(input: string): string {
         const num = parseFloat(input)
@@ -210,7 +210,7 @@ export default function CoinsTable() {
                 </TableContainer>
             </Paper>
             {openModal &&
-                <BuyCoinModal
+                <SellCoinModal
                     handleClose={handleClose}
                     openModal={openModal}
                     cointToShow={cointToShow}
@@ -219,3 +219,4 @@ export default function CoinsTable() {
         </Box>
     )
 }
+

@@ -35,7 +35,7 @@ function a11yProps(index: number) {
     }
 }
 
-const WalletConponent: React.FC = () => {
+const WalletTabs: React.FC = () => {
 
     const [value, setValue] = React.useState(0)
 
@@ -43,7 +43,7 @@ const WalletConponent: React.FC = () => {
         setValue(newValue)
     }
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '100%', mt: '3rem' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Moneda" {...a11yProps(0)} />
@@ -60,4 +60,4 @@ const WalletConponent: React.FC = () => {
     )
 }
 
-export default WalletConponent
+export default WalletTabs

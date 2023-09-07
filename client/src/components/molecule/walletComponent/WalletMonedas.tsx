@@ -5,7 +5,7 @@ import { Order } from '../../../utils/types'
 import { CoinData } from '../../../models/CoinDataResponse'
 import { useApiContext } from '../../../context/FetchContext'
 import { COINS_TABLE_STYLES } from '../coins-talble/CoinsTableStyles'
-import BuyCoinModal from '../modals/BuyCoinModal'
+import SellCoinModal from '../modals/SellCoinModal'
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) return -1
@@ -210,7 +210,7 @@ export default function CoinsTable() {
                 </TableContainer>
             </Paper>
             {openModal &&
-                <BuyCoinModal
+                <SellCoinModal
                     handleClose={handleClose}
                     openModal={openModal}
                     cointToShow={cointToShow}

@@ -16,6 +16,7 @@ import { GoogleAuthContextProvider } from "./context/googleContext"
 import Header from "./components/molecule/header/HEader"
 import Deposit from "./pages/Deposit"
 import SellScreen from "./pages/SellScreen"
+import AgregarTarjeta from "./components/template/agregar-tarjeta/AgregarTarjeta"
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/market" element={ <Market /> } />
             <Route path="/wallets" element={ <Wallets /> } />
             <Route path="/register" element={ <Register /> } />
+            <Route path="/agregar-tarjeta" element={ <AgregarTarjeta /> } />
             <Route path="/register/continue" element={ <CreatePersonalAccount /> } />
             <Route path="*" element={ <NotFound /> } />
           </Routes>

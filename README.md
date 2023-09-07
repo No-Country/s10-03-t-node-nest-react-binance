@@ -35,9 +35,9 @@
 
 ## <img width="30" height="30" src="https://img.icons8.com/dotty/30/web.png" alt="web"/> UX/UI
 
-- Paulo Crosetti
+- [Paulo Crosetti](https://www.linkedin.com/in/paulo-crosetti)
 
-- Maria Belen Fernandez Morales
+- [Maria Belen Fernandez Morales](https://www.linkedin.com/in/belen-fernandez-morales)
 
 
 ---
@@ -73,17 +73,17 @@ Dependencias:
 
 ### BackEnd
 
-- <img width="20" height="20" src="https://img.icons8.com/color/20/nodejs.png" alt="nodejs"/> [NodeJS](https://nodejs.org/en)
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/nodejs.png" alt="nodejs"/> NodeJS](https://nodejs.org/en)
 
-- <img width="20" height="20" src="https://img.icons8.com/color/20/nestjs.png" alt="nestjs"/> [NestsJS](https://nestjs.com/)
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/nestjs.png" alt="nestjs"/> NestsJS](https://nestjs.com/)
 
-- <img width="20" height="20" src="https://img.icons8.com/color/20/postgreesql.png" alt="postgreesql"/> [Postgresql](https://www.postgresql.org/)
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/postgreesql.png" alt="postgreesql"/> Postgresql](https://www.postgresql.org/)
 
-- <img width="20" height="20" src="https://user-images.githubusercontent.com/30929568/112730670-de09a480-8f58-11eb-9875-0d9ebb87fbd6.png" alt="postgreesql"/> [TypeORM](https://typeorm.io)
+- [<img width="20" height="20" src="https://user-images.githubusercontent.com/30929568/112730670-de09a480-8f58-11eb-9875-0d9ebb87fbd6.png" alt="postgreesql"/> TypeORM](https://typeorm.io)
 
 Dependencias:
 
-- <img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> [Typescript](https://www.typescriptlang.org/)
+- [<img width="20" height="20" src="https://img.icons8.com/fluency/20/typescript--v1.png" alt="typescript--v1"/> Typescript](https://www.typescriptlang.org/)
 
 - [jest](https://jestjs.io/)
 
@@ -91,7 +91,7 @@ Dependencias:
 
 - [prettier](https://prettier.io/)
 
-- [<img width="20" height="20" src="https://img.icons8.com/color/20/eslint.png" alt="eslint"/> ESLint}(https://eslint.org/)   
+- [<img width="20" height="20" src="https://img.icons8.com/color/20/eslint.png" alt="eslint"/> ESLint](https://eslint.org/)   
 
 - testing
 
@@ -179,8 +179,11 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - Se continua con las paginas de compra y venta 
 
+  
 ### <img width="30" height="30" src="https://img.icons8.com/external-flaticons-flat-flat-icons/30/external-sprint-project-management-flaticons-flat-flat-icons.png" alt="external-sprint-project-management-flaticons-flat-flat-icons"/>  SPRINT 4 - Funcionalidades:
 
+- Se agrega la pagina Not Found que redirige a market en el caso de ser un usuario ya loguedo.
+    
 - Se realiza la página de billetera
 
 ---

@@ -14,40 +14,40 @@ import { Autoplay, Mousewheel, Pagination, Navigation, EffectCoverflow } from 's
 import { useNavigate } from 'react-router-dom'
 
 export const SlideNextButton = () => {
-    const swiper = useSwiper();
+    const swiper = useSwiper()
 
     return (
-        <IconButton aria-label="álito" onClick={() => swiper.slideNext()} >
-            <KeyboardArrowRightRoundedIcon sx={{ width: 30, height: 30, color: "primary" }} />
+        <IconButton aria-label="proximo" onClick={ () => swiper.slideNext() } >
+            <KeyboardArrowRightRoundedIcon sx={ { width: 30, height: 30, color: "primary" } } />
         </IconButton>
     );
 }
 
 export const SlidePrevButton = () => {
-    const swiper = useSwiper();
+    const swiper = useSwiper()
 
     return (
-        <IconButton aria-label="" onClick={() => swiper.slidePrev()} >
-            <KeyboardArrowLeftRoundedIcon sx={{ width: 30, height: 30, color: "primary" }} />
+        <IconButton aria-label="anterior" onClick={ () => swiper.slidePrev() } >
+            <KeyboardArrowLeftRoundedIcon sx={ { width: 30, height: 30, color: "primary" } } />
         </IconButton>
     );
 }
 
 const SliderCupones: React.FC = () => {
-    const { coinsData } = useApiContext();
+    const { coinsData } = useApiContext()
     const navigate = useNavigate()
     return (
         <>
             <Swiper
-                cssMode={true}
-                loop={true}
-                mousewheel={true}
-                autoplay={{
+                cssMode={ true }
+                loop={ true }
+                mousewheel={ true }
+                autoplay={ {
                     delay: 4000,
                     disableOnInteraction: false,
-                }}
-                pagination={{ clickable: true, }}
-                breakpoints={{
+                } }
+                pagination={ { clickable: true, } }
+                breakpoints={ {
                     320: {
                         slidesPerView: 1,
                         spaceBetween: 10,
@@ -71,37 +71,41 @@ const SliderCupones: React.FC = () => {
                         slidesPerView: 2,
                         spaceBetween: 5,
                     },
-                }}
-                modules={[Autoplay, Mousewheel, Pagination, Navigation, EffectCoverflow]}
+                } }
+                modules={ [Autoplay, Mousewheel, Pagination, Navigation, EffectCoverflow] }
                 className="mySwiper">
-                {coinsData.slice(0, 5).map((coin) => (
-                    <SwiperSlide key={coin.uuid}>
+                { coinsData.slice(0, 5).map((coin) => (
+                    <SwiperSlide key={ coin.uuid }>
                         <Box>
-                            <Card sx={CARDS_STYLES.card} >
-                                <Grid container sx={CARDS_STYLES.gridContainer}>
-                                    <Grid item xs={6} sx={CARDS_STYLES.gridItem}>
+                            <Card sx={ CARDS_STYLES.card } >
+                                <Grid container sx={ CARDS_STYLES.gridContainer }>
+                                    <Grid item xs={ 6 } sx={ CARDS_STYLES.gridItem }>
                                         <CardMedia
-                                            sx={{ width: 50 }}
+                                            sx={ { width: 50 } }
                                             component='img'
-                                            image={coin.iconUrl}
-                                            height={50}
-                                            alt={coin.name}
+                                            image={ coin.iconUrl }
+                                            height={ 50 }
+                                            alt={ coin.name }
                                         />
                                         <CardContent >
                                             <Typography variant="h3" color="initial">
-                                                {coin.name}
+                                                { coin.name }
                                             </Typography>
                                             <Typography variant="h3" color="initial">
-                                                {coin.symbol}
+                                                { coin.symbol }
                                             </Typography>
                                         </CardContent>
                                     </Grid>
-                                    <Grid item xs={6} sx={CARDS_STYLES.gridItem}>
+                                    <Grid item xs={ 6 } sx={ CARDS_STYLES.gridItem }>
                                         <Typography variant="h4" color="initial">
-                                            {coin.currentPrice.substring(0, 6)}
+                                            { coin.currentPrice.substring(0, 6) }
                                         </Typography>
-                                        <CardActions sx={{ width: 100 }} >
-                                            <Button onClick={() => navigate(`/buy?coin=${coin.uuid}`)} variant='contained' size='small' aria-label="comprar">
+                                        <CardActions sx={ { width: 100 } } >
+                                            <Button
+                                                onClick={ () => navigate(`/buy?coin=${ coin.uuid }`) } variant='contained'
+                                                size='small'
+                                                aria-label="comprar"
+                                            >
                                                 Comprar
                                             </Button>
                                         </CardActions>
@@ -110,7 +114,7 @@ const SliderCupones: React.FC = () => {
                             </Card>
                         </Box>
                     </SwiperSlide>
-                ))}
+                )) }
                 <div className='swiper-div-buttons'>
                     <div > <SlidePrevButton /></div>
                     <div ><SlideNextButton /></div>

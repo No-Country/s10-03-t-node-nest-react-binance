@@ -25,9 +25,9 @@ const MontoInput = () => {
         gutterBottom
         sx={loginStyle.typography}
       >
-        Vender BTC
+        Comprar BTC
       </Typography>
-      <Typography style={{marginTop:"20px"}}>Quiero vender</Typography>
+      <Typography style={{marginTop:"20px"}}>Quiero Comprar</Typography>
       <TextField
         type="number"
         variant="outlined"

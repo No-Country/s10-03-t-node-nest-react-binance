@@ -1,8 +1,9 @@
 
-const  MontoInput = () => {
-  return (
-    <MontoInput />
-  );
+import MontoInput from '../components/molecule/BuyCard';
+
+
+const BuyScreen = () => {
+  <MontoInput />
 }
 
-export default MontoInput;
+export default BuyScreen;

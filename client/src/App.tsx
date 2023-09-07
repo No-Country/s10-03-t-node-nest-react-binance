@@ -15,11 +15,11 @@ import Buy from "./pages/Buy"
 import { GoogleAuthContextProvider } from "./context/googleContext"
 import Header from "./components/molecule/header/HEader"
 import Deposit from "./pages/Deposit"
-import SellScreen from "./pages/SellScreen"
 import AgregarTarjeta from "./components/template/agregar-tarjeta/AgregarTarjeta"
-import MontoInput from "./pages/BuyScreen"
 import SalesCard from "./components/molecule/salesCard"
 import PaymentMethod from "./components/molecule/salesCard/PaymentMethod"
+import MontoInput from "./components/molecule/BuyCard"
+import BuyPaymentMethod from "./components/molecule/BuyCard/BuyPaymentMethod"
 function App() {
   return (
     <HashRouter>
@@ -33,7 +33,8 @@ function App() {
             <Route path="/sell" element={ <Sales /> } />
             <Route path="/sell/screen" element={<SalesCard />} />
             <Route path="/buy" element={ <Buy /> } />
-            <Route path="/monto" element={<MontoInput />} />
+            <Route path="/buy/screen" element={<MontoInput />} />
+            <Route path= "/buypaymentmethod" element={<BuyPaymentMethod />} />
             <Route path="paymentmethod" element={<PaymentMethod />} />
             <Route path="/deposit" element={ <Deposit />} />
             <Route path="/market" element={ <Market /> } />

@@ -1,8 +1,6 @@
 import PersonalAccount from '../components/template/personal-account/PersonalAccount'
 
-interface CreatePersonalAccountProps {
-
-}
+interface CreatePersonalAccountProps {}
 
 const CreatePersonalAccount: React.FC<CreatePersonalAccountProps> = () => {
   return (

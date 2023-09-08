@@ -15,12 +15,15 @@ const NotFound: React.FC<NotFoundProps> = () => {
       alignItems="center"
       spacing={ 4 }
       maxWidth="lg"
+      sx={{minHeight: '85vh'}}
     >
       <Grid item xs={ 12 }>
         <Typography
           variant="h2"
+          align="center"
+          sx={ { padding: '2rem 1rem' } }
         >
-          Ups! No encontramos la página buscada.
+          Ups! <br />No encontramos la página buscada.
         </Typography>
       </Grid>
       <Grid item xs={ 12 }>

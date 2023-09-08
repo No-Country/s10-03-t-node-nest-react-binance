@@ -261,7 +261,7 @@ export const binanceTheme = createTheme({
           border: '2px solid',
           ':hover': {
             border: '2px solid',
-            background: '#015220',
+            background: '#deb409',
           },
           ':focus': {
             color: 'white',

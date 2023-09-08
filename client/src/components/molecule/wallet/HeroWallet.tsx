@@ -10,43 +10,44 @@ const HeroWallet = () => {
     const handleVisibilityToggle = () => {
         setIsAmountVisible((prevIsAmountVisible) => !prevIsAmountVisible)
     }
+
     return (
         <>
             <Grid
                 item
-                xs={12}
-                sm={4}
-                md={3}
-                sx={HERO_MARKET_STYLES.container}
+                xs={ 12 }
+                sm={ 4 }
+                md={ 3 }
+                sx={ HERO_MARKET_STYLES.container }
             >
                 <Grid
                     container
-                    sx={HERO_MARKET_STYLES.containerSaldo}
+                    sx={ HERO_MARKET_STYLES.containerSaldo }
                 >
                     <Grid
                         item
-                        xs={12}
-                        sx={HERO_MARKET_STYLES.saldoText}
+                        xs={ 12 }
+                        sx={ HERO_MARKET_STYLES.saldoText }
                     >
                         <Typography
                             component="h2"
-                            sx={{ fontSize: '24px', fontWeight: '700' }}
+                            sx={ { fontSize: '24px', fontWeight: '700' } }
                         >
                             Saldo total
                         </Typography>
                         <Box
                             component="span"
-                            onClick={handleVisibilityToggle}
+                            onClick={ handleVisibilityToggle }
                         >
-                            {isAmountVisible ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                            { isAmountVisible ? <VisibilityOffIcon /> : <VisibilityIcon /> }
                         </Box>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={ 12 }>
                         <Typography
                             component="h2"
-                            sx={HERO_MARKET_STYLES.saldoAmount}
+                            sx={ HERO_MARKET_STYLES.saldoAmount }
                         >
-                            {isAmountVisible ? '$100.00' : '******'}
+                            { isAmountVisible ? '$100.00' : '******' }
                         </Typography>
                     </Grid>
                 </Grid>

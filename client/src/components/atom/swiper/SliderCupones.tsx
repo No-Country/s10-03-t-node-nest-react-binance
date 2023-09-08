@@ -102,7 +102,8 @@ const SliderCupones: React.FC = () => {
                                         </Typography>
                                         <CardActions sx={ { width: 100 } } >
                                             <Button
-                                                onClick={ () => navigate(`/buy?coin=${ coin.uuid }`) } variant='contained'
+                                                onClick={ () => navigate(`/buy?coin=${ coin.uuid }`) }
+                                                variant='contained'
                                                 size='small'
                                                 aria-label="comprar"
                                             >

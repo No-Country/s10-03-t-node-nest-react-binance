@@ -30,7 +30,7 @@
 
 - [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/>  Nilo Ivan Soruco Guerrero](https://github.com/nilovili)
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Miguel](https://github.com/migmm)
+- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Miguel Miche](https://github.com/migmm)
 
 
 ## <img width="30" height="30" src="https://img.icons8.com/dotty/30/web.png" alt="web"/> UX/UI

@@ -1,6 +1,10 @@
 # <img width="40" height="40" src="https://img.icons8.com/dusk/40/binance.png" alt="binance"/> Seleccionado 10 - Equipo 03 - Turno tarde - Nodejs - Nestjs - React - TypeScript (Binance)
 
 
+Realizaremos un rediseño de Binance Lite basado en los principios de simplificación de “The laws of simplicity” de John Maeda, apuntado a crear una interfaz más amigable para los principiantes. 
+
+Entendemos que el mundo del trading puede resultar complicado y abrumador para aquellos que recién comienzan, por lo que queremos lograr una reversión en la que se sientan cómodos, centrando su atención en los conceptos básicos y las operaciones esenciales.
+
 ---
 
 ## <img width="40" height="40" src="https://img.icons8.com/cotton/40/movie-beginning--v1.png" alt="movie-beginning--v1"/> LINKS DE DEPLOY
@@ -30,7 +34,7 @@
 
 - [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/>  Nilo Ivan Soruco Guerrero](https://github.com/nilovili)
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Miguel](https://github.com/migmm)
+- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Miguel Miche](https://github.com/migmm)
 
 
 ## <img width="30" height="30" src="https://img.icons8.com/dotty/30/web.png" alt="web"/> UX/UI

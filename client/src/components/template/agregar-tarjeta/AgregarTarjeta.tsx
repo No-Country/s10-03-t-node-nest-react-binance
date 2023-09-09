@@ -13,60 +13,87 @@ import {
 import PrimaryButton from "../../atom/buttons/PrimaryButton";
 
 import useAuth from "../../../hooks/useAuth";
-import { emailRegex } from "../../../utils/constants";
 import { PERSONAL_STYLES } from "../personal-account/PersonalAccountStyles";
 
 const AgregarTarjeta = () => {
   const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
   const { registerAuth } = auth;
 
-  const [numero, setNumero] = useState<number>();
-  const [titular, setTitular] = useState<string>('');
-  const [fechaVencimiento, setFechaVencimiento] = useState({ mes: 0, year: 0});
-  
-  const [cvv, setCvv] = useState<number>(0);
-  const [direccion, setDireccion] = useState<string>('');
-  const [codigoPostal, setCodigoPostal] = useState<number>(0)
+  const [numero, setNumero] = useState<number | undefined>();
+  const [titular, setTitular] = useState<string>("");
+  const [dateInput, setDateInput] = useState<string>("");
+  const [cvv, setCvv] = useState<number | undefined>();
+  const [direccion, setDireccion] = useState<string>("");
+  const [codigoPostal, setCodigoPostal] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
   const [message, setMessage] = useState({ text: "", msg: "" });
-  const [welcomeMessage, setWelcomeMessage] = useState({ text: "" });
-  const [showMessage, setShowMessage] = useState<boolean>(false);
-  
+  const [nextButton, setNextButton] = useState<boolean>(false);
+
   const navigate = useNavigate();
-  
 
   const handleNextClick = () => {
-    if (!numero) {
+    if (!numero || !titular || !dateInput || !cvv || !direccion || !codigoPostal) {
       setError(true);
       setMessage({
-        text: "El email es obligatorio",
-        msg: "Email",
+        text: "Todos los campos son obligatorios",
+        msg: "Tarjeta",
       });
       setTimeout(() => {
         setError(false);
       }, 3000);
       return;
     }
-    
-    
+
   };
 
-  // const fechaValida = (e) => {
-  //   let inputValido = e.target.value;
-  //   let [mes, year] = inputValido.split('/');
-  //   console.log(mes, year);
-    
-  //   if (mes.length === 2)  {
-  //     document.getElementById('mes-year').focus()
-  //   }
-  //   if (year.length === 2) {
-  //   }
-  //   if (mes.length === 2 && year.length === 2) {
-  //     setFechaVencimiento({ mes, year });
-  //   }
-  // }
+  const handleTitularTarjeta = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    const formattedValue = value.replace(/[^a-zA-Z]/g, '');
+
+    setTitular(formattedValue);
+    habilitarContinuar();
+  }
+
+
+  const handleCP = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value.length <= 4) {
+      setCodigoPostal(value);
+      habilitarContinuar();
+    }
+  };
+
+  const handleFechaVencimiento = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
   
- 
+  // Utiliza una expresión regular para permitir solo números y la barra "/"
+  const formattedValue = value.replace(/[^\d/]/g, '');
+
+  // Asegúrate de que siempre haya una barra "/" en la posición correcta (MM/AA)
+  const parts = formattedValue.split('/');
+  if (parts.length === 1 && formattedValue.length === 2) {
+    const newValue = `${formattedValue}/`;
+    setDateInput(newValue);
+  } else if (parts.length === 2) {
+    const month = parts[0].slice(0, 2);
+    const year = parts[1].slice(0, 2);
+    const newValue = `${month}/${year}`;
+    setDateInput(newValue);
+  } else {
+    setDateInput(formattedValue);
+  }
+  
+   habilitarContinuar();
+  };
+
+  const habilitarContinuar = () => {
+    if (numero && titular && dateInput && cvv && direccion && codigoPostal) {
+      setNextButton(true);
+    } else {
+      setNextButton(false);
+    }
+  };
+
   if (!auth) {
     // Manejar el caso en que el contexto no esté definido
     return (
@@ -81,53 +108,124 @@ const AgregarTarjeta = () => {
     <main style={PERSONAL_STYLES.main}>
       <Container maxWidth="sm" sx={PERSONAL_STYLES.container}>
         <Box sx={PERSONAL_STYLES.boxContainer}>
-          <Typography variant="h1" component="h1" mb={4}>
+          <Typography
+            sx={{ textAlign: "left", marginLeft: 0 }}
+            variant="h3"
+            component="h1"
+            mb={4}
+          >
             Datos de la tarjeta
           </Typography>
-          
+
           <form style={{ maxWidth: "400px" }}>
-          <InputLabel htmlFor="filled-basic" sx={PERSONAL_STYLES.textBold} style={{textAlign: 'left', fontSize: '18px' }} >Numero de la tarjeta</InputLabel>
+            <InputLabel
+              htmlFor="numero-tarjeta"
+              sx={PERSONAL_STYLES.textBold}
+              style={{ textAlign: "left", fontSize: "18px" }}
+            >
+              Numero de la tarjeta
+            </InputLabel>
             <TextField
               type="number"
-              id="filled-basic"
+              id="numero-tarjeta"
               label="Ingrese numero de la tarjeta"
               variant="filled"
               style={{ width: "100%", marginBottom: "20px" }}
-              value={numero}
+              value={numero || ""}
               onChange={(e) => setNumero(parseInt(e.target.value))}
             />
-          
-          <InputLabel htmlFor="filled-basic" sx={PERSONAL_STYLES.textBold} style={{textAlign: 'left', fontSize: '18px' }} >Titular de la tarjeta</InputLabel>
+
+            <InputLabel
+              htmlFor="titular-tarjeta"
+              sx={PERSONAL_STYLES.textBold}
+              style={{ textAlign: "left", fontSize: "18px" }}
+            >
+              Titular de la tarjeta
+            </InputLabel>
             <TextField
               type="text"
-              id="filled-basic"
+              id="titular-tarjeta"
               label="Ingrese al titular de la tarjeta"
               variant="filled"
               style={{ width: "100%", marginBottom: "20px" }}
               value={titular}
-              onChange={(e) => setTitular(e.target.value)}
+              onChange={handleTitularTarjeta}
             />
-          
-          <InputLabel htmlFor="filled-basic" sx={PERSONAL_STYLES.textBold} style={{textAlign: 'left', fontSize: '18px' }} >Fecha de vencimiento</InputLabel>
+
+            <InputLabel
+              htmlFor="fecha-vencimiento"
+              sx={PERSONAL_STYLES.textBold}
+              style={{ textAlign: "left", fontSize: "18px" }}
+            >
+              Fecha de vencimiento
+            </InputLabel>
             <TextField
               type="text"
-              id="mes-year"
+              id="fecha-vencimiento"
               label="MM/AA"
               variant="filled"
               style={{ width: "100%", marginBottom: "20px" }}
-              value={fechaVencimiento.year}
-              // onChange={fechaValida}
+              value={dateInput}
+              onChange={handleFechaVencimiento}
+              inputProps={{
+                pattern: "\\d{2}/\\d{2}",
+                inputMode: "numeric",
+                maxLength: 5,
+              }}
             />
-            
-          <InputLabel htmlFor="filled-basic" sx={PERSONAL_STYLES.textBold} style={{textAlign: 'left', fontSize: '18px' }} >CVV</InputLabel>
+
+            <InputLabel
+              htmlFor="cvv-tarjeta"
+              sx={PERSONAL_STYLES.textBold}
+              style={{ textAlign: "left", fontSize: "18px" }}
+            >
+              CVV
+            </InputLabel>
             <TextField
               type="number"
-              id="filled-basic"
+              id="cvv-tarjeta"
               label="CVV"
               variant="filled"
               style={{ width: "100%", marginBottom: "20px" }}
-              value={cvv}
+              value={cvv || ""}
               onChange={(e) => setCvv(parseInt(e.target.value))}
+            />
+
+            <Typography variant="h3" component="h1" mb={4}>
+              Datos de Facturacion
+            </Typography>
+            <InputLabel
+              htmlFor="direccion-facturacion"
+              sx={PERSONAL_STYLES.textBold}
+              style={{ textAlign: "left", fontSize: "18px" }}
+            >
+              Direccion
+            </InputLabel>
+            <TextField
+              type="text"
+              id="direccion-facturacion"
+              label="Direccion"
+              variant="filled"
+              style={{ width: "100%", marginBottom: "20px" }}
+              value={direccion}
+              onChange={(e) => setDireccion(e.target.value)}
+            />
+
+            <InputLabel
+              htmlFor="codigo-postal"
+              sx={PERSONAL_STYLES.textBold}
+              style={{ textAlign: "left", fontSize: "18px" }}
+            >
+              Código Postal
+            </InputLabel>
+            <TextField
+              type="number"
+              id="codigo-postal"
+              label="Código postal"
+              variant="filled"
+              style={{ width: "100%", marginBottom: "20px" }}
+              value={codigoPostal}
+              onChange={handleCP}
             />
             {error && (
               <Alert severity="error">
@@ -135,42 +233,19 @@ const AgregarTarjeta = () => {
                 {message.text} — <strong>{message.msg}</strong>
               </Alert>
             )}
-            
-            {showMessage && (
-              <Alert severity="success">
-                <AlertTitle>Success</AlertTitle>
-                {welcomeMessage.text} —{" "}
-                <strong>
-                  Registro con Exito! Seras redireccionado al Login
-                </strong>
-              </Alert>
-            )}
-            {/* <Typography variant="body1" my={2} gutterBottom>
-              Al crear una cuenta, acepto las
-              <Box component="span" sx={PERSONAL_STYLES.textBold}>
-                condiciones de servicio
-              </Box>
-              y las
-              <Box component="span" sx={PERSONAL_STYLES.textBold}>
-                política de privacidad
-              </Box>
-              de
-              <Box component="span" sx={PERSONAL_STYLES.textBold}>
-                Binance
-              </Box>
-            </Typography> */}
             <PrimaryButton
-              text={ "Siguiente"}
+              text={"Siguiente"}
               ariaLabelText="Continuar"
               variant="contained"
               color="primary"
-              onClick={ handleNextClick}
+              disabled={!nextButton}
+              onClick={handleNextClick}
             />
           </form>
         </Box>
       </Container>
     </main>
   );
-}
+};
 
-export default AgregarTarjeta
+export default AgregarTarjeta;

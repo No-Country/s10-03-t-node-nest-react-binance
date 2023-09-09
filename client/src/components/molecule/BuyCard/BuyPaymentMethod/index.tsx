@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Button, Container, Typography, TextField } from '@mui/material';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { loginStyle } from '../../Login/loginStyle';
-import { useNavigate } from 'react-router-dom';
-import {MontoInput} from '../../../molecule/BuyCard/index'
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const BuyPaymentMethod = () => {
+
+    const location = useLocation()
+    const moneda = new URLSearchParams(location.search).get('moneda')
+    console.log(moneda);
+    
+    
+
     const navigate = useNavigate()
     const [method, setMethod] = useState('tarjeta'); // Valor predeterminado
 
@@ -28,8 +34,7 @@ const BuyPaymentMethod = () => {
             >
                 Seleccionar metodo de cobro
             </Typography>
-            
-            
+            { moneda }
           <FormControl component="fieldset">
             <FormLabel component="legend">Método de Pago</FormLabel>
             <RadioGroup

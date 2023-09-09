@@ -18,7 +18,7 @@ const MontoInput = () => {
   };
 
   const handleClick = () => {
-    navigate("/buypaymentmethod");
+    navigate(`/buypaymentmethod?moneda=${inputValue}`);
   };
   return (
     <Container maxWidth="xs">

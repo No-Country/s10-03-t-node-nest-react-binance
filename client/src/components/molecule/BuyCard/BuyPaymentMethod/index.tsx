@@ -3,6 +3,7 @@ import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Button, Co
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { loginStyle } from '../../Login/loginStyle';
 import { useNavigate } from 'react-router-dom';
+import {MontoInput} from '../../../molecule/BuyCard/index'
 
 const BuyPaymentMethod = () => {
     const navigate = useNavigate()
@@ -27,6 +28,7 @@ const BuyPaymentMethod = () => {
             >
                 Seleccionar metodo de cobro
             </Typography>
+            
             
           <FormControl component="fieldset">
             <FormLabel component="legend">Método de Pago</FormLabel>

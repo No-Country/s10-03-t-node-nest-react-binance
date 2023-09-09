@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Typography } from '@mui/material'
 import SearchBar from '../components/molecule/searchBar'
 import TabsSales from '../components/molecule/tabs/TabsSales'
+import { useApiContext } from '../context/FetchContext'
 
 const Buy = () => {
+
   return (
     <Container maxWidth="xs">
       <Typography

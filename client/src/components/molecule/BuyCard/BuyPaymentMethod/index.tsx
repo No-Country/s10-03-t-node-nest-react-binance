@@ -41,7 +41,7 @@ const BuyPaymentMethod = () => {
               <FormControlLabel
                 value="tarjeta"
                 control={<Radio />}
-                label="Mercado Pago"
+                label="Tarjeta de credito"
               />
               
             </RadioGroup>

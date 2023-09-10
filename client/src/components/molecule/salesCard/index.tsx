@@ -16,7 +16,7 @@ const NumericInput = () => {
   }
 
 const handleClick = () => {
-    navigate("/paymentmethod")
+    navigate(`/paymentmethod?monto=`)
 }
   
 

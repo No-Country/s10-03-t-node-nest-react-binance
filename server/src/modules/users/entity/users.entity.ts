@@ -19,7 +19,7 @@ export class UserEntity {
   @Column({ type: 'decimal', precision: 20, scale: 2 })
   balance: number;
 
-  @Column({ length: 255, unique: true })
+  @Column({ length: 255, unique: true, name: 'cellphone' })
   celphone: string;
 
   @OneToMany(() => TransactionEntity, (transaction) => transaction.user)

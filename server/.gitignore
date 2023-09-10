@@ -4,6 +4,7 @@
 
 # Logs
 /env
+.env
 logs
 *.log
 npm-debug.log*
@@ -34,6 +35,3 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
-# Env
-.env

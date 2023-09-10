@@ -11,6 +11,7 @@ import config from './core/config/config';
 import * as Joi from 'joi';
 import { ScheduleModule } from '@nestjs/schedule';
 import { UserFavoritesModule } from './modules/user-favorites/user-favorites.module';
+import { CreditCardsModule } from './modules/credit-cards/credit-card.modules';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { UserFavoritesModule } from './modules/user-favorites/user-favorites.mod
     CryptoHistoriesModule,
     DatabaseModule,
     UserFavoritesModule,
+    CreditCardsModule,
   ],
   controllers: [],
   providers: [],

@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Button, Container, Typography, TextField } from '@mui/material';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { loginStyle } from '../../Login/loginStyle';
+import { useLocation } from 'react-router-dom';
 
 const PaymentMethod = () => {
 
+    const location = useLocation()
+    const monto = new URLSearchParams(location.search).get('moneda')
+    console.log(monto)
     const [method, setMethod] = useState('tarjeta'); // Valor predeterminado
 
     const handleMethodChange = (event) => {

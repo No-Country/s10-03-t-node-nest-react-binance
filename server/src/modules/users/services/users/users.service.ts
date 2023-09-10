@@ -78,7 +78,7 @@ export class UsersService {
       const user = new UserEntity();
       user.username = username;
       user.email = email;
-      user.celphone = celphone;
+      user.celphone = celphone ? celphone : null;
       user.passwordHash = hashedPassword;
       user.balance = createUserDto.balance;
 
@@ -86,7 +86,7 @@ export class UsersService {
       if (!data) {
         return createResponse({
           error: true,
-          message: 'Ocurrió un error al registrar',
+          message: 'Ocurrió un error',
         });
       }
       return createResponse({
@@ -96,7 +96,7 @@ export class UsersService {
     } catch (error) {
       return createResponse({
         error: true,
-        message: 'Ocurrió un error al registrar',
+        message: `'Ocurrió un error al registrar' ${error}`,
       });
     }
   }

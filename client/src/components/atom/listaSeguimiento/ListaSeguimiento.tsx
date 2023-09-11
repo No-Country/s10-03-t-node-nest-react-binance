@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useApiContext } from '../../../context/FetchContext'
 import { Box, Button, Grid, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { FAV_LIST } from './ListaSeguimientoStyles'
+import AuthContext from '../../../context/AuthContext'
 
 const ListaSeguimiento: React.FC = () => {
     const { coinsData } = useApiContext()
+    const { favoritesList, setFavoritesList, auth} = useContext(AuthContext)
+    console.log('auth', auth)
+    // TODO: cambiar las coinsData por favoritesList pero falta que el contexto tenga el id del usuario para poder hacer bien el fetch, sin id no se puede
+
     const navigate = useNavigate()
 
     return (

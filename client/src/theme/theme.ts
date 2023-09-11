@@ -178,6 +178,7 @@ export const binanceTheme = createTheme({
       },
       styleOverrides: {
         root: {
+          size: '20px',
           '&.Mui-error': {
             color: 'black'
           },

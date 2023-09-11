@@ -11,7 +11,7 @@ const Market: React.FC<MarketProps> = () => {
       <Grid
         container
         maxWidth="lg"
-        sx={ { margin: '0 auto', width: '100%' } }
+        sx={ { margin: '0 auto', width: '100%', padding: '12px' } }
       >
         <HeroMarket />
       </Grid>

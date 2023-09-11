@@ -65,25 +65,25 @@ const AgregarTarjeta = () => {
 
   const handleFechaVencimiento = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-  
-  // Utiliza una expresión regular para permitir solo números y la barra "/"
-  const formattedValue = value.replace(/[^\d/]/g, '');
 
-  // Asegúrate de que siempre haya una barra "/" en la posición correcta (MM/AA)
-  const parts = formattedValue.split('/');
-  if (parts.length === 1 && formattedValue.length === 2) {
-    const newValue = `${formattedValue}/`;
-    setDateInput(newValue);
-  } else if (parts.length === 2) {
-    const month = parts[0].slice(0, 2);
-    const year = parts[1].slice(0, 2);
-    const newValue = `${month}/${year}`;
-    setDateInput(newValue);
-  } else {
-    setDateInput(formattedValue);
-  }
-  
-   habilitarContinuar();
+    // Utiliza una expresión regular para permitir solo números y la barra "/"
+    const formattedValue = value.replace(/[^\d/]/g, '');
+
+    // Asegúrate de que siempre haya una barra "/" en la posición correcta (MM/AA)
+    const parts = formattedValue.split('/');
+    if (parts.length === 1 && formattedValue.length === 2) {
+      const newValue = `${ formattedValue }/`;
+      setDateInput(newValue);
+    } else if (parts.length === 2) {
+      const month = parts[0].slice(0, 2);
+      const year = parts[1].slice(0, 2);
+      const newValue = `${ month }/${ year }`;
+      setDateInput(newValue);
+    } else {
+      setDateInput(formattedValue);
+    }
+
+    habilitarContinuar();
   };
 
   const habilitarContinuar = () => {
@@ -105,23 +105,22 @@ const AgregarTarjeta = () => {
   }
 
   return (
-    <main style={PERSONAL_STYLES.main}>
-      <Container maxWidth="sm" sx={PERSONAL_STYLES.container}>
-        <Box sx={PERSONAL_STYLES.boxContainer}>
+    <main style={ PERSONAL_STYLES.main }>
+      <Container maxWidth="sm" sx={ PERSONAL_STYLES.container }>
+        <Box sx={ PERSONAL_STYLES.boxContainer }>
           <Typography
-            sx={{ textAlign: "left", marginLeft: 0 }}
-            variant="h3"
+            sx={ { textAlign: "center", marginLeft: '24px', marginRight: '24px' } }
+            variant="h2"
             component="h1"
-            mb={4}
+            mb={ 4 }
           >
             Datos de la tarjeta
           </Typography>
-
-          <form style={{ maxWidth: "400px" }}>
+          <form style={ { maxWidth: "400px" } }>
             <InputLabel
               htmlFor="numero-tarjeta"
-              sx={PERSONAL_STYLES.textBold}
-              style={{ textAlign: "left", fontSize: "18px" }}
+              sx={ PERSONAL_STYLES.textBold }
+              style={ { textAlign: "left", fontSize: "18px" } }
             >
               Numero de la tarjeta
             </InputLabel>
@@ -130,15 +129,15 @@ const AgregarTarjeta = () => {
               id="numero-tarjeta"
               label="Ingrese numero de la tarjeta"
               variant="filled"
-              style={{ width: "100%", marginBottom: "20px" }}
-              value={numero || ""}
-              onChange={(e) => setNumero(parseInt(e.target.value))}
+              style={ { width: "100%", marginBottom: "20px" } }
+              value={ numero || "" }
+              onChange={ (e) => setNumero(parseInt(e.target.value)) }
             />
 
             <InputLabel
               htmlFor="titular-tarjeta"
-              sx={PERSONAL_STYLES.textBold}
-              style={{ textAlign: "left", fontSize: "18px" }}
+              sx={ PERSONAL_STYLES.textBold }
+              style={ { textAlign: "left", fontSize: "18px" } }
             >
               Titular de la tarjeta
             </InputLabel>
@@ -147,15 +146,15 @@ const AgregarTarjeta = () => {
               id="titular-tarjeta"
               label="Ingrese al titular de la tarjeta"
               variant="filled"
-              style={{ width: "100%", marginBottom: "20px" }}
-              value={titular}
-              onChange={handleTitularTarjeta}
+              style={ { width: "100%", marginBottom: "20px" } }
+              value={ titular }
+              onChange={ handleTitularTarjeta }
             />
 
             <InputLabel
               htmlFor="fecha-vencimiento"
-              sx={PERSONAL_STYLES.textBold}
-              style={{ textAlign: "left", fontSize: "18px" }}
+              sx={ PERSONAL_STYLES.textBold }
+              style={ { textAlign: "left", fontSize: "18px" } }
             >
               Fecha de vencimiento
             </InputLabel>
@@ -164,20 +163,20 @@ const AgregarTarjeta = () => {
               id="fecha-vencimiento"
               label="MM/AA"
               variant="filled"
-              style={{ width: "100%", marginBottom: "20px" }}
-              value={dateInput}
-              onChange={handleFechaVencimiento}
-              inputProps={{
+              style={ { width: "100%", marginBottom: "20px" } }
+              value={ dateInput }
+              onChange={ handleFechaVencimiento }
+              inputProps={ {
                 pattern: "\\d{2}/\\d{2}",
                 inputMode: "numeric",
                 maxLength: 5,
-              }}
+              } }
             />
 
             <InputLabel
               htmlFor="cvv-tarjeta"
-              sx={PERSONAL_STYLES.textBold}
-              style={{ textAlign: "left", fontSize: "18px" }}
+              sx={ PERSONAL_STYLES.textBold }
+              style={ { textAlign: "left", fontSize: "18px" } }
             >
               CVV
             </InputLabel>
@@ -186,18 +185,18 @@ const AgregarTarjeta = () => {
               id="cvv-tarjeta"
               label="CVV"
               variant="filled"
-              style={{ width: "100%", marginBottom: "20px" }}
-              value={cvv || ""}
-              onChange={(e) => setCvv(parseInt(e.target.value))}
+              style={ { width: "100%", marginBottom: "20px" } }
+              value={ cvv || "" }
+              onChange={ (e) => setCvv(parseInt(e.target.value)) }
             />
 
-            <Typography variant="h3" component="h1" mb={4}>
+            <Typography variant="h3" component="h1" mb={ 4 }>
               Datos de Facturacion
             </Typography>
             <InputLabel
               htmlFor="direccion-facturacion"
-              sx={PERSONAL_STYLES.textBold}
-              style={{ textAlign: "left", fontSize: "18px" }}
+              sx={ PERSONAL_STYLES.textBold }
+              style={ { textAlign: "left", fontSize: "18px" } }
             >
               Direccion
             </InputLabel>
@@ -206,15 +205,15 @@ const AgregarTarjeta = () => {
               id="direccion-facturacion"
               label="Direccion"
               variant="filled"
-              style={{ width: "100%", marginBottom: "20px" }}
-              value={direccion}
-              onChange={(e) => setDireccion(e.target.value)}
+              style={ { width: "100%", marginBottom: "20px" } }
+              value={ direccion }
+              onChange={ (e) => setDireccion(e.target.value) }
             />
 
             <InputLabel
               htmlFor="codigo-postal"
-              sx={PERSONAL_STYLES.textBold}
-              style={{ textAlign: "left", fontSize: "18px" }}
+              sx={ PERSONAL_STYLES.textBold }
+              style={ { textAlign: "left", fontSize: "18px" } }
             >
               Código Postal
             </InputLabel>
@@ -223,23 +222,23 @@ const AgregarTarjeta = () => {
               id="codigo-postal"
               label="Código postal"
               variant="filled"
-              style={{ width: "100%", marginBottom: "20px" }}
-              value={codigoPostal}
-              onChange={handleCP}
+              style={ { width: "100%", marginBottom: "20px" } }
+              value={ codigoPostal }
+              onChange={ handleCP }
             />
-            {error && (
+            { error && (
               <Alert severity="error">
                 <AlertTitle>Error</AlertTitle>
-                {message.text} — <strong>{message.msg}</strong>
+                { message.text } — <strong>{ message.msg }</strong>
               </Alert>
-            )}
+            ) }
             <PrimaryButton
-              text={"Siguiente"}
+              text={ "Siguiente" }
               ariaLabelText="Continuar"
               variant="contained"
               color="primary"
-              disabled={!nextButton}
-              onClick={handleNextClick}
+              disabled={ !nextButton }
+              onClick={ handleNextClick }
             />
           </form>
         </Box>

@@ -11,6 +11,7 @@ const HeroMarket = () => {
   const handleVisibilityToggle = () => {
     setIsAmountVisible((prevIsAmountVisible) => !prevIsAmountVisible)
   }
+  
   return (
     <>
       <Grid

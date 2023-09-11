@@ -1,27 +1,27 @@
-import { useContext, useEffect, useState } from "react";
-import AuthContext from "../context/AuthContext";
+import { useContext, useEffect, useState } from 'react'
+import AuthContext from '../context/AuthContext'
 
 interface AuthMethods {
-  registerAuth: ({ email, password, username, balance, celphone }) => void;
-  login: ({ userOrEmail, password }) => void;
-  isLogueado?: boolean;
-  setIsLogueado?: React.Dispatch<React.SetStateAction<boolean>>;
+  registerAuth: ({ email, password, username, balance, celphone }) => void
+  login: ({ userOrEmail, password }) => void
+  isLogueado?: boolean
+  setIsLogueado?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const useAuth = (): AuthMethods | undefined => {
-  const authContext = useContext(AuthContext);
-  const [isLogueado, setIsLogueado] = useState<boolean>(false);
+  const authContext = useContext(AuthContext)
+  const [isLogueado, setIsLogueado] = useState<boolean>(false)
 
   useEffect(() => {
     if (authContext) {
-      setIsLogueado(true);
+      setIsLogueado(true)
     }
-  }, [authContext]);
+  }, [authContext])
 
   if (!authContext) {
-    setIsLogueado(false);
+    setIsLogueado(false)
     // Retornar undefined cuando el contexto no está definido
-    return undefined;
+    return undefined
   }
 
   return {
@@ -32,4 +32,4 @@ const useAuth = (): AuthMethods | undefined => {
   };
 };
 
-export default useAuth;
+export default useAuth

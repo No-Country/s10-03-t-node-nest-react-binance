@@ -4,8 +4,8 @@ import { visuallyHidden } from '@mui/utils'
 import { Order } from '../../../utils/types'
 import { CoinData } from '../../../models/CoinDataResponse'
 import { useApiContext } from '../../../context/FetchContext'
-import { COINS_TABLE_STYLES } from '../coins-talble/CoinsTableStyles'
-import SellCoinModal from '../modals/SellCoinModal'
+import { COINS_TABLE_STYLES } from '../coins-table/CoinsTableStyles'
+import SellCoinModal from '../modals/BuySellCoinModal'
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) return -1
@@ -65,35 +65,35 @@ function CoinsTableHead(props: CoinsTableProps) {
 
     return (
         <TableHead>
-            <TableRow sx={COINS_TABLE_STYLES.tableRow}>
-                {headCells.map((headCell) => (
+            <TableRow sx={ COINS_TABLE_STYLES.tableRow }>
+                { headCells.map((headCell) => (
                     <TableCell
-                        key={headCell.id}
+                        key={ headCell.id }
                         align='left'
                         padding='normal'
-                        sortDirection={orderBy === headCell.id ? order : false}
-                        sx={{
+                        sortDirection={ orderBy === headCell.id ? order : false }
+                        sx={ {
                             display: {
-                                xs: `${headCell.showSmall ? 'inline-block' : 'none'}`,
+                                xs: `${ headCell.showSmall ? 'inline-block' : 'none' }`,
                                 sm: 'flex'
                             },
                             maxWidth: '130px'
-                        }}
+                        } }
                     >
                         <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
+                            active={ orderBy === headCell.id }
+                            direction={ orderBy === headCell.id ? order : 'asc' }
+                            onClick={ createSortHandler(headCell.id) }
                         >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <Box component="span" sx={visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                            { headCell.label }
+                            { orderBy === headCell.id ? (
+                                <Box component="span" sx={ visuallyHidden }>
+                                    { order === 'desc' ? 'sorted descending' : 'sorted ascending' }
                                 </Box>
-                            ) : null}
+                            ) : null }
                         </TableSortLabel>
                     </TableCell>
-                ))}
+                )) }
             </TableRow>
         </TableHead>
     )
@@ -131,29 +131,29 @@ export default function CoinsTable() {
 
         if (num >= 1000000) {
             const millions = (num / 1000000).toFixed(2)
-            return `${millions} M$`
+            return `${ millions } M$`
         } else {
-            return `${num.toFixed(2)} $`
+            return `${ num.toFixed(2) } $`
         }
     }
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
+        <Box sx={ { width: '100%' } }>
+            <Paper sx={ { width: '100%', mb: 2 } }>
                 <TableContainer>
                     <Table
-                        sx={COINS_TABLE_STYLES.table}
+                        sx={ COINS_TABLE_STYLES.table }
                         aria-labelledby="tableTitle"
                         size='medium'
                     >
                         <CoinsTableHead
-                            order={order}
-                            orderBy={orderBy}
-                            onRequestSort={handleRequestSort}
+                            order={ order }
+                            orderBy={ orderBy }
+                            onRequestSort={ handleRequestSort }
                         />
                         <TableBody>
-                            {visibleRows.map((coinsData, index) => {
-                                const labelId = `enhanced-table-checkbox-${index}`
+                            { visibleRows.map((coinsData, index) => {
+                                const labelId = `enhanced-table-checkbox-${ index }`
                                 const itemChange: number = +(parseFloat(coinsData.change.toString()).toFixed(2))
                                 const price = +(parseFloat(coinsData.currentPrice.toString()).toFixed(2))
                                 const marketCap = formatNumberToCurrency(coinsData.marketCap.toString())
@@ -161,59 +161,59 @@ export default function CoinsTable() {
                                 return (
                                     <TableRow
                                         hover
-                                        onClick={(event) => handleClick(event, coinsData)}
+                                        onClick={ (event) => handleClick(event, coinsData) }
                                         role="checkbox"
-                                        tabIndex={-1}
-                                        key={coinsData.name}
-                                        sx={COINS_TABLE_STYLES.tableRow}
+                                        tabIndex={ -1 }
+                                        key={ coinsData.name }
+                                        sx={ COINS_TABLE_STYLES.tableRow }
                                     >
                                         <TableCell
                                             component="th"
-                                            id={labelId}
+                                            id={ labelId }
                                             scope="row"
                                             padding="none"
-                                            sx={COINS_TABLE_STYLES.tableCellName}
+                                            sx={ COINS_TABLE_STYLES.tableCellName }
                                         >
                                             <Box>
                                                 <img
-                                                    src={coinsData.iconUrl.toString()}
-                                                    width={30}
-                                                    height={30}
-                                                    alt={coinsData.name.toString()}
+                                                    src={ coinsData.iconUrl.toString() }
+                                                    width={ 30 }
+                                                    height={ 30 }
+                                                    alt={ coinsData.name.toString() }
                                                 />
                                             </Box>
-                                            <Box component="div" sx={COINS_TABLE_STYLES.containerIconName}>
-                                                <Box component="span" sx={COINS_TABLE_STYLES.symbol}>
-                                                    {coinsData.symbol}
+                                            <Box component="div" sx={ COINS_TABLE_STYLES.containerIconName }>
+                                                <Box component="span" sx={ COINS_TABLE_STYLES.symbol }>
+                                                    { coinsData.symbol }
                                                 </Box>
-                                                <Box component="span" sx={COINS_TABLE_STYLES.name}>
-                                                    {coinsData.name}
+                                                <Box component="span" sx={ COINS_TABLE_STYLES.name }>
+                                                    { coinsData.name }
                                                 </Box>
                                             </Box>
                                         </TableCell>
-                                        <TableCell align="right" sx={COINS_TABLE_STYLES.tableCell}>
-                                            {price}
+                                        <TableCell align="right" sx={ COINS_TABLE_STYLES.tableCell }>
+                                            { price }
                                         </TableCell>
-                                        <TableCell align="right" sx={COINS_TABLE_STYLES.tableCellChange}>
-                                            <Box component="span" sx={{ color: itemChange > 0 ? '#03A66D' : '#CF304A' }}>
-                                                {itemChange > 0 && '+'}{itemChange} %
+                                        <TableCell align="right" sx={ COINS_TABLE_STYLES.tableCellChange }>
+                                            <Box component="span" sx={ { color: itemChange > 0 ? '#03A66D' : '#CF304A' } }>
+                                                { itemChange > 0 && '+' }{ itemChange } %
                                             </Box>
                                         </TableCell>
-                                        <TableCell align="right" sx={COINS_TABLE_STYLES.tableCellMarketCap}>
-                                            {marketCap}
+                                        <TableCell align="right" sx={ COINS_TABLE_STYLES.tableCellMarketCap }>
+                                            { marketCap }
                                         </TableCell>
                                     </TableRow>
                                 );
-                            })}
+                            }) }
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Paper>
-            {openModal &&
+            { openModal &&
                 <SellCoinModal
-                    handleClose={handleClose}
-                    openModal={openModal}
-                    cointToShow={cointToShow}
+                    handleClose={ handleClose }
+                    openModal={ openModal }
+                    cointToShow={ cointToShow }
                 />
             }
         </Box>

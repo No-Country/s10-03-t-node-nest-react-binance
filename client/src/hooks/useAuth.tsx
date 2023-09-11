@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from 'react'
 import AuthContext from '../context/AuthContext'
+import { LoginAuth } from '../models/RegisterAuth'
 
 interface AuthMethods {
   registerAuth: ({ email, password, username, balance, celphone }) => void
-  login: ({ userOrEmail, password }) => void
+  login: ({ userOrEmail, password, token }) => void
   isLogueado?: boolean
-  setIsLogueado?: React.Dispatch<React.SetStateAction<boolean>>
+  setIsLogueado?: React.Dispatch<React.SetStateAction<boolean>>,
+  loginAuth: any
+ 
 }
 
 const useAuth = (): AuthMethods | undefined => {
@@ -29,6 +32,8 @@ const useAuth = (): AuthMethods | undefined => {
     login: authContext.login,
     isLogueado,
     setIsLogueado,
+    loginAuth: authContext.loginAuth
+    
   };
 };
 

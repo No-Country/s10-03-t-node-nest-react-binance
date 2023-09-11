@@ -4,10 +4,16 @@ import SearchBar from '../components/molecule/searchBar'
 import CoinsSellBuyTable from '../components/molecule/coins-table/CoinsSellBuyTable'
 import { useLocation } from 'react-router-dom'
 import { useApiContext } from '../context/FetchContext'
+import useAuth from '../hooks/useAuth'
 
 
 const Buy = () => {
   const { coinsData } = useApiContext()
+  const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
+
+  const { login, loginAuth } = auth;
+  console.log(loginAuth);
+  
   const location = useLocation()
   const urlPathName = location.pathname
 

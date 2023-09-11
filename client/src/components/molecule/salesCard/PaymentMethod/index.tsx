@@ -24,7 +24,9 @@ const PaymentMethod = () => {
       >
         Seleccionar metodo de cobro
       </Typography>
-
+      <Typography variant="h1" align="center" marginBottom="20px">
+        
+      </Typography>
       <FormControl component="fieldset">
         <FormLabel component="legend">Método de Pago</FormLabel>
         <RadioGroup

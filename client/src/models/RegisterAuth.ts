@@ -1,4 +1,5 @@
 export interface RegisterAuth {
+  id?: string,
   email?: string
   password: string
   username?: string
@@ -14,6 +15,7 @@ export interface RegisterAuth {
 // }
 
 export interface LoginAuth {
-  userOrEmail: string
+  userOrEmail?: string
   password: string
+  token: string
 }

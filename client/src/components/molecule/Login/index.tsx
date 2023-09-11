@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -22,7 +22,13 @@ const LoginScreen: React.FC = () => {
   const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
   const googleAuth = useGoogleAuth();
   const { signInWithGoogle } = googleAuth;
-  const { login } = auth;
+  const { login, loginAuth } = auth;
+  
+  
+
+  
+  
+  
 
   const navigate = useNavigate();
   const [userOrEmail, setUserOrEmail] = useState<string>("");
@@ -66,7 +72,7 @@ const LoginScreen: React.FC = () => {
     if (!password || password.length < 6) {
       setError(true);
       setMessage({
-        text: "El password es obligatorio y debe tener mas de 6 caracteres",
+        text: "El password es obligatorio y debe tener más de 6 caracteres",
         msg: "password invalido",
       });
       setTimeout(() => {
@@ -74,13 +80,8 @@ const LoginScreen: React.FC = () => {
       }, 3000);
       return;
     }
-    setWelcomeMessage({
-      text: "Bienvenido",
-    });
-    setShowMessage(true);
-
+  
     try {
-      // TODO esta constante no se reutiliza en ningun lugar
       const { data } = await axios.post(
         "https://binance-production.up.railway.app/api/v1/auth/login",
         {
@@ -88,13 +89,17 @@ const LoginScreen: React.FC = () => {
           password,
         }
       );
-      login(data);
-
+        console.log(data);
+        
+      // Guarda el token en el localStorage
+     login(data.data);
+  
       navigate("/market");
     } catch (error) {
-      console.log("Error en el inicio de sesion", error);
+      console.log("Error en el inicio de sesión", error);
     }
   };
+
 
   const handleGoogleLogin = async () => {
     await signInWithGoogle();

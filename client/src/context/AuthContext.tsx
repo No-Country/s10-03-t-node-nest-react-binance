@@ -6,9 +6,10 @@ import { LoginAuth, RegisterAuth } from '../models/RegisterAuth'
 interface Auth {
   auth: RegisterAuth
   registerAuth: ({ email, password, username, balance, celphone }) => void
-  login: ({ userOrEmail, password }) => void
+  login: ({ userOrEmail, password, token }) => void
   favoritesList: any[] // almacenarán las monedas favoritas
-  setFavoritesList: (list: any[]) => void // actualizar la lista de favoritos
+  setFavoritesList: (list: any[]) => void, // actualizar la lista de favoritos
+  loginAuth: any
 }
 
 interface AuthProviderProps {
@@ -19,6 +20,7 @@ const AuthContext = createContext<Auth | undefined>(undefined)
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [auth, setauth] = useState<RegisterAuth>({
+    id: '',
     email: "",
     password: "",
     username: "",
@@ -27,6 +29,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   });
 
   const [loginAuth, setLoginAuth] = useState<LoginAuth>({
+    token: '',
     userOrEmail: "",
     password: "",
   })
@@ -40,12 +43,20 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }))
   }
 
-  const login = (data: LoginAuth) => {
+  const login = async (data: LoginAuth) => {
+    localStorage.setItem('token', data.token);
     setLoginAuth(data)
+    // No es necesario guardar el token en el estado
   }
 
   return (
-    <AuthContext.Provider value={ { auth, registerAuth, login,favoritesList, setFavoritesList} }>
+    <AuthContext.Provider value={ { 
+          auth, 
+          registerAuth, 
+          login,
+          favoritesList, 
+          setFavoritesList,
+          loginAuth } }>
       { children }
     </AuthContext.Provider>
   )

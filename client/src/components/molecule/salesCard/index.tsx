@@ -22,16 +22,18 @@ const handleClick = () => {
 
   
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth="xs" sx={{minHeight: '82vh'}}>
       <Typography 
-        variant='h4'
+        variant='h2'
         align='left'
         gutterBottom
         sx={loginStyle.typography}
       >
         Vender BTC
       </Typography>
-      <Typography style={{marginTop:"20px"}}>Quiero vender</Typography>
+      <Typography variant="h3" style={{margin:"20px 0px 10px"}}>
+        Quiero vender
+      </Typography>
       <TextField
         type="number"
         variant="outlined"
@@ -41,8 +43,12 @@ const handleClick = () => {
         fullWidth
         style={{marginBottom:"20px", marginTop:"10px", marginRight:"15px",}}
       />
-      
-      <PrimaryButton text='confirmar' onClick={handleClick} style={{marginBottom:"40px"}}/>
+      <PrimaryButton 
+        ariaLabelText='Confirmar'
+        text='Confirmar' 
+        onClick={handleClick} 
+        style={{marginBottom:"40px"}}
+      />
     </Container>
   );
 };

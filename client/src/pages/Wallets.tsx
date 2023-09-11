@@ -5,46 +5,51 @@ import GraficoDona from '../components/molecule/wallet/GraficoDona'
 import WalletTabs from '../components/molecule/wallet/WalletTabs'
 import HeroWallet from '../components/molecule/wallet/HeroWallet'
 import WalletsIcons from '../components/atom/walletIcon/WalletsIcons'
+import CoinsSellBuyTable from '../components/molecule/coins-table/CoinsSellBuyTable'
+import { useApiContext } from '../context/FetchContext'
 
 interface WalletsProps { }
 
 const Wallets: React.FC<WalletsProps> = () => {
   const [showArea, setShowArea] = useState(true)
+  const { coinsData } = useApiContext()
 
   return (
-    <>
-      <Container maxWidth="sm">
-        <HeroWallet />
-        <WalletsIcons />
-        <Box
-          sx={ { 
-            display: 'flex', 
-            justifyContent: 'space-evenly', 
-            alignItems: 'center',
-             my: '2rem',
-             gap: '12px' 
-            } }
+    <Container maxWidth="sm" sx={ { minHeight: '82vh', marginTop: '1.75rem' } }>
+      <HeroWallet />
+      <WalletsIcons />
+      <Box
+        sx={ {
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+          my: '2rem',
+          gap: '12px'
+        } }
+      >
+        <Button
+          onClick={ () => setShowArea(true) }
+          disabled={ showArea }
+          aria-label="Mostrar grafico de area"
         >
-          <Button
-            onClick={ () => setShowArea(true) }
-            disabled={ showArea }
-            aria-label="Mostrar grafico de area"
-          >
-            Mostrar gráfico de área
-          </Button>
-          <Button
-            onClick={ () => setShowArea(false) }
-            disabled={ !showArea }
-            aria-label="Mostrar grafico de torta"
-          >
-            Mostrar gráfico torta
-          </Button>
-        </Box>
-        { showArea && <GraficoArea /> }
-        { !showArea && <GraficoDona /> }
-        <WalletTabs />
-      </Container>
-    </>
+          Mostrar gráfico de área
+        </Button>
+        <Button
+          onClick={ () => setShowArea(false) }
+          disabled={ !showArea }
+          aria-label="Mostrar grafico de torta"
+        >
+          Mostrar gráfico torta
+        </Button>
+      </Box>
+      { showArea && <GraficoArea /> }
+      { !showArea && <GraficoDona /> }
+      <CoinsSellBuyTable
+        urlPathName="/sell"
+        btnText="Comprar"
+        coinsData={ coinsData }
+      />
+    </Container>
   )
 }
 

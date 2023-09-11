@@ -1,40 +1,33 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Box, Button, Dialog, DialogContent, DialogActions, Typography } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
-import StarBorderIcon from '@mui/icons-material/StarBorder'
-import StarIcon from '@mui/icons-material/Star'
 import { CoinData } from '../../../models/CoinDataResponse'
 import { BUY_FAV_MODAL } from './BuyCoinModalStyles'
+import { BUY_SELL_FAV_MODAL } from './BuySellCoinModalStyles'
 
-interface BuyCoinModalProps {
+interface BuySellCoinModalProps {
   handleClose: () => void
   openModal: boolean
   cointToShow: CoinData
+  urlPathName: string
+  btnModalText: string
 }
-const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
+const BuySellCoinModal: React.FC<BuySellCoinModalProps> = ({
   handleClose,
   openModal,
-  cointToShow
+  cointToShow,
+  urlPathName,
+  btnModalText
 }) => {
-
   const navigate = useNavigate()
-  const handleClick = () => navigate(`/buy/sreen?coin=${ uuid }`)
-
-  // TODO hay que agarrar al usuario y con eso traer los favoritos para ver si es favorito o no y setearlo
-  const [isFavorite, setIsFavorite] = useState<boolean>(true)
-
-  const handleFavorite = () => {
-    // TODO aca la logica de agregar de agarrar al usuario
-    setIsFavorite(isFavorite => !isFavorite)
-  }
+  const handleClick = () => navigate(`${ urlPathName }/screen?coin=${ uuid }`)
 
   const {
     uuid,
     symbol,
     name,
-    color,
     iconUrl,
     currentPrice,
     change,
@@ -47,10 +40,7 @@ const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
         aria-labelledby="cerrar modal"
         open={ openModal }
       >
-        <Box
-          component="div"
-          sx={ BUY_FAV_MODAL.container }
-        >
+        <Box component="div" sx={ BUY_FAV_MODAL.container }>
           <IconButton
             aria-label="close"
             onClick={ handleClose }
@@ -59,43 +49,18 @@ const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
             <CloseIcon />
           </IconButton>
         </Box>
-        <Box
-          sx={ BUY_FAV_MODAL.title }
-          id="buy-icon-modal-title"
-        >
+        <Box sx={ BUY_FAV_MODAL.title } id="buy-icon-modal-title" >
           <Box>
-            <Typography
-              component="h2"
-              sx={ BUY_FAV_MODAL.titleH2 }
-            >
+            <Typography component="h2" sx={ BUY_SELL_FAV_MODAL.titleH2 }>
               { symbol }
             </Typography>
-            <Typography
-              component="h3"
-              sx={ BUY_FAV_MODAL.titleH3 }
-            >
+            <Typography component="h3" sx={ BUY_FAV_MODAL.titleH3 }>
               { name }
             </Typography>
           </Box>
-          <Box>
-            <Box
-              component="span"
-              sx={ BUY_FAV_MODAL.icon }
-              onClick={ handleFavorite }
-            >
-              { isFavorite ?
-                <StarIcon sx={ { color: color } } fontSize="large" />
-                : <StarBorderIcon sx={ { color: color } } fontSize="large" />
-              }
-            </Box>
-          </Box>
         </Box>
-        <DialogContent
-          sx={ { padding: '12px 24px 12px 32px' } }
-        >
-          <Typography
-            sx={ BUY_FAV_MODAL.text }
-          >
+        <DialogContent sx={ { padding: '12px 24px 12px 32px' } }>
+          <Typography sx={ BUY_FAV_MODAL.text }>
             ${ marketCap }
           </Typography>
           <Box>
@@ -112,19 +77,17 @@ const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
             { change }%
           </Typography>
         </DialogContent>
-        <DialogActions
-          sx={ { padding: '0px 24px 12px 32px' } }
-        >
+        <DialogActions sx={ { padding: '0px 24px 12px 32px' } }>
           <Button
             autoFocus
             onClick={ handleClick }
-            aria-label="Comprar"
+            aria-label={`${btnModalText} moneda`}
           >
-            Comprar
+            { btnModalText }
           </Button>
         </DialogActions>
       </Dialog>
     </section>
   )
 }
-export default BuyCoinModal
+export default BuySellCoinModal

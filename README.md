@@ -128,7 +128,7 @@ Dependencias:
 
 - <img width="20" height="20" src="https://img.icons8.com/external-flaticons-flat-flat-icons/20/external-kanban-agile-flaticons-flat-flat-icons.png" alt="external-kanban-agile-flaticons-flat-flat-icons"/> [Trello](https://trello.com/b/ev59LkiN/nocountry-s10-binance)
 
-- <img width="20" height="20" src="https://img.icons8.com/color/20/figma--v1.png" alt="figma--v1"/>[Figma](https://www.figma.com/file/7gvnVo33tEx8qKDXWFptbm/Binance-Lite-Figma?type=design&node-id=7-2&mode=design&t=ySe4Q8kfhMENqRVB-0)
+- <img width="20" height="20" src="https://img.icons8.com/color/20/figma--v1.png" alt="figma--v1"/>[Figma](https://www.figma.com/file/FYlQ2BEcjeEM52Ml8ZqJQm/Binance-Lite-Figma-(Copy)?type=design&node-id=7-2&mode=design&t=rmJs9B1AlPn4Jksr-0)
 
 ---
 
@@ -183,11 +183,15 @@ Creamos un **MVP** y dividimos las tareas en **sprints** (con duración de una s
 
 - Se continua con las paginas de compra y venta 
 
+- Se agrega la pagina Not Found que redirige a market en el caso de ser un usuario ya loguedo.
   
 ### <img width="30" height="30" src="https://img.icons8.com/external-flaticons-flat-flat-icons/30/external-sprint-project-management-flaticons-flat-flat-icons.png" alt="external-sprint-project-management-flaticons-flat-flat-icons"/>  SPRINT 4 - Funcionalidades:
 
-- Se agrega la pagina Not Found que redirige a market en el caso de ser un usuario ya loguedo.
-    
+
+- Se finalizan las paginas de compra y venta
+
+- Se ajustan los datos del suaurio para mostrarlos una vvez logueado
+      
 - Se realiza la página de billetera
 
 ---

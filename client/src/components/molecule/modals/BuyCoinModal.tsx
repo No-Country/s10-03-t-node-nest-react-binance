@@ -20,7 +20,7 @@ const BuyCoinModal: React.FC<BuyCoinModalProps> = ({
 }) => {
 
   const navigate = useNavigate()
-  const handleClick = () => navigate(`/buy/sreen?coin=${ uuid }`)
+  const handleClick = () => navigate(`/buy/screen?coin=${ uuid }`)
 
   // TODO hay que agarrar al usuario y con eso traer los favoritos para ver si es favorito o no y setearlo
   const [isFavorite, setIsFavorite] = useState<boolean>(true)

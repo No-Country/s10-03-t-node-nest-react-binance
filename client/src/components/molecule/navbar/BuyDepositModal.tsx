@@ -39,7 +39,6 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
 }) => {
   const navigate = useNavigate()
   const handleBuy = () => navigate('/buy')
-  const handleDeposit = () => navigate('/deposit')
   const handleSell = () => navigate('/sell')
 
   return (
@@ -73,7 +72,7 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
             </DialogContent>
           </Grid>
         </Grid>
-        <Grid container sx={ BUY_SELL_STYLES.actionsContainer }>
+        <Grid container sx={ BUY_SELL_STYLES.actionsContainerLast }>
           <Grid item xs={ 3 }>
             <Button aria-label="vender" onClick={ handleSell } sx={ BUY_SELL_STYLES.actionsBtn } >
               <RemoveIcon />
@@ -86,23 +85,6 @@ const BuyDepositModal: React.FC<BuyDepositModalProps> = ({
             <DialogContent sx={ BUY_SELL_STYLES.content }>
               <DialogContentText id="vender-description">
                 Vende activos a ARS
-              </DialogContentText>
-            </DialogContent>
-          </Grid>
-        </Grid>
-        <Grid container sx={ BUY_SELL_STYLES.actionsContainerLast }>
-          <Grid item xs={ 3 }>
-            <Button aria-label="depositar" onClick={ handleDeposit } sx={ BUY_SELL_STYLES.actionsBtn } >
-              <ArrowDownwardIcon />
-            </Button>
-          </Grid>
-          <Grid item xs={ 9 }>
-            <DialogTitle id="depositar-title" sx={ BUY_SELL_STYLES.title }>
-              Depositar
-            </DialogTitle>
-            <DialogContent sx={ BUY_SELL_STYLES.content }>
-              <DialogContentText id="depositar-description">
-                Deposita moneda fiat o Criptomonedas
               </DialogContentText>
             </DialogContent>
           </Grid>

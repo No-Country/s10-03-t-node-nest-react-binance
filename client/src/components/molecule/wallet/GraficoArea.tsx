@@ -115,14 +115,6 @@ const GraficoArea: React.FC = () => {
 
     return (
         <>
-            <Typography 
-            sx={{
-                fontWeight: '600',
-                fontSize: '22px',
-                marginBottom: '12px'
-            }}>
-                Tendencia
-            </Typography>
             { showArea && <Line options={ options } data={ data } /> }
             { !showArea && <Line options={ optionsB } data={ datab } /> }
             <Box

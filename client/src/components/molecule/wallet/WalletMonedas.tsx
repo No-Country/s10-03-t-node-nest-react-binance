@@ -123,7 +123,7 @@ export default function CoinsTable() {
         handleClickOpen()
     };
 
-    const visibleRows = useMemo(() => stableSort(coinsData, getComparator(order, orderBy)).slice(0, 3), [order, orderBy, coinsData])
+    const visibleRows: any[] = useMemo(() => stableSort(coinsData, getComparator(order, orderBy)).slice(0, 3), [order, orderBy, coinsData])
 
     function formatNumberToCurrency(input: string): string {
         const num = parseFloat(input)
@@ -214,6 +214,8 @@ export default function CoinsTable() {
                     handleClose={ handleClose }
                     openModal={ openModal }
                     cointToShow={ cointToShow }
+                    btnModalText='Comprar'
+                    urlPathName='/buy'
                 />
             }
         </Box>

@@ -33,14 +33,6 @@ export const data = {
 const GraficoDona: React.FC = () => {
     return (
         <>
-            <Typography
-                sx={ {
-                    fontWeight: '600',
-                    fontSize: '22px',
-                    marginBottom: '12px'
-                } }>
-                Distribucion de Activos
-            </Typography>
             <Doughnut data={ data } />
         </>
 

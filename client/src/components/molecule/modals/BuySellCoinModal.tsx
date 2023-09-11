@@ -21,6 +21,7 @@ const BuySellCoinModal: React.FC<BuySellCoinModalProps> = ({
   urlPathName,
   btnModalText
 }) => {
+  console.log(urlPathName)
   const navigate = useNavigate()
   const handleClick = () => navigate(`${ urlPathName }/screen?coin=${ uuid }`)
 

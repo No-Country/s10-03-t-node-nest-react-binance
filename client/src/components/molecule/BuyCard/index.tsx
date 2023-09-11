@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
 import { loginStyle } from '../Login/loginStyle'
-import PrimaryButton from '../../atom/buttons/PrimaryButton';
+import PrimaryButton from '../../atom/buttons/PrimaryButton'
 import { Container, Typography } from "@mui/material"
 
 
@@ -22,13 +22,13 @@ const MontoInput = () => {
         gutterBottom
         sx={ loginStyle.typography }
       >
-        Comprar BTC
+        Comprar [aca mostrar el nombre de la moneda]
       </Typography>
       <Typography style={ { marginTop: "20px" } }>Quiero Comprar</Typography>
       <TextField
         type="number"
         variant="outlined"
-        placeholder='Ingrese un importe'
+        placeholder='Ingrese una cantidad'
         value={ inputValue }
         onChange={ handleInputChange }
         fullWidth

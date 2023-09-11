@@ -10,10 +10,12 @@ export const HERO_MARKET_STYLES = {
     alignItems: 'center'
   },
   containerSaldo: {
-    background: 'linear-gradient(to bottom, #ffe580, #fff1ff)',
+    background: '#fff',
     padding: '18px',
     height: '160px',
-    borderRadius: '7px'
+    borderRadius: '7px',
+    border: '1px solid #b0abab',
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.08), 0 0 30px rgba(0, 0, 0, 0.06), 0 0 40px rgba(0, 0, 0, 0.04)'
   },
   saldoText: {
     display: 'flex',
@@ -28,5 +30,5 @@ export const HERO_MARKET_STYLES = {
     fontSize: '22px',
     fontWeight: '600',
     textAlign: 'center'
-  } 
+  }
 }

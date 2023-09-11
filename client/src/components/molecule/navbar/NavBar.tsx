@@ -68,7 +68,7 @@ const NavBar: React.FC<NavBarProps> = () => {
               onClick={ () => navigate('/wallets') }
               sx={ linkStyle('/wallets') }
             >
-              <AccountBalanceWalletIcon fontSize="large" /> <br /> Billetera
+              <AccountBalanceWalletIcon fontSize="large" /> <br /> Cartera
             </Link>
           }
         </Grid>

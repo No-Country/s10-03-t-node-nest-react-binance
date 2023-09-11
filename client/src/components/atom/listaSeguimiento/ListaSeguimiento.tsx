@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useApiContext } from '../../../context/FetchContext'
 import { Box, Button, Grid, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { FAV_LIST } from './ListaSeguimientoStyles'
+import AuthContext from '../../../context/AuthContext'
 
 const ListaSeguimiento: React.FC = () => {
     const { coinsData } = useApiContext()
+    const { favoritesList, setFavoritesList, auth} = useContext(AuthContext)
+    console.log('auth', auth)
+    // TODO: cambiar las coinsData por favoritesList pero falta que el contexto tenga el id del usuario para poder hacer bien el fetch, sin id no se puede
+
     const navigate = useNavigate()
 
     return (
@@ -12,102 +18,68 @@ const ListaSeguimiento: React.FC = () => {
             <Grid
                 container
                 maxWidth="lg"
-                sx={ {
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    alignContent: 'center',
-                } }
+                sx={ FAV_LIST.container }
             >
-                { coinsData.slice(0, 6).map((coin) => (
-                    <Grid
-                        item
-                        xs={ 12 }
-                        sm={ 6 }
-                        key={ coin.uuid }
-                    >
-                        <Box sx={ {
-                            minWidth: 120,
-                            maxWidth: 260,
-                            margin: '4px auto',
-                            border: '1px solid lightgray',
-                            borderRadius: 2,
-                            boxShadow: 'none',
-                        } }>
-                            <Grid
-                                container
-                                sx={ {
-                                    minHeight: '140px'
-                                } }
-                            >
+                { coinsData.length === 0 &&
+                    <Typography variant="h5">
+                        Sin favoritos
+                    </Typography>
+                }
+                { coinsData.length > 0 &&
+                    coinsData.slice(0, 6).map((coin) => (
+                        <Grid
+                            item
+                            xs={ 12 }
+                            sm={ 6 }
+                            key={ coin.uuid }
+                        >
+                            <Box sx={ FAV_LIST.boxCard }>
                                 <Grid
-                                    item
-                                    xs={ 6 }
-                                    sx={ {
-                                        padding: '8px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        flexWrap: 'wrap',
-                                        alignContent: 'flex-start',
-                                        justifyContent: 'center',
-                                        alignItems: 'flex-start',
-                                        gap: '8px'
-                                    } }
+                                    container
+                                    sx={ { minHeight: '140px' } }
                                 >
-                                    <Box
-                                        sx={ { width: 30 } }
-                                        component='img'
-                                        src={ coin.iconUrl }
-                                        height={ 30 }
-                                        alt={ coin.name }
-                                    />
-                                    <Box >
-                                        <Typography
-                                            variant="h4"
-                                            color="initial"
-                                        >
-                                            { coin.name }
-                                        </Typography>
-                                        <Typography
-                                            variant="h5"
-                                            color="initial"
-                                        >
-                                            { coin.symbol }
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-                                <Grid
-                                    item
-                                    xs={ 6 }
-                                    sx={ {
-                                        padding: '8px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        flexWrap: 'wrap',
-                                        alignContent: 'center',
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    } }
-                                >
-                                    <Typography
-                                        variant="h5"
-                                        color="initial"
+                                    <Grid
+                                        item
+                                        xs={ 6 }
+                                        sx={ FAV_LIST.gridItemCoin }
                                     >
-                                        { coin.currentPrice.substring(0, 6) }
-                                    </Typography>
-                                    <Button
-                                        variant='contained'
-                                        size='small'
-                                        aria-label="comprar"
-                                        onClick={ () => navigate(`/buy?coin=${ coin.uuid }`) }
+                                        <Box
+                                            sx={ { width: 30 } }
+                                            component='img'
+                                            src={ coin.iconUrl }
+                                            height={ 30 }
+                                            alt={ coin.name }
+                                        />
+                                        <Box >
+                                            <Typography variant="h4">
+                                                { coin.name }
+                                            </Typography>
+                                            <Typography variant="h5">
+                                                { coin.symbol }
+                                            </Typography>
+                                        </Box>
+                                    </Grid>
+                                    <Grid
+                                        item
+                                        xs={ 6 }
+                                        sx={ FAV_LIST.gridItemBuy }
                                     >
-                                        Comprar
-                                    </Button>
+                                        <Typography variant="h5">
+                                            { coin.currentPrice.substring(0, 6) }
+                                        </Typography>
+                                        <Button
+                                            variant='contained'
+                                            size='small'
+                                            aria-label="comprar"
+                                            onClick={ () => navigate(`/buy?coin=${ coin.uuid }`) }
+                                        >
+                                            Comprar
+                                        </Button>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                        </Box>
-                    </Grid >
-                )) }
+                            </Box>
+                        </Grid >
+                    )) }
             </Grid >
         </>
     )

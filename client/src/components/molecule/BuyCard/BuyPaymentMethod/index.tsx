@@ -8,9 +8,9 @@ import {
   Button,
   Container,
   Typography,
-} from "@mui/material";
-import { loginStyle } from "../../Login/loginStyle";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+} from "@mui/material"
+import { loginStyle } from "../../Login/loginStyle"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 const BuyPaymentMethod = () => {
   const location = useLocation();
@@ -34,7 +34,7 @@ const BuyPaymentMethod = () => {
         Seleccionar metodo de cobro
       </Typography>
       <Typography variant="h1" align="center" marginBottom="20px">
-        ${moneda}
+        {moneda}
       </Typography>
       <FormControl component="fieldset">
         <FormLabel component="legend">Método de Pago</FormLabel>

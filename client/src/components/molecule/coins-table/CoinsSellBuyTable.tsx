@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Typography } from '@mui/material'
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel } from '@mui/material'
 import { visuallyHidden } from '@mui/utils'
 import { Order } from '../../../utils/types'
 import { CoinData } from '../../../models/CoinDataResponse'
@@ -126,7 +126,7 @@ const CoinsSellBuyTable: React.FC<CoinsSellBuyTablProps> = ({
         handleClickOpen()
     };
 
-    const visibleRows = useMemo(() => stableSort(coinsData, getComparator(order, orderBy)), [order, orderBy, coinsData])
+    const visibleRows: any[] = useMemo(() => stableSort(coinsData, getComparator(order, orderBy)), [order, orderBy, coinsData])
 
     return (
         <Box sx={ { width: '100%' } }>
@@ -144,10 +144,8 @@ const CoinsSellBuyTable: React.FC<CoinsSellBuyTablProps> = ({
                         />
                         <TableBody>
                             { visibleRows.length === 0 &&
-                                <TableRow>
-                                    <Typography sx={ COINS_SELL_BUY_TABLE_STYLES.noCoinsToShowMsg }>
-                                        Sin monedas a mostrar
-                                    </Typography>
+                                <TableRow sx={ COINS_SELL_BUY_TABLE_STYLES.noCoinsToShowMsg }>
+                                    Sin monedas a mostrar
                                 </TableRow>
                             }
                             { visibleRows.length > 0 &&

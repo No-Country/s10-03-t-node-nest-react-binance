@@ -29,7 +29,7 @@ const handleClick = () => {
         gutterBottom
         sx={loginStyle.typography}
       >
-        Vender BTC
+        Vender [moneda a vender]
       </Typography>
       <Typography variant="h3" style={{margin:"20px 0px 10px"}}>
         Quiero vender

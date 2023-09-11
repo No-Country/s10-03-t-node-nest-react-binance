@@ -85,6 +85,8 @@ export const COINS_SELL_BUY_TABLE_STYLES = {
     textAlign: 'center',
     padding: '2rem 1rem',
     fontWeight: '700',
-    fontSize: '14px'
+    fontSize: '14px',
+    height: '50px',
+    lineHeight: '50px'
   }
 }

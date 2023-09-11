@@ -68,7 +68,7 @@ const Wallets: React.FC<WalletsProps> = () => {
       <CoinsSellBuyTable
         urlPathName="/sell"
         btnText="Comprar"
-        coinsData={ coinsData }
+        coinsData={ [] }
       />
     </Container>
   )

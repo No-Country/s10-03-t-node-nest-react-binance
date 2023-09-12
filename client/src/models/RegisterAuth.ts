@@ -19,3 +19,15 @@ export interface LoginAuth {
   password: string
   token: string
 }
+
+export interface CoinData {
+  change: string 
+  color: string 
+  currentPrice: string 
+  iconUrl:  string
+  marketCap: string 
+  name: string
+  symbol:  string
+  uuid: string 
+
+}

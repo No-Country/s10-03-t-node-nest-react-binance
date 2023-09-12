@@ -20,6 +20,7 @@ import SalesCard from "./components/molecule/salesCard"
 import PaymentMethod from "./components/molecule/salesCard/PaymentMethod"
 import MontoInput from "./components/molecule/BuyCard"
 import BuyPaymentMethod from "./components/molecule/BuyCard/BuyPaymentMethod"
+import BuyCoin from "./components/template/buy-coin/BuyCoin"
 function App() {
   return (
     <HashRouter>
@@ -41,6 +42,7 @@ function App() {
             <Route path="/wallets" element={ <Wallets /> } />
             <Route path="/register" element={ <Register /> } />
             <Route path="/agregar-tarjeta" element={ <AgregarTarjeta /> } />
+            <Route path="/buy-coin" element={ <BuyCoin/> } />
             <Route path="/register/continue" element={ <CreatePersonalAccount /> } />
             <Route path="*" element={ <NotFound /> } />
           </Routes>

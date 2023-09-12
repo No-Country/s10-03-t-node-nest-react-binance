@@ -43,6 +43,7 @@ const AgregarTarjeta = () => {
       }, 3000);
       return;
     }
+    navigate('/buy-coin')
 
   };
 

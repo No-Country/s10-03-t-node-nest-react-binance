@@ -11,11 +11,14 @@ const Buy = () => {
   const { coinsData } = useApiContext()
   const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
 
+  
   const { login, loginAuth } = auth;
   console.log(loginAuth);
   
   const location = useLocation()
   const urlPathName = location.pathname
+  console.log(location);
+  
 
   return (
     <Container maxWidth="sm" sx={{ minHeight: '82vh'}}>

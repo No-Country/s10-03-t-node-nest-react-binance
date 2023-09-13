@@ -8,6 +8,13 @@ import useAuth from '../hooks/useAuth'
 
 
 const Buy = () => {
+
+  const [search, setSearch] = useState([])
+
+  const handleSearch = (results) => {
+    setSearchResults(results);
+  };
+
   const { coinsData } = useApiContext()
   const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
 
@@ -29,7 +36,7 @@ const Buy = () => {
       >
         Elegir activo a comprar
       </Typography>
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
       <Typography
         variant="h3"
         align="left"

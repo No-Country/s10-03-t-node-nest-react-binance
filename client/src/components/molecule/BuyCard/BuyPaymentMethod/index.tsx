@@ -1,14 +1,5 @@
 import React, { useState } from "react"
-import {
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
-  Button,
-  Container,
-  Typography,
-} from "@mui/material"
+import { Radio, RadioGroup, FormControlLabel, FormControl, Button, Container, Typography } from "@mui/material"
 import { loginStyle } from "../../Login/loginStyle"
 import { useLocation, useNavigate } from "react-router-dom"
 
@@ -58,11 +49,11 @@ const BuyPaymentMethod = () => {
           />
         </RadioGroup>
       </FormControl>
-      <Button variant="contained" color="primary" onClick={ handleClick } sx={{marginTop: '24px'}}>
+      <Button variant="contained" color="primary" onClick={ handleClick } sx={ { marginTop: '24px' } }>
         Confirmar Método de Pago
       </Button>
     </Container>
-  );
-};
+  )
+}
 
-export default BuyPaymentMethod;
+export default BuyPaymentMethod

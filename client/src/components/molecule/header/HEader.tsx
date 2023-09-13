@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Box, Grid, IconButton, Menu, MenuItem } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
@@ -6,11 +6,20 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { HEADER_STYLES } from './HeaderStyles'
 import NavBar from '../navbar/NavBar'
 import useAuth from './../../../hooks/useAuth'
+import AuthContext from '../../../context/AuthContext'
 
 interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
+  const auth = useAuth()
+  // const { loginAuth } = auth;
+  
+  const { loginAuth } = useContext(AuthContext);
+  
+  // console.log(loginAuth);
   const { isLogueado, setIsLogueado } = useAuth()
+  console.log(loginAuth.token);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const navigate = useNavigate()
 
@@ -25,9 +34,16 @@ const Header: React.FC<HeaderProps> = () => {
     navigate("/")
     handleClose()
   }
+  const token = localStorage.getItem('token')
+  console.log(token);
+  
 
   return (
-    <header>
+    <>
+    {
+      !token ? '' 
+      :  
+      <header>
       <Grid container maxWidth="lg" sx={ HEADER_STYLES.container } >
         <Grid item xs={ 6 } sm={ 3 } sx={ HEADER_STYLES.containerLogo } >
           <Link to="/market" aria-label="ir a mercados" style={ HEADER_STYLES.linkLogo } >
@@ -78,6 +94,10 @@ const Header: React.FC<HeaderProps> = () => {
         </Grid>
       </Grid>
     </header>
+    }
+
+   
+    </>
   )
 }
 

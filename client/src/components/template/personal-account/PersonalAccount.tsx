@@ -21,6 +21,9 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
   const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
   const { registerAuth } = auth;
 
+ 
+  
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -30,11 +33,11 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
   const username = randonName()
-  console.log(username);
+
   
   const balance = 0;
   const celphone = randomPhone();
-  console.log(celphone);
+  
   
 
   const isValidEmail = emailRegex.test(email);

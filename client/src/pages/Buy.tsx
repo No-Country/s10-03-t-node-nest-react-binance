@@ -37,16 +37,17 @@ const Buy = () => {
         Elegir activo a comprar
       </Typography>
       <SearchBar onSearch={handleSearch} />
-      
-        {search.map((result) =>(
-          <Typography
+      <Typography
           variant="h3"
           align="left"
           sx={ { color: 'red', marginBottom: '50px' } }
           
         >
-          </Typography>
+           {search.map((result) => (
+          <Typography key={result.id}>{result.name}</Typography>
         ))}
+        </Typography>
+       
       
       <CoinsSellBuyTable
         urlPathName={ urlPathName }

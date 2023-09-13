@@ -12,7 +12,7 @@ const Buy = () => {
   const [search, setSearch] = useState([])
 
   const handleSearch = (results) => {
-    setSearchResults(results);
+    setSearch(results);
   };
 
   const { coinsData } = useApiContext()
@@ -37,13 +37,17 @@ const Buy = () => {
         Elegir activo a comprar
       </Typography>
       <SearchBar onSearch={handleSearch} />
-      <Typography
-        variant="h3"
-        align="left"
-        sx={ { color: 'red', marginBottom: '50px' } }
-      >
-        Tenencias en cartera
-      </Typography>
+      
+        {search.map((result) =>(
+          <Typography
+          variant="h3"
+          align="left"
+          sx={ { color: 'red', marginBottom: '50px' } }
+          
+        >
+          </Typography>
+        ))}
+      
       <CoinsSellBuyTable
         urlPathName={ urlPathName }
         btnText="Comprar"

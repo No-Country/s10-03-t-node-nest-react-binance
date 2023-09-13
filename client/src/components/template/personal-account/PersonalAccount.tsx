@@ -1,45 +1,29 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import {
-  Typography,
-  Container,
-  Box,
-  TextField,
-  Alert,
-  AlertTitle,
-} from "@mui/material";
-import PrimaryButton from "../../atom/buttons/PrimaryButton";
-import { PERSONAL_STYLES } from "./PersonalAccountStyles";
-import useAuth from "../../../hooks/useAuth";
-import { emailRegex } from "../../../utils/constants";
-import { randomPhone, randonName } from "../../../helpers/RandonName";
+import React, { useState } from "react"
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import { Typography, Container, Box, TextField, Alert, AlertTitle } from "@mui/material"
+import PrimaryButton from "../../atom/buttons/PrimaryButton"
+import { PERSONAL_STYLES } from "./PersonalAccountStyles"
+import useAuth from "../../../hooks/useAuth"
+import { emailRegex } from "../../../utils/constants"
+import { randomPhone, randonName } from "../../../helpers/RandonName"
 
-interface PersonalAccountProps {}
-
-const PersonalAccount: React.FC<PersonalAccountProps> = () => {
-  const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
-  const { registerAuth } = auth;
-
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-  const [message, setMessage] = useState({ text: "", msg: "" });
-  const [welcomeMessage, setWelcomeMessage] = useState({ text: "" });
-  const [showMessage, setShowMessage] = useState<boolean>(false);
+const PersonalAccount: React.FC = () => {
+  const auth = useAuth() // Usar el hook useAuth para obtener el contexto
+  const { registerAuth } = auth
+  const [email, setEmail] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
+  const [message, setMessage] = useState({ text: "", msg: "" })
+  const [welcomeMessage, setWelcomeMessage] = useState({ text: "" })
+  const [showMessage, setShowMessage] = useState<boolean>(false)
 
   const username = randonName()
-  console.log(username);
-  
-  const balance = 0;
-  const celphone = randomPhone();
-  console.log(celphone);
-  
-
-  const isValidEmail = emailRegex.test(email);
-
-  const navigate = useNavigate();
+  const balance = 0
+  const celphone = randomPhone()
+  const isValidEmail = emailRegex.test(email)
+  const navigate = useNavigate()
 
   const handleRegister = async () => {
     if (!password || password.length < 6) {
@@ -64,41 +48,39 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
           balance,
           celphone,
         }
-      );
+      )
 
-      console.log(response); // TODO: borrar
       if (response) {
         setWelcomeMessage({
           text: "Bienvenido",
-        });
-        setShowMessage(true);
+        })
+        setShowMessage(true)
         setTimeout(() => {
-          navigate("/login");
-        }, 3000);
+          navigate("/login")
+        }, 3000)
 
-        registerAuth({ email, password, username, balance, celphone });
+        registerAuth({ email, password, username, balance, celphone })
       } else {
-        setError(true);
+        setError(true)
         setMessage({
           text: "Error al registrarse. Por favor, intenta nuevamente más tarde.",
           msg: "Error de registro",
-        });
+        })
         setTimeout(() => {
           setError(false);
-        }, 3000);
+        }, 3000)
       }
     } catch (error) {
-      console.error(error); // TODO: borrar
-      setError(true);
+      setError(true)
       setMessage({
         text: "Error al registrarse. Por favor, intenta nuevamente más tarde.",
         msg: "Error de registro",
-      });
+      })
       setTimeout(() => {
-        setError(false);
-      }, 3000);
+        setError(false)
+      }, 3000)
     }
-  };
+  }
 
   const handleNextClick = () => {
     if ([email].includes("")) {
@@ -108,23 +90,26 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
         msg: "Email",
       });
       setTimeout(() => {
-        setError(false);
-      }, 3000);
-      return;
+        setError(false)
+      }, 3000)
+      return
     }
+
     if (!isValidEmail) {
-      setError(true);
+      setError(true)
       setMessage({
         text: "El email contiene caracteres invalidos",
         msg: "Email invalido",
-      });
+      })
+
       setTimeout(() => {
-        setError(false);
-      }, 3000);
-      return;
+        setError(false)
+      }, 3000)
+
+      return
     }
-    setShowPassword(true);
-  };
+    setShowPassword(true)
+  }
 
   if (!auth) {
     // Manejar el caso en que el contexto no esté definido
@@ -133,71 +118,71 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
         <AlertTitle>Error</AlertTitle>
         No se puede registrar
       </Alert>
-    );
+    )
   }
 
   return (
-    <main style={PERSONAL_STYLES.main}>
-      <Container maxWidth="sm" sx={PERSONAL_STYLES.container}>
-        <Box sx={PERSONAL_STYLES.boxContainer}>
-          <Typography variant="h1" component="h1" mb={4}>
+    <main style={ PERSONAL_STYLES.main }>
+      <Container maxWidth="sm" sx={ PERSONAL_STYLES.container }>
+        <Box sx={ PERSONAL_STYLES.boxContainer }>
+          <Typography variant="h1" component="h1" mb={ 4 }>
             Crear una cuenta personal
           </Typography>
-          <form style={{ maxWidth: "400px" }}>
+          <form style={ { maxWidth: "400px" } }>
             <TextField
               id="filled-basic"
               label="Correo / Teléfono"
               variant="filled"
-              style={{ borderRadius: 0, width: "70%", marginBottom: "20px" }}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              style={ { borderRadius: 0, width: "70%", marginBottom: "20px" } }
+              value={ email }
+              onChange={ (e) => setEmail(e.target.value) }
             />
-            {error && (
+            { error && (
               <Alert severity="error">
                 <AlertTitle>Error</AlertTitle>
-                {message.text} — <strong>{message.msg}</strong>
+                { message.text } — <strong>{ message.msg }</strong>
               </Alert>
-            )}
-            {showPassword && (
+            ) }
+            { showPassword && (
               <TextField
                 id="filled-basic"
                 label="password"
                 variant="filled"
                 type="password"
-                style={{ borderRadius: 0, width: "70%", marginBottom: "20px" }}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                style={ { borderRadius: 0, width: "70%", marginBottom: "20px" } }
+                value={ password }
+                onChange={ (e) => setPassword(e.target.value) }
               />
-            )}
-            {showMessage && (
+            ) }
+            { showMessage && (
               <Alert severity="success">
                 <AlertTitle>Success</AlertTitle>
-                {welcomeMessage.text} —{" "}
+                { welcomeMessage.text } —{ " " }
                 <strong>
                   Registro con Exito! Seras redireccionado al Login
                 </strong>
               </Alert>
-            )}
-            <Typography variant="body1" my={2} gutterBottom>
+            ) }
+            <Typography variant="body1" my={ 2 } gutterBottom>
               Al crear una cuenta, acepto las
-              <Box component="span" sx={PERSONAL_STYLES.textBold}>
+              <Box component="span" sx={ PERSONAL_STYLES.textBold }>
                 condiciones de servicio
               </Box>
               y las
-              <Box component="span" sx={PERSONAL_STYLES.textBold}>
+              <Box component="span" sx={ PERSONAL_STYLES.textBold }>
                 política de privacidad
               </Box>
               de
-              <Box component="span" sx={PERSONAL_STYLES.textBold}>
+              <Box component="span" sx={ PERSONAL_STYLES.textBold }>
                 Binance
               </Box>
             </Typography>
             <PrimaryButton
-              text={!showPassword ? "Siguiente" : "Registrarse"}
+              text={ !showPassword ? "Siguiente" : "Registrarse" }
               ariaLabelText="Continuar"
               variant="contained"
               color="primary"
-              onClick={showPassword ? handleRegister : handleNextClick}
+              onClick={ showPassword ? handleRegister : handleNextClick }
             />
           </form>
         </Box>

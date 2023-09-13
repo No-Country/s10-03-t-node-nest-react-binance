@@ -13,6 +13,8 @@ const MontoInput = () => {
   const idCoinStorage = localStorage.setItem('coin', idCoin)
   const navigate = useNavigate()
 
+
+  
   const handleInputChange = (e) => setInputValue(e.target.value)
 
   const handleClick = () => navigate(`/buypaymentmethod?moneda=${ inputValue }`)

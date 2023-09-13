@@ -1,45 +1,30 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import {
-  TextField,
-  Typography,
-  Container,
-  Box,
-  Alert,
-  AlertTitle,
-} from "@mui/material";
-import PrimaryButton from "../../atom/buttons/PrimaryButton";
-import GoogleIcon from "@mui/icons-material/Google";
-import { LOGIN_STYLES } from "../../template/login-form/LoginFormStyles";
-import { loginStyle } from "./loginStyle";
+import React, { useState } from "react"
+import axios from "axios"
+import { useNavigate, Link } from "react-router-dom"
+import { TextField, Typography, Container, Box, Alert, AlertTitle, } from "@mui/material"
+import PrimaryButton from "../../atom/buttons/PrimaryButton"
+import GoogleIcon from "@mui/icons-material/Google"
+import { LOGIN_STYLES } from "../../template/login-form/LoginFormStyles"
+import { loginStyle } from "./loginStyle"
 // import { AuthProvider } from '../../../context/AuthContext'
-import { emailRegex } from "../../../utils/constants";
-import useAuth from "../../../hooks/useAuth";
-import useGoogleAuth from "../../../hooks/useGoogleAuth";
+import { emailRegex } from "../../../utils/constants"
+import useAuth from "../../../hooks/useAuth"
+import useGoogleAuth from "../../../hooks/useGoogleAuth"
 
 const LoginScreen: React.FC = () => {
-  const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
-  const googleAuth = useGoogleAuth();
-  const { signInWithGoogle } = googleAuth;
-  const { login, loginAuth } = auth;
-  
-  
-
-  
-  
-  
-
-  const navigate = useNavigate();
-  const [userOrEmail, setUserOrEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [showPasswordInput, setShowPasswordInput] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
-  const [message, setMessage] = useState({ text: "", msg: "" });
-  const [welcomeMessage, setWelcomeMessage] = useState({ text: "" });
-  const [showMessage, setShowMessage] = useState<boolean>(false);
-
-  const isValidEmail = emailRegex.test(userOrEmail);
+  const auth = useAuth() // Usar el hook useAuth para obtener el contexto
+  const googleAuth = useGoogleAuth()
+  const { signInWithGoogle } = googleAuth
+  const { login, loginAuth } = auth
+  const navigate = useNavigate()
+  const [userOrEmail, setUserOrEmail] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const [showPasswordInput, setShowPasswordInput] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false)
+  const [message, setMessage] = useState({ text: "", msg: "" })
+  const [welcomeMessage, setWelcomeMessage] = useState({ text: "" })
+  const [showMessage, setShowMessage] = useState<boolean>(false)
+  const isValidEmail = emailRegex.test(userOrEmail)
   // const {loginWithGoogle} = AuthProvider; // TODO no esta en el Provider
 
   const handleNextClick = () => {
@@ -80,7 +65,7 @@ const LoginScreen: React.FC = () => {
       }, 3000);
       return;
     }
-  
+
     try {
       const { data } = await axios.post(
         "https://binance-production.up.railway.app/api/v1/auth/login",
@@ -89,14 +74,12 @@ const LoginScreen: React.FC = () => {
           password,
         }
       );
-        console.log(data);
-        
+
       // Guarda el token en el localStorage
-     login(data.data);
-  
-      navigate("/market");
+      login(data.data)
+      navigate("/market")
     } catch (error) {
-      console.log("Error en el inicio de sesión", error);
+      console.log("Error en el inicio de sesión", error)
     }
   };
 
@@ -113,7 +96,7 @@ const LoginScreen: React.FC = () => {
         variant="h4"
         align="left"
         gutterBottom
-        sx={loginStyle.typography}
+        sx={ loginStyle.typography }
       >
         Iniciar sesión
       </Typography>
@@ -122,44 +105,44 @@ const LoginScreen: React.FC = () => {
         variant="outlined"
         fullWidth
         margin="normal"
-        value={userOrEmail}
-        onChange={(e) => setUserOrEmail(e.target.value)}
-        style={{ marginBottom: "20px" }}
+        value={ userOrEmail }
+        onChange={ (e) => setUserOrEmail(e.target.value) }
+        style={ { marginBottom: "20px" } }
       />
-      {error && (
+      { error && (
         <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
-          {message.text} — <strong>{message.msg}</strong>
+          { message.text } — <strong>{ message.msg }</strong>
         </Alert>
-      )}
-      {showPasswordInput && (
+      ) }
+      { showPasswordInput && (
         <TextField
           label="Contraseña"
           type="password"
           variant="outlined"
           fullWidth
           margin="normal"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={ password }
+          onChange={ (e) => setPassword(e.target.value) }
         />
-      )}
-      {showMessage && (
+      ) }
+      { showMessage && (
         <Alert severity="success">
           <AlertTitle>Success</AlertTitle>
-          {welcomeMessage.text} —{" "}
+          { welcomeMessage.text } —{ " " }
           <strong>Registro con Exito! Seras redireccionado al Market</strong>
         </Alert>
-      )}
+      ) }
       <PrimaryButton
-        text={!showPasswordInput ? "Siguiente" : "Iniciar sesión"}
+        text={ !showPasswordInput ? "Siguiente" : "Iniciar sesión" }
         ariaLabelText="Continuar con google"
-        onClick={showPasswordInput ? handleLoginClick : handleNextClick}
-        style={{
+        onClick={ showPasswordInput ? handleLoginClick : handleNextClick }
+        style={ {
           marginBottom: "20px",
-        }}
+        } }
       />
-      <Box sx={loginStyle.or}>
-        <Typography sx={{ px: 2, color: "black", py: 3 }}>
+      <Box sx={ loginStyle.or }>
+        <Typography sx={ { px: 2, color: "black", py: 3 } }>
           ____________________or__________________
         </Typography>
       </Box>
@@ -168,22 +151,22 @@ const LoginScreen: React.FC = () => {
         ariaLabelText="Continuar con google"
         variant="contained"
         color="secondary"
-        icon={<GoogleIcon />}
-        style={{
+        icon={ <GoogleIcon /> }
+        style={ {
           marginBottom: "20px",
-        }}
-        onClick={handleGoogleLogin}
+        } }
+        onClick={ handleGoogleLogin }
       />
 
       <Typography
         variant="h4"
         align="left"
         gutterBottom
-        style={loginStyle.typography}
+        style={ loginStyle.typography }
       >
         <Link
           to="/register"
-          style={LOGIN_STYLES.link}
+          style={ LOGIN_STYLES.link }
           aria-label="crear cuenta en Binance"
         >
           Crear cuenta en Binance

@@ -19,6 +19,7 @@ interface AuthProviderProps {
 const AuthContext = createContext<Auth | undefined>(undefined)
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  
   const [auth, setauth] = useState<RegisterAuth>({
     id: '',
     email: "",
@@ -36,7 +37,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const [favoritesList, setFavoritesList] = useState<any[]>([]) // estado para las monedas favoritas
 
-  const registerAuth = (data: RegisterAuth) => {
+  const registerAuth = async (data: RegisterAuth) => {
     setauth((prevState) => ({
       ...prevState,
       ...data,

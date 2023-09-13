@@ -28,7 +28,7 @@ const MontoInput = () => {
         gutterBottom
         sx={ loginStyle.typography }
       >
-        Comprar [aca mostrar el nombre de la moneda]
+        Comprar {idCoin}
       </Typography>
       <Typography style={ { marginTop: "20px" } }>Quiero Comprar</Typography>
       <TextField

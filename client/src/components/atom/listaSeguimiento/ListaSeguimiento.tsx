@@ -8,7 +8,6 @@ import AuthContext from '../../../context/AuthContext'
 const ListaSeguimiento: React.FC = () => {
     const { coinsData } = useApiContext()
     const { favoritesList, setFavoritesList, auth } = useContext(AuthContext)
-    // TODO: cambiar las coinsData por favoritesList pero falta que el contexto tenga el id del usuario para poder hacer bien el fetch, sin id no se puede
 
     const navigate = useNavigate()
 

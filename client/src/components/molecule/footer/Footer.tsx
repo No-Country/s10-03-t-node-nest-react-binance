@@ -2,14 +2,9 @@ import React from 'react'
 import { Grid, Typography } from '@mui/material'
 import { FOOTER_STYLES } from './FooterStyles'
 import NavBar from '../navbar/NavBar'
-import useAuth from '../../../hooks/useAuth'
 
-interface FooterProps { }
-
-const Footer: React.FC<FooterProps> = () => {
+const Footer: React.FC = () => {
   const token = localStorage.getItem('token')
-
-  const { isLogueado } = useAuth()
 
   return (
     <footer>
@@ -19,9 +14,11 @@ const Footer: React.FC<FooterProps> = () => {
             Binance &copy; { new Date().getFullYear() }
           </Typography>
         </Grid>
-        <Grid item xs={ 12 } sx={ FOOTER_STYLES.gridNavBar } >
-          { isLogueado && <NavBar /> }
-        </Grid>
+        { token &&
+          <Grid item xs={ 12 } sx={ FOOTER_STYLES.gridNavBar } >
+            <NavBar />
+          </Grid>
+        }
       </Grid>
     </footer>
   )

@@ -6,7 +6,6 @@ import PrimaryButton from "../../atom/buttons/PrimaryButton"
 import GoogleIcon from "@mui/icons-material/Google"
 import { LOGIN_STYLES } from "../../template/login-form/LoginFormStyles"
 import { loginStyle } from "./loginStyle"
-// import { AuthProvider } from '../../../context/AuthContext'
 import { emailRegex } from "../../../utils/constants"
 import useAuth from "../../../hooks/useAuth"
 import useGoogleAuth from "../../../hooks/useGoogleAuth"
@@ -15,7 +14,7 @@ const LoginScreen: React.FC = () => {
   const auth = useAuth() // Usar el hook useAuth para obtener el contexto
   const googleAuth = useGoogleAuth()
   const { signInWithGoogle } = googleAuth
-  const { login, loginAuth } = auth
+  const { login } = auth
   const navigate = useNavigate()
   const [userOrEmail, setUserOrEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
@@ -25,7 +24,6 @@ const LoginScreen: React.FC = () => {
   const [welcomeMessage, setWelcomeMessage] = useState({ text: "" })
   const [showMessage, setShowMessage] = useState<boolean>(false)
   const isValidEmail = emailRegex.test(userOrEmail)
-  // const {loginWithGoogle} = AuthProvider; // TODO no esta en el Provider
 
   const handleNextClick = () => {
     if ([userOrEmail].includes("")) {
@@ -91,9 +89,9 @@ const LoginScreen: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth="xs" sx={ { minHeight: '82vh' } }>
       <Typography
-        variant="h4"
+        variant="h2"
         align="left"
         gutterBottom
         sx={ loginStyle.typography }
@@ -160,7 +158,7 @@ const LoginScreen: React.FC = () => {
 
       <Typography
         variant="h4"
-        align="left"
+        align="center"
         gutterBottom
         style={ loginStyle.typography }
       >

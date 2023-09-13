@@ -16,6 +16,8 @@ const MontoInput = () => {
   const [inputValue, setInputValue] = useState("")
   const navigate = useNavigate()
 
+
+  
   const handleInputChange = (e) => setInputValue(e.target.value)
 
   const handleClick = () => navigate(`/buypaymentmethod?moneda=${ inputValue }`)

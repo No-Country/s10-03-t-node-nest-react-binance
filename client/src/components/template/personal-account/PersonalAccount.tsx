@@ -13,6 +13,7 @@ import PrimaryButton from "../../atom/buttons/PrimaryButton";
 import { PERSONAL_STYLES } from "./PersonalAccountStyles";
 import useAuth from "../../../hooks/useAuth";
 import { emailRegex } from "../../../utils/constants";
+import { randomPhone, randonName } from "../../../helpers/RandonName";
 
 interface PersonalAccountProps {}
 
@@ -28,9 +29,13 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
   const [welcomeMessage, setWelcomeMessage] = useState({ text: "" });
   const [showMessage, setShowMessage] = useState<boolean>(false);
 
-  const username = "string2";
+  const username = randonName()
+  console.log(username);
+  
   const balance = 0;
-  const celphone = 0;
+  const celphone = randomPhone();
+  console.log(celphone);
+  
 
   const isValidEmail = emailRegex.test(email);
 
@@ -83,7 +88,7 @@ const PersonalAccount: React.FC<PersonalAccountProps> = () => {
         }, 3000);
       }
     } catch (error) {
-      console.error("Error registering:", error); // TODO: borrar
+      console.error(error); // TODO: borrar
       setError(true);
       setMessage({
         text: "Error al registrarse. Por favor, intenta nuevamente más tarde.",

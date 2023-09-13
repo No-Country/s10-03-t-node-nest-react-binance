@@ -93,6 +93,8 @@ const LoginScreen: React.FC = () => {
         
       // Guarda el token en el localStorage
      login(data.data);
+     console.log(data);
+     
   
       navigate("/market");
     } catch (error) {

@@ -7,6 +7,8 @@ import useAuth from '../../../hooks/useAuth'
 interface FooterProps { }
 
 const Footer: React.FC<FooterProps> = () => {
+  const token = localStorage.getItem('token')
+
   const { isLogueado } = useAuth()
 
   return (

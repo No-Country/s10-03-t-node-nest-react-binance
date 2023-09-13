@@ -25,6 +25,7 @@ const PersonalAccount: React.FC = () => {
   const isValidEmail = emailRegex.test(email)
   const navigate = useNavigate()
 
+
   const handleRegister = async () => {
     if (!password || password.length < 6) {
       setError(true);

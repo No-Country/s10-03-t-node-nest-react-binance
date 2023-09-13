@@ -1,37 +1,37 @@
-import { Alert, AlertTitle, Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { CoinData } from '../../../models/CoinDataResponse';
-import { useNavigate } from 'react-router-dom';
+import { Alert, AlertTitle, Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { CoinData } from '../../../models/CoinDataResponse'
+import { useNavigate } from 'react-router-dom'
 
 const BuyCoin = () => {
-  const [coin, setCoin] = useState<CoinData | undefined>(undefined);
-  const [isCompraVisible, setCompraVisible] = useState(false); // Variable de estado para controlar la visibilidad del cartel de compra
-  const id = localStorage.getItem('coin');
+  const [coin, setCoin] = useState<CoinData | undefined>(undefined)
+  const [isCompraVisible, setCompraVisible] = useState(false) // Variable de estado para controlar la visibilidad del cartel de compra
+  const id = localStorage.getItem('coin')
 
   const navigate = useNavigate()
   useEffect(() => {
-    getCoinId();
-  }, []);
+    getCoinId()
+  }, [])
 
   const getCoinId = async () => {
     try {
-      const response = await axios.get(`https://binance-production.up.railway.app/api/v1/cryptocurrencies/${id}`);
-      const coinData: CoinData = response.data;
-      setCoin(coinData);
+      const response = await axios.get(`https://binance-production.up.railway.app/api/v1/cryptocurrencies/${id}`)
+      const coinData: CoinData = response.data
+      setCoin(coinData)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const handleCompraClick = () => {
     // Cuando haces clic en Comprar, muestra el cartel de compra y oculta la tarjeta
-    setCompraVisible(true);
+    setCompraVisible(true)
     setTimeout(() => {
         // Después de 3 segundos, redirige al usuario al mercado
-        navigate('/market');
-      }, 3000);
-  };
+        navigate('/market')
+      }, 3000)
+  }
 
   return (
     <Box
@@ -41,12 +41,15 @@ const BuyCoin = () => {
       marginTop="-100px"
       height="100vh"
     >
-      {isCompraVisible ? ( // Mostrar el cartel de compra si isCompraVisible es true
+      {isCompraVisible ?
+      ( // Mostrar el cartel de compra si isCompraVisible es true
         <Alert severity="success">
           <AlertTitle>Compra</AlertTitle>
           Compra confirmada correctamente
         </Alert>
-      ) : coin ? ( // Mostrar la tarjeta solo si isCompraVisible es false y coin está disponible
+      ) 
+      : coin ? 
+      ( // Mostrar la tarjeta solo si isCompraVisible es false y coin está disponible
         <Card sx={{ maxWidth: 300, objectFit: 'cover' }}>
           <CardMedia
             sx={{ height: 140 }}
@@ -70,11 +73,13 @@ const BuyCoin = () => {
             </Button>
           </CardActions>
         </Card>
-      ) : (
+      ) 
+      : 
+      (
         'Cargando...'
       )}
     </Box>
-  );
-};
+  )
+}
 
-export default BuyCoin;
+export default BuyCoin

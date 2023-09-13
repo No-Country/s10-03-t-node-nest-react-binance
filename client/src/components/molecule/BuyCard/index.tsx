@@ -5,17 +5,16 @@ import { loginStyle } from '../Login/loginStyle'
 import PrimaryButton from '../../atom/buttons/PrimaryButton'
 import { Container, Typography } from "@mui/material"
 
-
 const MontoInput = () => {
+  const [inputValue, setInputValue] = useState("")
   const location = useLocation()
   const urlSearch = location.search
-  console.log(location);
-  console.log(urlSearch.split('=')[1]);
-  const idCoin = urlSearch.split('=')[1];
+  const idCoin = urlSearch.split('=')[1]
   const idCoinStorage = localStorage.setItem('coin', idCoin)
-  const [inputValue, setInputValue] = useState("")
   const navigate = useNavigate()
 
+
+  
   const handleInputChange = (e) => setInputValue(e.target.value)
 
   const handleClick = () => navigate(`/buypaymentmethod?moneda=${ inputValue }`)
@@ -28,7 +27,7 @@ const MontoInput = () => {
         gutterBottom
         sx={ loginStyle.typography }
       >
-        Comprar [aca mostrar el nombre de la moneda]
+        Comprar {idCoin}
       </Typography>
       <Typography style={ { marginTop: "20px" } }>Quiero Comprar</Typography>
       <TextField

@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
-import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Button, Container, Typography, TextField } from '@mui/material';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import { loginStyle } from '../../Login/loginStyle';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Button, Container, Typography } from '@mui/material'
+import { loginStyle } from '../../Login/loginStyle'
 
 const PaymentMethod = () => {
-
-  const [method, setMethod] = useState('tarjeta'); // Valor predeterminado
-
-  const handleMethodChange = (event) => {
-    setMethod(event.target.value);
-  };
-
+  const [method, setMethod] = useState('tarjeta') // Valor predeterminado
+  const handleMethodChange = (event) =>  setMethod(event.target.value);
 
   return (
     <Container maxWidth="xs" sx={ { minHeight: '82vh' } }>
@@ -25,7 +18,6 @@ const PaymentMethod = () => {
         Seleccionar metodo de cobro
       </Typography>
       <Typography variant="h1" align="center" marginBottom="20px">
-        
       </Typography>
       <FormControl component="fieldset">
         <FormLabel component="legend">Método de Pago</FormLabel>
@@ -40,7 +32,6 @@ const PaymentMethod = () => {
             control={ <Radio /> }
             label="Mercado Pago"
           />
-
         </RadioGroup>
       </FormControl>
       <Button

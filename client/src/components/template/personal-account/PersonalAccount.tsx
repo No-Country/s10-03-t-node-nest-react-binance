@@ -9,8 +9,6 @@ import { emailRegex } from "../../../utils/constants"
 import { randomPhone, randonName } from "../../../helpers/RandonName"
 
 const PersonalAccount: React.FC = () => {
-  const { isLogueado, setIsLogueado } = useAuth()
-
   const auth = useAuth() // Usar el hook useAuth para obtener el contexto
   const { registerAuth } = auth
   const [email, setEmail] = useState<string>("")
@@ -63,7 +61,6 @@ const PersonalAccount: React.FC = () => {
         }, 3000)
 
         registerAuth({ email, password, username, balance, celphone })
-        // setIsLogueado(true)
       } else {
         setError(true)
         setMessage({

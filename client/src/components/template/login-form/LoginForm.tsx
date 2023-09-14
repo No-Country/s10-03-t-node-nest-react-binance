@@ -11,18 +11,16 @@ import PrimaryButton from "../../atom/buttons/PrimaryButton";
 import Person2Icon from "@mui/icons-material/Person2";
 import GoogleIcon from "@mui/icons-material/Google";
 import useGoogleAuth from "../../../hooks/useGoogleAuth";
-import useAuth from "../../../hooks/useAuth";
 
 const LoginForm = () => {
   const navigate = useNavigate();
 
   const googleAuth = useGoogleAuth();
   const { signInWithGoogle } = googleAuth;
- 
 
   const handleGoogleLogin = async () => {
     await signInWithGoogle();
-     
+
     navigate("/market");
   };
 

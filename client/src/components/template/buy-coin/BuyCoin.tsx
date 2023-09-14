@@ -8,6 +8,7 @@ const BuyCoin = () => {
   const [coin, setCoin] = useState<CoinData | undefined>(undefined)
   const [isCompraVisible, setCompraVisible] = useState(false) // Variable de estado para controlar la visibilidad del cartel de compra
   const id = localStorage.getItem('coin')
+  console.log(id)
 
   const navigate = useNavigate()
   useEffect(() => {
@@ -28,9 +29,9 @@ const BuyCoin = () => {
     // Cuando haces clic en Comprar, muestra el cartel de compra y oculta la tarjeta
     setCompraVisible(true)
     setTimeout(() => {
-        // Después de 3 segundos, redirige al usuario al mercado
-        navigate('/market')
-      }, 3000)
+      // Después de 3 segundos, redirige al usuario al mercado
+      navigate('/market')
+    }, 3000)
   }
 
   return (
@@ -42,42 +43,42 @@ const BuyCoin = () => {
       height="100vh"
     >
       {isCompraVisible ?
-      ( // Mostrar el cartel de compra si isCompraVisible es true
-        <Alert severity="success">
-          <AlertTitle>Compra</AlertTitle>
-          Compra confirmada correctamente
-        </Alert>
-      ) 
-      : coin ? 
-      ( // Mostrar la tarjeta solo si isCompraVisible es false y coin está disponible
-        <Card sx={{ maxWidth: 300, objectFit: 'cover' }}>
-          <CardMedia
-            sx={{ height: 140 }}
-            image={coin.iconUrl}
-            title="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h4" component="div">
-              Id: {coin.uuid}
-            </Typography>
-            <Typography gutterBottom variant="h4" component="div">
-              Symbol {coin.symbol}
-            </Typography>
-            <Typography variant="h5" color="text.secondary">
-              Price: USD {coin.currentPrice}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small" onClick={handleCompraClick}>
-              Comprar
-            </Button>
-          </CardActions>
-        </Card>
-      ) 
-      : 
-      (
-        'Cargando...'
-      )}
+        ( // Mostrar el cartel de compra si isCompraVisible es true
+          <Alert severity="success">
+            <AlertTitle>Compra</AlertTitle>
+            Compra confirmada correctamente
+          </Alert>
+        )
+        : coin ?
+          ( // Mostrar la tarjeta solo si isCompraVisible es false y coin está disponible
+            <Card sx={{ maxWidth: 300, objectFit: 'cover' }}>
+              <CardMedia
+                sx={{ height: 140 }}
+                image={coin.iconUrl}
+                title="green iguana"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h4" component="div">
+                  Id: {coin.uuid}
+                </Typography>
+                <Typography gutterBottom variant="h4" component="div">
+                  Symbol {coin.symbol}
+                </Typography>
+                <Typography variant="h5" color="text.secondary">
+                  Price: USD {coin.currentPrice}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" onClick={handleCompraClick}>
+                  Comprar
+                </Button>
+              </CardActions>
+            </Card>
+          )
+          :
+          (
+            'Cargando...'
+          )}
     </Box>
   )
 }

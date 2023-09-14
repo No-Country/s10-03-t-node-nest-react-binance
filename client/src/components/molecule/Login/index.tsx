@@ -89,12 +89,12 @@ const LoginScreen: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="xs" sx={ { minHeight: '82vh' } }>
+    <Container maxWidth="xs" sx={{ minHeight: '82vh' }}>
       <Typography
         variant="h2"
         align="left"
         gutterBottom
-        sx={ loginStyle.typography }
+        sx={loginStyle.typography}
       >
         Iniciar sesión
       </Typography>
@@ -103,44 +103,44 @@ const LoginScreen: React.FC = () => {
         variant="outlined"
         fullWidth
         margin="normal"
-        value={ userOrEmail }
-        onChange={ (e) => setUserOrEmail(e.target.value) }
-        style={ { marginBottom: "20px" } }
+        value={userOrEmail}
+        onChange={(e) => setUserOrEmail(e.target.value)}
+        style={{ marginBottom: "20px" }}
       />
-      { error && (
+      {error && (
         <Alert severity="error">
           <AlertTitle>Error</AlertTitle>
-          { message.text } — <strong>{ message.msg }</strong>
+          {message.text} — <strong>{message.msg}</strong>
         </Alert>
-      ) }
-      { showPasswordInput && (
+      )}
+      {showPasswordInput && (
         <TextField
           label="Contraseña"
           type="password"
           variant="outlined"
           fullWidth
           margin="normal"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-      ) }
-      { showMessage && (
+      )}
+      {showMessage && (
         <Alert severity="success">
           <AlertTitle>Success</AlertTitle>
-          { welcomeMessage.text } —{ " " }
+          {welcomeMessage.text} —{" "}
           <strong>Registro con Exito! Seras redireccionado al Market</strong>
         </Alert>
-      ) }
+      )}
       <PrimaryButton
-        text={ !showPasswordInput ? "Siguiente" : "Iniciar sesión" }
+        text={!showPasswordInput ? "Siguiente" : "Iniciar sesión"}
         ariaLabelText="Continuar con google"
-        onClick={ showPasswordInput ? handleLoginClick : handleNextClick }
-        style={ {
+        onClick={showPasswordInput ? handleLoginClick : handleNextClick}
+        style={{
           marginBottom: "20px",
-        } }
+        }}
       />
-      <Box sx={ loginStyle.or }>
-        <Typography sx={ { px: 2, color: "black", py: 3 } }>
+      <Box sx={loginStyle.or}>
+        <Typography sx={{ px: 2, color: "black", py: 3 }}>
           ____________________or__________________
         </Typography>
       </Box>
@@ -149,22 +149,22 @@ const LoginScreen: React.FC = () => {
         ariaLabelText="Continuar con google"
         variant="contained"
         color="secondary"
-        icon={ <GoogleIcon /> }
-        style={ {
+        icon={<GoogleIcon />}
+        style={{
           marginBottom: "20px",
-        } }
-        onClick={ handleGoogleLogin }
+        }}
+        onClick={handleGoogleLogin}
       />
 
       <Typography
         variant="h4"
         align="center"
         gutterBottom
-        style={ loginStyle.typography }
+        style={loginStyle.typography}
       >
         <Link
-          to="/register"
-          style={ LOGIN_STYLES.link }
+          to="/"
+          style={LOGIN_STYLES.link}
           aria-label="crear cuenta en Binance"
         >
           Crear cuenta en Binance

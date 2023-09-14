@@ -5,7 +5,7 @@ export const FOOTER_STYLES = {
   },
   gridYear: {
     display: {
-      xs: 'none',
+      xs: 'flex',
       sm: 'flex',
       padding: '1rem'
     },

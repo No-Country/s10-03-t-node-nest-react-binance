@@ -1,11 +1,11 @@
-import React, {useContext} from 'react'
+// import React, { useContext } from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Box, Grid, IconButton, Menu, MenuItem } from '@mui/material'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { Box, Button, Grid } from '@mui/material'
 import { HEADER_STYLES } from './HeaderStyles'
 import NavBar from '../navbar/NavBar'
 import useAuth from './../../../hooks/useAuth'
+
 import AuthContext from '../../../context/AuthContext'
 import GoogleAuthContext from '../../../context/googleContext'
 
@@ -37,20 +37,13 @@ const Header: React.FC<HeaderProps> = () => {
   console.log(loginAuth.token);
 
 
-  
-
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-
-  const handleClose = () => setAnchorEl(null)
 
   const handleLogOut = () => {
     setIsLogueado(false)
+
     localStorage.removeItem('token')
     localStorage.removeItem('uidToken')
     navigate("/")
-    handleClose()
   }
   
   
@@ -116,6 +109,7 @@ const Header: React.FC<HeaderProps> = () => {
 
    
     </>
+
   )
 }
 

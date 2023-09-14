@@ -6,29 +6,18 @@ import { useLocation } from 'react-router-dom'
 import { useApiContext } from '../context/FetchContext'
 import useAuth from '../hooks/useAuth'
 
-
 const Buy = () => {
-
   const [search, setSearch] = useState([])
-
-  const handleSearch = (results) => {
-    setSearch(results);
-  };
-
   const { coinsData } = useApiContext()
-  const auth = useAuth(); // Usar el hook useAuth para obtener el contexto
-
-  
-  const { login, loginAuth } = auth;
-  console.log(loginAuth);
-  
+  const auth = useAuth() // Usar el hook useAuth para obtener el contexto
+  //const { login, loginAuth } = auth
   const location = useLocation()
   const urlPathName = location.pathname
-  console.log(location);
-  
+
+  const handleSearch = (results) => setSearch(results)
 
   return (
-    <Container maxWidth="sm" sx={{ minHeight: '82vh'}}>
+    <Container maxWidth="sm" sx={ { minHeight: '82vh' } }>
       <Typography
         variant="h2"
         align="center"
@@ -36,19 +25,16 @@ const Buy = () => {
       >
         Elegir activo a comprar
       </Typography>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={ handleSearch } />
       <Typography
-          variant="h3"
-          align="left"
-          sx={ { color: 'red', marginBottom: '50px' } }
-          
-        >
-           {search.map((result) => (
-          <Typography key={result.id}>{result.name}</Typography>
-        ))}
-        </Typography>
-       
-      
+        variant="h3"
+        align="left"
+        sx={ { color: 'red', marginBottom: '50px' } }
+      >
+        { search.map((result) => (
+          <Typography key={ result.id }>{ result.name }</Typography>
+        )) }
+      </Typography>
       <CoinsSellBuyTable
         urlPathName={ urlPathName }
         btnText="Comprar"

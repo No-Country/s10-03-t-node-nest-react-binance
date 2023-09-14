@@ -1,67 +1,59 @@
-import React, { useState } from "react";
-import {
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
-  Button,
-  Container,
-  Typography,
-} from "@mui/material"
+import React, { useState } from "react"
+import { Radio, RadioGroup, FormControlLabel, FormControl, Button, Container, Typography } from "@mui/material"
 import { loginStyle } from "../../Login/loginStyle"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const BuyPaymentMethod = () => {
-  const location = useLocation();
-  const moneda = new URLSearchParams(location.search).get("moneda");
-  const navigate = useNavigate();
-  const [method, setMethod] = useState("tarjeta"); // Valor predeterminado
+  const location = useLocation()
+  const moneda = new URLSearchParams(location.search).get("moneda")
+  const navigate = useNavigate()
+  const [method, setMethod] = useState("")
 
-  const handleMethodChange = (event) => setMethod(event.target.value);
+  const handleMethodChange = (event) => setMethod(event.target.value)
 
-  const handleClick = () => navigate("/agregar-tarjeta");
+  const handleClick = () => navigate("/agregar-tarjeta")
 
   return (
-    <Container maxWidth="xs" sx={{ minHeight: "82vh" }}>
+    <Container maxWidth="xs" sx={ { minHeight: "82vh" } }>
       <Typography
         variant="h2"
         align="center"
         gutterBottom
-        sx={loginStyle.typography}
-        style={{ marginBottom: "50px" }}
+        sx={ loginStyle.typography }
+        style={ { marginBottom: "50px" } }
       >
-        Seleccionar metodo de cobro
+        Seleccionar metodo de cobro para comprar
       </Typography>
       <Typography variant="h1" align="center" marginBottom="20px">
-        {moneda}
+        { moneda } unidades
       </Typography>
       <FormControl component="fieldset">
-        <FormLabel component="legend">Método de Pago</FormLabel>
+        <Typography variant="h3" align="center" marginBottom="20px">
+          Método de Pago:
+        </Typography>
         <RadioGroup
           aria-label="method"
           name="method"
-          value={method}
-          onChange={handleMethodChange}
+          value={ method }
+          onChange={ handleMethodChange }
         >
           <FormControlLabel
             value="tarjeta"
-            control={<Radio />}
+            control={ <Radio /> }
             label="Tarjeta de credito"
           />
-
           <FormControlLabel
-            value="tarjeta"
-            control={<Radio />}
+            value="marcado-pago"
+            control={ <Radio /> }
             label="Mercado Pago"
           />
         </RadioGroup>
       </FormControl>
-      <Button variant="contained" color="primary" onClick={handleClick}>
+      <Button variant="contained" color="primary" onClick={ handleClick } sx={ { marginTop: '24px' } }>
         Confirmar Método de Pago
       </Button>
     </Container>
-  );
-};
+  )
+}
 
-export default BuyPaymentMethod;
+export default BuyPaymentMethod

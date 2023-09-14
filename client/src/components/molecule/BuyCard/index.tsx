@@ -4,17 +4,18 @@ import TextField from '@mui/material/TextField'
 import { loginStyle } from '../Login/loginStyle'
 import PrimaryButton from '../../atom/buttons/PrimaryButton'
 import { Container, Typography } from "@mui/material"
+import { useApiContext } from '../../../context/FetchContext'
 
 const MontoInput = () => {
   const [inputValue, setInputValue] = useState("")
   const location = useLocation()
   const urlSearch = location.search
   const idCoin = urlSearch.split('=')[1]
-  const idCoinStorage = localStorage.setItem('coin', idCoin)
   const navigate = useNavigate()
-
-
+  const { coinsData } = useApiContext()
   
+  const coinToShow = coinsData.filter(coin => coin.uuid === idCoin)
+
   const handleInputChange = (e) => setInputValue(e.target.value)
 
   const handleClick = () => navigate(`/buypaymentmethod?moneda=${ inputValue }`)
@@ -27,9 +28,14 @@ const MontoInput = () => {
         gutterBottom
         sx={ loginStyle.typography }
       >
-        Comprar {idCoin}
+        Comprar { coinToShow[0]?.name  }
       </Typography>
-      <Typography style={ { marginTop: "20px" } }>Quiero Comprar</Typography>
+      <Typography
+        variant='h3'
+        style={ { marginTop: "20px" } }
+      >
+        Quiero Comprar
+      </Typography>
       <TextField
         type="number"
         variant="outlined"

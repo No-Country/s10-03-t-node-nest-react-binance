@@ -7,21 +7,37 @@ import { HEADER_STYLES } from './HeaderStyles'
 import NavBar from '../navbar/NavBar'
 import useAuth from './../../../hooks/useAuth'
 import AuthContext from '../../../context/AuthContext'
+import GoogleAuthContext from '../../../context/googleContext'
 
 interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
   const auth = useAuth()
+  const { isLogueado, setIsLogueado } = useAuth()
   // const { loginAuth } = auth;
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [token, setToken ] = React.useState<string | null>(null)
+  const [uidToken, setUidToken] = React.useState<string | null>(null)
+  const navigate = useNavigate()
+  
+  const isAuthenticated = !!token || !!uidToken;
+  
+  
+  React.useEffect(() => {
+    const storedToken = localStorage.getItem('token')
+    const storedUidToken = localStorage.getItem('uidToken')
+    setToken(storedToken)
+    setUidToken(storedUidToken)
+  }, [isLogueado])
   
   const { loginAuth } = useContext(AuthContext);
+  const { googleUser } = useContext(GoogleAuthContext)
   
   // console.log(loginAuth);
-  const { isLogueado, setIsLogueado } = useAuth()
   console.log(loginAuth.token);
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const navigate = useNavigate()
+
+  
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -31,18 +47,19 @@ const Header: React.FC<HeaderProps> = () => {
 
   const handleLogOut = () => {
     setIsLogueado(false)
+    localStorage.removeItem('token')
+    localStorage.removeItem('uidToken')
     navigate("/")
     handleClose()
   }
-  const token = localStorage.getItem('token')
-  console.log(token);
+  
+  
   
 
   return (
     <>
-    {
-      !token ? '' 
-      :  
+    
+      { isAuthenticated && isLogueado && (
       <header>
       <Grid container maxWidth="lg" sx={ HEADER_STYLES.container } >
         <Grid item xs={ 6 } sm={ 3 } sx={ HEADER_STYLES.containerLogo } >
@@ -94,7 +111,8 @@ const Header: React.FC<HeaderProps> = () => {
         </Grid>
       </Grid>
     </header>
-    }
+   )}
+  
 
    
     </>

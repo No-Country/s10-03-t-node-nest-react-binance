@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import { loginStyle } from '../Login/loginStyle';
 import PrimaryButton from '../../atom/buttons/PrimaryButton';
 import {Container, Typography} from "@mui/material"
+import { useApiContext } from '../../../context/FetchContext';
+
 
 
 
 const NumericInput = () => {
+
+  const { coinsData } = useApiContext()
   const [inputValue, setInputValue] = useState('');
   const navigate = useNavigate()
+  const location = useLocation()
+  const urlSearch = location.search
+  const idCoin = urlSearch.split('=')[1]
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  }
+  const coinToShow = coinsData.filter(coin => coin.uuid === idCoin)
+
+  const handleInputChange = (e) =>  setInputValue(e.target.value)
 
 const handleClick = () => {
-    navigate(`/paymentmethod?monto=`)
+    navigate(`/paymentmethod?moneda=${inputValue}`)
 }
   
 
@@ -29,7 +36,7 @@ const handleClick = () => {
         gutterBottom
         sx={loginStyle.typography}
       >
-        Vender [moneda a vender]
+        Vender {coinToShow[0]?.name}
       </Typography>
       <Typography variant="h3" style={{margin:"20px 0px 10px"}}>
         Quiero vender

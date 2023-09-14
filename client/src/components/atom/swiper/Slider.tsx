@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SliderCupones from './SliderCupones'
 import { Typography } from '@mui/material'
+import AuthContext from '../../../context/AuthContext'
 
 const Slider: React.FC = () => {
+
+    const { loginAuth } = useContext(AuthContext)
+
     return (
         <div className='cupones'>
             <Typography
@@ -14,7 +18,7 @@ const Slider: React.FC = () => {
                     margin: '12px auto'
                 } }
             >
-                Cupones
+            {loginAuth?.email}
             </Typography>
             <SliderCupones />
         </div>

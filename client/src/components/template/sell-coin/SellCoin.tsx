@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { CoinData } from '../../../models/CoinDataResponse'
 import { useNavigate } from 'react-router-dom'
 
-const BuyCoin = () => {
+const SellCoin = () => {
   const [coin, setCoin] = useState<CoinData | undefined>(undefined)
   const [isCompraVisible, setCompraVisible] = useState(false) // Variable de estado para controlar la visibilidad del cartel de compra
   const id = localStorage.getItem('coin')
@@ -30,7 +30,7 @@ const BuyCoin = () => {
     setCompraVisible(true)
     setTimeout(() => {
       // Después de 3 segundos, redirige al usuario al mercado
-      navigate('/wallets')
+      navigate('/market')
     }, 3000)
   }
 
@@ -45,8 +45,8 @@ const BuyCoin = () => {
       {isCompraVisible ?
         ( // Mostrar el cartel de compra si isCompraVisible es true
           <Alert severity="success">
-            <AlertTitle>Compra</AlertTitle>
-             Compra realizada correctamente
+            <AlertTitle>Venta</AlertTitle>
+             Venta realizada correctamente
           </Alert>
         )
         : coin ?
@@ -70,7 +70,7 @@ const BuyCoin = () => {
               </CardContent>
               <CardActions>
                 <Button size="small" onClick={handleCompraClick}>
-                  Comprar
+                  Vender
                 </Button>
               </CardActions>
             </Card>
@@ -83,4 +83,4 @@ const BuyCoin = () => {
   )
 }
 
-export default BuyCoin
+export default SellCoin

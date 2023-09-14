@@ -18,6 +18,7 @@ import Deposit from "./pages/Deposit"
 import AgregarTarjeta from "./components/template/agregar-tarjeta/AgregarTarjeta"
 import SalesCard from "./components/molecule/salesCard"
 import PaymentMethod from "./components/molecule/salesCard/PaymentMethod"
+import SellCoin from "./components/template/sell-coin/SellCoin"
 import MontoInput from "./components/molecule/BuyCard"
 import BuyPaymentMethod from "./components/molecule/BuyCard/BuyPaymentMethod"
 import BuyCoin from "./components/template/buy-coin/BuyCoin"
@@ -37,6 +38,7 @@ function App() {
             <Route path="/buy/screen" element={<MontoInput />} />
             <Route path= "/buypaymentmethod" element={<BuyPaymentMethod />} />
             <Route path="paymentmethod" element={<PaymentMethod />} />
+            <Route path="sell-coin" element={<SellCoin />} />
             <Route path="/deposit" element={ <Deposit />} />
             <Route path="/market" element={ <Market /> } />
             <Route path="/wallets" element={ <Wallets /> } />

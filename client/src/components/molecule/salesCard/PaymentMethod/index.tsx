@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
 import { Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Button, Container, Typography } from '@mui/material'
 import { loginStyle } from '../../Login/loginStyle'
+import { useLocation, useNavigate } from 'react-router'
 
 const PaymentMethod = () => {
-  const [method, setMethod] = useState('tarjeta') // Valor predeterminado
-  const handleMethodChange = (event) =>  setMethod(event.target.value);
+  const location = useLocation()
+  const moneda = new URLSearchParams(location.search).get("moneda")
+  const navigate = useNavigate()
+ 
+  
+  
+  
+  
+  
+  const handleClick = () => navigate("/sell-coin")
+
 
   return (
     <Container maxWidth="xs" sx={ { minHeight: '82vh' } }>
@@ -15,32 +25,19 @@ const PaymentMethod = () => {
         sx={ loginStyle.typography }
         style={ { marginBottom: "50px" } }
       >
-        Seleccionar metodo de cobro
+        Se realizará la venta de :
       </Typography>
       <Typography variant="h1" align="center" marginBottom="20px">
+        { moneda } unidades
       </Typography>
-      <FormControl component="fieldset">
-        <FormLabel component="legend">Método de Pago</FormLabel>
-        <RadioGroup
-          aria-label="method"
-          name="method"
-          value={ method }
-          onChange={ handleMethodChange }
-        >
-          <FormControlLabel
-            value="tarjeta"
-            control={ <Radio /> }
-            label="Mercado Pago"
-          />
-        </RadioGroup>
-      </FormControl>
+      
       <Button
         variant="contained"
         color="primary"
-        onClick={ () => console.log(`Método seleccionado: ${ method }`) }
+        onClick={handleClick}
         aria-label="Confirmar Método de Pago"
       >
-        Confirmar Método de Pago
+        Confirmar
       </Button>
     </Container>
   )

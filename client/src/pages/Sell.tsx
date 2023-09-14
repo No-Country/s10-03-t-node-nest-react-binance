@@ -3,10 +3,19 @@ import { Container, Typography } from '@mui/material'
 import SearchBar from '../components/molecule/searchBar'
 import CoinsSellBuyTable from '../components/molecule/coins-table/CoinsSellBuyTable'
 import { useLocation } from 'react-router-dom'
+import { useApiContext } from '../context/FetchContext'
+import BuyCoin from '../components/template/buy-coin/BuyCoin'
+
 
 const Sell = () => {
+  const {coinsData } = useApiContext()
   const location = useLocation()
-  const urlPathName = location.pathname
+
+
+  // const coins = coinsData.filter(coin => coin.uuid === idCoin)
+  const urlPathName = location.search
+  console.log(urlPathName)
+
 
   return (
     <Container maxWidth="sm" sx={{ minHeight: '82vh'}}>
@@ -30,7 +39,7 @@ const Sell = () => {
       <CoinsSellBuyTable
         urlPathName={ urlPathName }
         btnText="Vender"
-        coinsData={ []}
+        coinsData={coinsData}
       />
     </Container>
   )

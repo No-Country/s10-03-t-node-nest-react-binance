@@ -9,12 +9,10 @@ interface MarketProps { }
 
 const Market: React.FC<MarketProps> = () => {
   const auth = useAuth()
-  // const { loginAuth } = auth;
-  
   const { loginAuth } = useContext(AuthContext);
   console.log(loginAuth);
 
-  console.log(loginAuth);
+  
 
   return (
     <main style={ { margin: '1rem auto' } }>

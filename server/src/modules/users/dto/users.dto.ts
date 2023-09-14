@@ -36,7 +36,7 @@ export class CreateUserDTO {
   @ApiProperty({
     description: 'valor con el que inicia en la aplicacion',
   })
-  balance?: number;
+  balance?: number = 1000;
 
   @IsOptional()
   @IsString()

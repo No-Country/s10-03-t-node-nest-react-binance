@@ -102,8 +102,83 @@ export class UsersService {
   }
 
   async update(id: number, user: UpdateUserDTO) {
-    await this.usersRepository.update(id, user);
-    return this.usersRepository.findOne({ where: { id: id } });
+    try {
+      const existingUser = await this.usersRepository.findOne({
+        where: { id },
+      });
+
+      if (!existingUser) {
+        return createResponse({
+          error: true,
+          message: 'Usuario no encontrado',
+        });
+      }
+
+      const { username, email, celphone, password, balance } = user;
+
+      // Comprobar si el nuevo nombre de usuario ya existe y no pertenece al usuario actual
+      if (username) {
+        const existingUserByUsername = await this.usersRepository.findOne({
+          where: { username },
+        });
+        if (existingUserByUsername && existingUserByUsername.id !== id) {
+          return createResponse({
+            error: true,
+            message: 'El nombre de usuario ya existe',
+          });
+        }
+      }
+
+      // Comprobar si el nuevo correo electrónico ya existe y no pertenece al usuario actual
+      if (email) {
+        const existingUserByEmail = await this.usersRepository.findOne({
+          where: { email },
+        });
+        if (existingUserByEmail && existingUserByEmail.id !== id) {
+          return createResponse({
+            error: true,
+            message: 'El correo electrónico ya está en uso',
+          });
+        }
+      }
+
+      // Comprobar si el nuevo número de teléfono celular ya existe y no pertenece al usuario actual
+      if (celphone) {
+        const existingUserByCelphone = await this.usersRepository.findOne({
+          where: { celphone },
+        });
+        if (existingUserByCelphone && existingUserByCelphone.id !== id) {
+          return createResponse({
+            error: true,
+            message: 'El número de teléfono celular ya está en uso',
+          });
+        }
+      }
+
+      // Si se proporciona una nueva contraseña, hasheala
+      if (password) {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        existingUser.passwordHash = hashedPassword;
+      }
+
+      // Si se proporciona un importe se agrega
+      if (balance !== undefined) {
+        existingUser.balance = balance;
+      }
+
+      // Actualiza el usuario
+      await this.usersRepository.save(existingUser);
+
+      return createResponse({
+        data: existingUser,
+        message: 'Usuario actualizado exitosamente',
+      });
+    } catch (error) {
+      return createResponse({
+        error: true,
+        message: `Ocurrió un error al actualizar el usuario: ${error}`,
+      });
+    }
   }
 
   async remove(id: number): Promise<void> {

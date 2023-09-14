@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useState } from 'react';
 import { GoogleAuthProvider, signInWithPopup, UserCredential } from 'firebase/auth';
 import { FirebaseAuth } from '../firebase/config';
+import useAuth from '../hooks/useAuth';
 
 
 // Define el tipo para la autenticación de Google
@@ -23,8 +24,11 @@ const GoogleAuthContextProvider: React.FC<AuthProviderProps> = ({ children }) =>
   // Función para iniciar sesión con Google
   const signInWithGoogle = async (): Promise<UserCredential | null> => {
     try {
-      const result = await signInWithPopup(FirebaseAuth, googleProvider);
-      setGoogleUser(result)
+      const response = await signInWithPopup(FirebaseAuth, googleProvider);
+      setGoogleUser(response)
+      localStorage.setItem('uidToken', response.user.uid)
+     
+      
     } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
       return null;

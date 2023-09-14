@@ -7,7 +7,6 @@ import DataUsageIcon from '@mui/icons-material/DataUsage'
 import ShowChartIcon from '@mui/icons-material/ShowChart'
 import CoinsSellBuyTable from '../components/molecule/coins-table/CoinsSellBuyTable'
 import { useApiContext } from '../context/FetchContext'
-import { useLocation } from "react-router-dom"
 import AuthContext from '../context/AuthContext'
 
 interface WalletsProps { }
@@ -18,9 +17,7 @@ const Wallets: React.FC<WalletsProps> = () => {
   console.log(loginAuth);
 
   const { coinsData } = useApiContext()
-  const location = useLocation()
-  const moneda = new URLSearchParams(location.search).get("moneda")
-  console.log(moneda)
+
 
   return (
     <Container maxWidth="sm" sx={{ minHeight: '82vh', marginTop: '1.75rem' }}>

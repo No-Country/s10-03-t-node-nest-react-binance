@@ -1,119 +1,111 @@
-import React, { useState } from "react"
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
-import { Typography, Container, Box, TextField, Alert, AlertTitle } from "@mui/material"
-import PrimaryButton from "../../atom/buttons/PrimaryButton"
-import { PERSONAL_STYLES } from "./PersonalAccountStyles"
-import useAuth from "../../../hooks/useAuth"
-import { emailRegex } from "../../../utils/constants"
-import { randomPhone, randonName } from "../../../helpers/RandonName"
+import React, { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { Alert, AlertTitle, Box, Container, InputLabel, Typography, TextField } from '@mui/material'
+import PrimaryButton from '../../atom/buttons/PrimaryButton'
+import { PERSONAL_STYLES } from './PersonalAccountStyles'
+import useAuth from '../../../hooks/useAuth'
+import { emailRegex } from '../../../utils/constants'
+import { URL_USER_REGISTER } from '../../../utils/url'
+import { randomPhone } from '../../../helpers/RandonName'
+import toast, { Toaster } from 'react-hot-toast'
+import { toastStyleBgBlack } from '../../../utils/styles'
+import { useLoader } from '../../../context/LoaderProvider'
 
 const PersonalAccount: React.FC = () => {
-  const auth = useAuth() // Usar el hook useAuth para obtener el contexto
+  const auth = useAuth()
   const { registerAuth } = auth
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const [showPassword, setShowPassword] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
-  const [message, setMessage] = useState({ text: "", msg: "" })
-  const [welcomeMessage, setWelcomeMessage] = useState({ text: "" })
-  const [showMessage, setShowMessage] = useState<boolean>(false)
+  const { addLoading, removeLoading } = useLoader()
+  const navigate = useNavigate()
 
-  const username = randonName()
+  const [email, setEmail] = useState<string>('')
+  const [errorEmail, setErrorEmail] = useState<string | null>(null)
+  const [password, setPassword] = useState<string>('')
+  const [errorPassword, setErrorPassword] = useState<string | null>(null)
+  const [username, setUsername] = useState<string>('')
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+
   const balance = 0
   const celphone = randomPhone()
   const isValidEmail = emailRegex.test(email)
-  const navigate = useNavigate()
 
+  const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputEmail = e.target.value
 
-  const handleRegister = async () => {
-    if (!password || password.length < 6) {
-      setError(true);
-      setMessage({
-        text: "El password es obligatorio y debe tener mas de 6 caracteres",
-        msg: "password invalido",
-      });
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
-      return;
+    if (isValidEmail) {
+      setEmail(inputEmail)
+      setErrorEmail(null)
+      // set the user name
+      const newUserName = email.split("@")[0]
+      setUsername(newUserName)
+    } else {
+      setEmail(inputEmail)
+      setErrorEmail('X - Correo electrónico no válido')
     }
+  }
 
-    try {
-      const response = await axios.post(
-        "https://binance-production.up.railway.app/api/v1/users/register",
-        {
-          email,
-          password,
-          username,
-          balance,
-          celphone,
-        }
-      )
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputPassword = e.target.value
 
-      if (response) {
-        setWelcomeMessage({
-          text: "Bienvenido",
-        })
-        setShowMessage(true)
-        setTimeout(() => {
-          navigate("/login")
-        }, 3000)
-
-        registerAuth({ email, password, username, balance, celphone })
-      } else {
-        setError(true)
-        setMessage({
-          text: "Error al registrarse. Por favor, intenta nuevamente más tarde.",
-          msg: "Error de registro",
-        })
-        setTimeout(() => {
-          setError(false);
-        }, 3000)
-      }
-    } catch (error) {
-      setError(true)
-      setMessage({
-        text: "Error al registrarse. Por favor, intenta nuevamente más tarde.",
-        msg: "Error de registro",
-      })
-      setTimeout(() => {
-        setError(false)
-      }, 3000)
+    if (inputPassword.length > 6) {
+      setPassword(inputPassword)
+      setErrorPassword(null)
+    } else {
+      setPassword(inputPassword)
+      setErrorPassword('X - La contraseña es obligatoria y debe tener más de 6 caracteres')
     }
+    setPassword(inputPassword)
   }
 
   const handleNextClick = () => {
-    if ([email].includes("")) {
-      setError(true);
-      setMessage({
-        text: "El email es obligatorio",
-        msg: "Email",
-      });
-      setTimeout(() => {
-        setError(false)
-      }, 3000)
+    if (!email) {
+      toast.error('El email es obligatorio')
       return
     }
 
-    if (!isValidEmail) {
-      setError(true)
-      setMessage({
-        text: "El email contiene caracteres invalidos",
-        msg: "Email invalido",
-      })
-
-      setTimeout(() => {
-        setError(false)
-      }, 3000)
-
-      return
-    }
     setShowPassword(true)
   }
 
-  if (!auth) {
-    // Manejar el caso en que el contexto no esté definido
+  const handleRegister = async () => {
+    if (!password || password.length < 6) {
+      toast.error('El password es obligatorio y debe tener más de 6 caracteres')
+      return
+    }
+
+    try {
+      addLoading()
+      const response = await axios.post(URL_USER_REGISTER, {
+        email,
+        password,
+        username,
+        balance,
+        celphone,
+      })
+
+      if (response.data?.status === 'true') {
+        toast.success(`Bienvenido/a ${ email }. Registro con Exito! Seras redireccionado/a al Login`)
+        // TODO: ver bien como setearlo bien o con zustand o en el contet
+        registerAuth({ email, password, username, balance: balance.toString(), celphone })
+        localStorage.setItem('balance', response.data?.data.balance)
+        localStorage.setItem('email', response.data?.data.email)
+        localStorage.setItem('id', response.data?.data.id)
+        localStorage.setItem('username', response.data?.data.username)
+        
+        setTimeout(() => {
+          navigate("/login")
+        }, 6000)
+
+      } else {
+        toast.error(`Error al registrarse: ${ response.data?.message }. Por favor, intenta nuevamente.`)
+      }
+    } catch (error) {
+      toast.error('Error al registrarse. Por favor, intenta nuevamente más tarde.')
+    } finally {
+      removeLoading()
+    }
+  }
+
+  if (!auth) { // if the context is not defined
     return (
       <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
@@ -125,46 +117,50 @@ const PersonalAccount: React.FC = () => {
   return (
     <main style={ PERSONAL_STYLES.main }>
       <Container maxWidth="sm" sx={ PERSONAL_STYLES.container }>
+        <Toaster
+          position="top-center"
+          toastOptions={ { duration: 5000, style: toastStyleBgBlack } }
+        />
         <Box sx={ PERSONAL_STYLES.boxContainer }>
-          <Typography variant="h1" component="h1" mb={ 4 }>
-            Crear una cuenta personal
+          <Typography variant="h1" component="h2" sx={ PERSONAL_STYLES.title }>
+            Crea tu cuenta
           </Typography>
           <form style={ { maxWidth: "400px" } }>
+            <InputLabel htmlFor="register-email" sx={ PERSONAL_STYLES.label }>
+              Correo electrónico
+            </InputLabel>
             <TextField
-              id="filled-basic"
-              label="Correo / Teléfono"
+              type="text"
+              id="register-email"
+              placeholder="Ingresa el correo electrónico..."
               variant="filled"
-              style={ { borderRadius: 0, width: "70%", marginBottom: "20px" } }
+              fullWidth
               value={ email }
-              onChange={ (e) => setEmail(e.target.value) }
+              onChange={ handleEmail }
+              error={ Boolean(errorEmail) }
+              helperText={ errorEmail }
+              sx={ { marginBottom: '20px' } }
             />
-            { error && (
-              <Alert severity="error">
-                <AlertTitle>Error</AlertTitle>
-                { message.text } — <strong>{ message.msg }</strong>
-              </Alert>
-            ) }
-            { showPassword && (
-              <TextField
-                id="filled-basic"
-                label="password"
-                variant="filled"
-                type="password"
-                style={ { borderRadius: 0, width: "70%", marginBottom: "20px" } }
-                value={ password }
-                onChange={ (e) => setPassword(e.target.value) }
-              />
-            ) }
-            { showMessage && (
-              <Alert severity="success">
-                <AlertTitle>Success</AlertTitle>
-                { welcomeMessage.text } —{ " " }
-                <strong>
-                  Registro con Exito! Seras redireccionado al Login
-                </strong>
-              </Alert>
-            ) }
-            <Typography variant="body1" my={ 2 } gutterBottom>
+            { showPassword &&
+              <>
+                <InputLabel htmlFor="rregister-passwordl" sx={ PERSONAL_STYLES.label }>
+                  Contraseña
+                </InputLabel>
+                <TextField
+                  type="password"
+                  id="register-password"
+                  placeholder="Ingresa la contraseña..."
+                  variant="filled"
+                  fullWidth
+                  value={ password }
+                  onChange={ handlePassword }
+                  error={ Boolean(errorPassword) }
+                  helperText={ errorPassword }
+                  sx={ { marginBottom: '20px' } }
+                />
+              </>
+            }
+            <Typography my={ 4 } gutterBottom>
               Al crear una cuenta, acepto las
               <Box component="span" sx={ PERSONAL_STYLES.textBold }>
                 condiciones de servicio
@@ -189,7 +185,7 @@ const PersonalAccount: React.FC = () => {
         </Box>
       </Container>
     </main>
-  );
-};
+  )
+}
 
-export default PersonalAccount;
+export default PersonalAccount

@@ -1,4 +1,4 @@
-export const PERSONAL_STYLES = {
+export const ADD_CARDS_STYLES = {
   main: {
     minHeight: '82vh',
     display: 'flex',
@@ -9,6 +9,10 @@ export const PERSONAL_STYLES = {
     display: 'flex',
     alignContent: 'center',
     width: '100%'
+  },
+  title: { 
+    textAlign: 'center', 
+    margin: '0ps 24px 26px',  
   },
   boxContainer: {
     width: '100%',
@@ -22,10 +26,10 @@ export const PERSONAL_STYLES = {
     my: 3,
   },
   textBold: {
-    fontWeight: '600',
+    fontWeight: '800',
     margin: '0px 4px',
     textAlign: 'left',
-    fontSize: '14px'
+    fontSize: '18px'
   },
   link: {
     margin: '25px',
@@ -36,16 +40,8 @@ export const PERSONAL_STYLES = {
     textDecoration: 'none',
     marginBottom: '250px'
   },
-  textFiled: {
+  textField: {
     width: "100%",
     marginBottom: "20px"
-  },
-  title: { 
-    width: '100%', 
-    padding: '2rem 2rem 1rem', 
-    textAlign: 'left' 
-  },
-  label: {
-    fontWeight: '600'
-}
+  }
 }

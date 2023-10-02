@@ -1,14 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
 import AuthContext from '../context/AuthContext'
-import { LoginAuth } from '../models/RegisterAuth'
+import { RegisterAuth } from '../models/RegisterAuth'
 
 interface AuthMethods {
-  registerAuth: ({ email, password, username, balance, celphone }) => void
+  registerAuth: (data: RegisterAuth) => Promise<void>
   login: ({ userOrEmail, password, token }) => void
   isLogueado?: boolean
   setIsLogueado?: React.Dispatch<React.SetStateAction<boolean>>,
   loginAuth: any
- 
 }
 
 const useAuth = (): AuthMethods | undefined => {
@@ -23,8 +22,7 @@ const useAuth = (): AuthMethods | undefined => {
 
   if (!authContext) {
     setIsLogueado(false)
-    // Retornar undefined cuando el contexto no está definido
-    return undefined
+    return undefined // when the context is not defined
   }
 
   return {
@@ -33,7 +31,6 @@ const useAuth = (): AuthMethods | undefined => {
     isLogueado,
     setIsLogueado,
     loginAuth: authContext.loginAuth
-    
   };
 };
 

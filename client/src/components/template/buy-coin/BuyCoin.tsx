@@ -1,84 +1,106 @@
-import { Alert, AlertTitle, Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
-import axios from 'axios'
 import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Divider, Typography } from '@mui/material'
 import { CoinData } from '../../../models/CoinDataResponse'
 import { useNavigate } from 'react-router-dom'
+import { useLoader } from '../../../context/LoaderProvider'
+import { BUY_COIN } from './BuyCoinStyles'
+import { getAmountToPaid, getSrcImg } from '../../../utils/strings'
+import toast, { Toaster } from 'react-hot-toast'
+import { URL_CRYPTOCURRENCY_BY_ID } from '../../../utils/url'
+import { toastStyleBgGreen } from '../../../utils/styles'
+import useAuth from '../../../hooks/useAuth'
 
 const BuyCoin = () => {
-  const [coin, setCoin] = useState<CoinData | undefined>(undefined)
-  const [isCompraVisible, setCompraVisible] = useState(false) // Variable de estado para controlar la visibilidad del cartel de compra
-  const id = localStorage.getItem('coin')
-  console.log(id)
-
+  const { addLoading, removeLoading } = useLoader()
+  const auth = useAuth()
+  const { registerAuth } = auth
   const navigate = useNavigate()
+
+  const [coin, setCoin] = useState<CoinData | undefined>(undefined)
+
+  const id = localStorage.getItem('coinToBuy')
+  const cantidad = localStorage.getItem('amountToBuy')
+
+  const getCoinId = async () => {
+    try {
+      addLoading()
+      const response = await axios.get(`${ URL_CRYPTOCURRENCY_BY_ID }/${ id }`)
+      const coinData: CoinData = response.data
+      setCoin(coinData)
+    } catch (error) {
+      toast.error('Error al buscar la moneda a comprar')
+    } finally {
+      removeLoading()
+    }
+  }
+
   useEffect(() => {
     getCoinId()
   }, [])
 
-  const getCoinId = async () => {
-    try {
-      const response = await axios.get(`https://binance-production.up.railway.app/api/v1/cryptocurrencies/${id}`)
-      const coinData: CoinData = response.data
-      setCoin(coinData)
-    } catch (error) {
-      console.log(error)
+  useEffect(() => {
+    if (coin) {
+      const { currentPrice } = coin
+      const newAmount = +(localStorage.getItem('balance')) + +currentPrice * +(localStorage.getItem('amountToBuy'))
+      registerAuth({ balance: newAmount.toString() })
+      // Update the key amount in the localStorage
+      localStorage.setItem('balance', newAmount.toString())
     }
-  }
+  }, [coin])
 
   const handleCompraClick = () => {
-    // Cuando haces clic en Comprar, muestra el cartel de compra y oculta la tarjeta
-    setCompraVisible(true)
+    toast.success('Compra realizada correctamente. Aguarde que estamos llegando a Market.')
+    // once the buy it's ok delete the localStorage
+    localStorage.removeItem('coinToBuy')
+    localStorage.removeItem('amountToBuy')
     setTimeout(() => {
-      // Después de 3 segundos, redirige al usuario al mercado
       navigate('/wallets')
-    }, 3000)
+    }, 5000)
   }
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      marginTop="-100px"
-      height="100vh"
-    >
-      {isCompraVisible ?
-        ( // Mostrar el cartel de compra si isCompraVisible es true
-          <Alert severity="success">
-            <AlertTitle>Compra</AlertTitle>
-             Compra realizada correctamente
-          </Alert>
-        )
-        : coin ?
-          ( // Mostrar la tarjeta solo si isCompraVisible es false y coin está disponible
-            <Card sx={{ maxWidth: 300, objectFit: 'cover' }}>
-              <CardMedia
-                sx={{ height: 140 }}
-                image={coin.iconUrl}
-                title="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h4" component="div">
-                  Id: {coin.uuid}
-                </Typography>
-                <Typography gutterBottom variant="h4" component="div">
-                  Symbol {coin.symbol}
-                </Typography>
-                <Typography variant="h5" color="text.secondary">
-                  Price: USD {coin.currentPrice}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" onClick={handleCompraClick}>
-                  Comprar
-                </Button>
-              </CardActions>
-            </Card>
-          )
-          :
-          (
-            'Cargando...'
-          )}
+    <Box sx={ BUY_COIN.boxContainer } >
+      <Toaster
+        position="top-center"
+        toastOptions={ { duration: 4000, style: toastStyleBgGreen } }
+      />
+      { coin &&
+        <Card sx={ BUY_COIN.cardContainer }>
+          <CardMedia
+            component="img"
+            sx={ { height: '160px', width: '160px', margin: '0 auto' } }
+            image={ getSrcImg(coin.iconUrl) }
+            title={ coin.name }
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h2" >
+              Moneda: { coin.name }
+            </Typography>
+            <Typography gutterBottom variant="h3" >
+              Simbolo: { coin.symbol }
+            </Typography>
+            <Typography variant="h4" gutterBottom color="text.secondary">
+              Precio: $ { coin.currentPrice }
+            </Typography>
+            <Typography variant="h4" gutterBottom color="text.secondary">
+              Cantidad: { cantidad }
+            </Typography>
+            <Typography variant="h4" gutterBottom color="text.secondary">
+              Fee: $ 500
+            </Typography>
+            <Divider />
+            <Typography variant="h4" gutterBottom my={ 2 } >
+              Total a abonar: $ { +getAmountToPaid(coin.currentPrice, cantidad, '500') }
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" onClick={ handleCompraClick } aria-label="Comprar">
+              Comprar
+            </Button>
+          </CardActions>
+        </Card>
+      }
     </Box>
   )
 }

@@ -1,15 +1,11 @@
 import React, { ReactNode, createContext, useState } from 'react'
-// import { firebaseAuth } from '../firebase/index'
-// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { LoginAuth, RegisterAuth } from '../models/RegisterAuth'
 
 interface Auth {
   auth: RegisterAuth
-  registerAuth: ({ email, password, username, balance, celphone }) => void
+  registerAuth: (data: RegisterAuth) => Promise<void>
   login: ({ userOrEmail, password, token }) => void
-  favoritesList: any[] // almacenarán las monedas favoritas
-  setFavoritesList: (list: any[]) => void, // actualizar la lista de favoritos
-  loginAuth: any
+  loginAuth: LoginAuth
 }
 
 interface AuthProviderProps {
@@ -19,23 +15,19 @@ interface AuthProviderProps {
 const AuthContext = createContext<Auth | undefined>(undefined)
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  
-  const [auth, setauth] = useState<RegisterAuth>({
+  const initialAuthValues = {
     id: '',
-    email: "",
-    password: "",
-    username: "",
-    balance: 0,
-    celphone: 0,
-  });
+    email: '',
+    password: '',
+    username: '',
+    balance: '',
+    celphone: '',
+  }
 
-  const [loginAuth, setLoginAuth] = useState<LoginAuth>({
-    token: '',
-    userOrEmail: "",
-    password: "",
-  })
+  const initialLoginAutnValues = { token: '', userOrEmail: '', password: '' }
 
-  const [favoritesList, setFavoritesList] = useState<any[]>([]) // estado para las monedas favoritas
+  const [auth, setauth] = useState<RegisterAuth>(initialAuthValues)
+  const [loginAuth, setLoginAuth] = useState<LoginAuth>(initialLoginAutnValues)
 
   const registerAuth = async (data: RegisterAuth) => {
     setauth((prevState) => ({
@@ -44,20 +36,25 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }))
   }
 
-  const login = async (data: LoginAuth) => {
-    localStorage.setItem('token', data.token);
-    setLoginAuth(data)
-    // No es necesario guardar el token en el estado
+  const login = async (response) => {
+    localStorage.setItem('token', response.token)
+    localStorage.setItem('userOrEmail', response.userOrEmail)
+
+    setLoginAuth((prevState) => ({
+      ...prevState,
+      ...response
+    }))
   }
 
   return (
-    <AuthContext.Provider value={ { 
-          auth, 
-          registerAuth, 
-          login,
-          favoritesList, 
-          setFavoritesList,
-          loginAuth } }>
+    <AuthContext.Provider
+      value={ {
+        auth,
+        registerAuth,
+        login,
+        loginAuth
+      } }
+    >
       { children }
     </AuthContext.Provider>
   )

@@ -1,18 +1,11 @@
 export interface RegisterAuth {
   id?: string,
   email?: string
-  password: string
+  password?: string
   username?: string
-  balance?: number
-  celphone?: number
+  balance?: string
+  celphone?: string
 }
-// export interface GoogleAuth {
-//   email?: string
-//   displayName?: string,
-//   photoURL?: string,
-//   uid?: string,
-//   token?: string
-// }
 
 export interface LoginAuth {
   userOrEmail?: string
@@ -20,14 +13,3 @@ export interface LoginAuth {
   token: string
 }
 
-export interface CoinData {
-  change: string 
-  color: string 
-  currentPrice: string 
-  iconUrl:  string
-  marketCap: string 
-  name: string
-  symbol:  string
-  uuid: string 
-
-}

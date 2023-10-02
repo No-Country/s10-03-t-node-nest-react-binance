@@ -1,29 +1,26 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Grid } from '@mui/material'
 import TabsMarket from '../components/molecule/tabs/TabsMarket'
 import HeroMarket from '../components/template/hero-market/HeroMarket'
-import useAuth from '../hooks/useAuth'
-import AuthContext from '../context/AuthContext'
 
-interface MarketProps { }
-
-const Market: React.FC<MarketProps> = () => {
-  const auth = useAuth()
-  const { loginAuth } = useContext(AuthContext);
-  console.log(loginAuth);
-
-  
+const Market: React.FC = () => {
+  const containerStyle = {
+    margin: '0 auto',
+    width: '100%',
+    padding: '12px',
+    flexDirection: {
+      xs: 'column',
+      sm: 'row'
+    },
+    alignItems: 'flex-start'
+  }
 
   return (
-    <main style={ { margin: '1rem auto' } }>
-      <Grid
-        container
-        maxWidth="lg"
-        sx={ { margin: '0 auto', width: '100%', padding: '12px' } }
-      >
+    <main style={ { margin: '1rem auto 150px', minHeight: '82vh' } }>
+      <Grid container maxWidth="lg" sx={ containerStyle }>
         <HeroMarket />
       </Grid>
-      <Grid container maxWidth="lg" sx={ { margin: '0 auto' } }>
+      <Grid container maxWidth="lg" sx={ { margin: '0 auto', width: '96%' } }>
         <TabsMarket />
       </Grid>
     </main>

@@ -2,7 +2,7 @@ export const LOGIN_STYLES = {
   container: {
     display: 'flex',
     alignContent: 'center',
-    margin: '2rem auto 3rem',
+    margin: '5rem auto 3rem',
   },
   box: {
     width: '100%',
@@ -10,13 +10,9 @@ export const LOGIN_STYLES = {
     flexDirection: 'column',
     alignItems: 'center',
     border: '1px solid #ddd',
-    padding: '20px 20px 40px',
-    borderRadius: '5px'
-  },
-  boxText: {
-    display: 'flex',
-    alignItems: 'center',
-    my: 2
+    padding: '20px 20px 80px',
+    borderRadius: '5px',
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 0, 0, 0.08), 0 0 30px rgba(0, 0, 0, 0.06), 0 0 40px rgba(0, 0, 0, 0.04)'
   },
   btnContainer: {
     display: 'flex',
@@ -46,8 +42,13 @@ export const LOGIN_STYLES = {
       color: '#C99400',
       fontWeight: '700'
   },
+  txt2: {
+    margin: '1.5rem 0rem 0rem',
+    fontSize: '16px',
+    textAlign: 'center',
+    fontWeight: '700'
+  },
   txtLink: {
     margin: '1.5rem 0rem 0rem',
-    fontSize: '14px'
   }
 }

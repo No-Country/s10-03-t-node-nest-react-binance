@@ -9,9 +9,9 @@ Entendemos que el mundo del trading puede resultar complicado y abrumador para a
 
 ## <img width="40" height="40" src="https://img.icons8.com/cotton/40/movie-beginning--v1.png" alt="movie-beginning--v1"/> LINKS DE DEPLOY
 
-- Front: 
+- Front: [https://binance-l.netlify.app/](https://binance-l.netlify.app/)
 
-- Back: [https://binance-production.up.railway.app/api/v1/docs#/](https://binance-production.up.railway.app/api/v1/docs#/)
+- Back: [https://binance-nocountry.zeabur.app/api/v1/docs/#/](https://binance-nocountry.zeabur.app/api/v1/docs/#/)
 
 ---
 
@@ -107,6 +107,39 @@ Entendemos que el mundo del trading puede resultar complicado y abrumador para a
 - <img width="20" height="20" src="https://img.icons8.com/color/20/figma--v1.png" alt="figma--v1"/>[Figma](https://www.figma.com/file/FYlQ2BEcjeEM52Ml8ZqJQm/Binance-Lite-Figma-(Copy)?type=design&node-id=7-2&mode=design&t=rmJs9B1AlPn4Jksr-0)
 
 ---
+
+## :tv: Algunos ejemplos de pantallas
+
+- Inicio de sesión o registro:
+
+![image](https://github.com/No-Country/s10-03-t-node-nest-react-binance/assets/72580574/5ae38297-bd83-4259-87ea-7d9a75a0dd0c)
+
+- Registro: se agregan validaciones y se le avisa al usuario por medio e carteles antes errores y ante registro exitoso.
+
+  ![image](https://github.com/No-Country/s10-03-t-node-nest-react-binance/assets/72580574/bead6f05-8cad-4924-b282-4cb054867d60)
+
+- Pantalla de inicio de sesión:
+
+![image](https://github.com/No-Country/s10-03-t-node-nest-react-binance/assets/72580574/fd5a2fc1-40a6-401c-8504-bed1e21f1bf4)
+
+- Pantalla de mercado:
+
+![image](https://github.com/No-Country/s10-03-t-node-nest-react-binance/assets/72580574/1647b44d-52df-472d-a676-787fdf73628a)
+
+- Pantalla de compra:
+
+![image](https://github.com/No-Country/s10-03-t-node-nest-react-binance/assets/72580574/8eb7d7fe-fa8d-4032-8c85-9494e47188e2)
+
+Se puede filtrar la cripto monedaa  comprar, indicar el monto, ver el resumen de la compra, seleccionar el método de pago y en el próximo paso completar con los datos de la tarjeta para finalizar la compra.
+
+![image](https://github.com/No-Country/s10-03-t-node-nest-react-binance/assets/72580574/346746a9-0a2e-4e17-b7c1-89f1693be3e2)
+
+- Pantalla de cartera:
+
+![image](https://github.com/No-Country/s10-03-t-node-nest-react-binance/assets/72580574/4f41e787-d361-42c2-88d8-614e5e1d11d8)
+      
+---
+
 
 ## <img width="40" height="40" src="https://img.icons8.com/doodle/40/crowd.png" alt="crowd"/> ¿Cómo nos organizamos con el equipo?
 

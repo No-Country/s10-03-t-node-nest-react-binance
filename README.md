@@ -18,30 +18,25 @@ Entendemos que el mundo del trading puede resultar complicado y abrumador para a
 ## <img width="30" height="30" src="https://img.icons8.com/doodle/30/crowd.png" alt="crowd"/> INTEGRANTES
 
 
-## <img width="30" height="30" src="https://img.icons8.com/dusk/30/web.png" alt="web"/> FrontEnd
-
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Eduardo Arevalo](https://github.com/Edu568) 
-
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Victor Fernandez](https://github.com/vic-ferr)
-
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Maria Eugenia Costa](https://github.com/eugenia1984)
-
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Sergio Calbino](https://github.com/SergioCalbino)
+| <img width="30" height="30" src="https://img.icons8.com/dusk/30/web.png" alt="web"/> FrontEnd |
+| -------------- |
+| [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Eduardo Arevalo](https://github.com/Edu568) |
+| [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Victor Fernandez](https://github.com/vic-ferr) |
+| [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Maria Eugenia Costa](https://github.com/eugenia1984) |
+| [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Sergio Calbino](https://github.com/SergioCalbino) |
 
 
 
-## <img width="30" height="30" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/30/external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry.png" alt="external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry"/> BackEnd
+| <img width="30" height="30" src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/30/external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry.png" alt="external-server-miscellaneous-kiranshastry-lineal-color-kiranshastry"/> BackEnd |
+| ----------|
+| [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/>  Nilo Ivan Soruco Guerrero](https://github.com/nilovili) |
+| [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Miguel Miche](https://github.com/migmm) |
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/>  Nilo Ivan Soruco Guerrero](https://github.com/nilovili)
 
-- [<img width="20" height="20" src="https://img.icons8.com/ios-filled/20/github.png" alt="github"/> Miguel Miche](https://github.com/migmm)
-
-
-## <img width="30" height="30" src="https://img.icons8.com/dotty/30/web.png" alt="web"/> UX/UI
-
-- [Paulo Crosetti](https://www.linkedin.com/in/paulo-crosetti)
-
-- [Maria Belen Fernandez Morales](https://www.linkedin.com/in/belen-fernandez-morales)
+| <img width="30" height="30" src="https://img.icons8.com/dotty/30/web.png" alt="web"/> UX/UI |
+| -------- |
+| [Paulo Crosetti](https://www.linkedin.com/in/paulo-crosetti) |
+| [Maria Belen Fernandez Morales](https://www.linkedin.com/in/belen-fernandez-morales) |
 
 
 ---
@@ -235,6 +230,13 @@ $ npm run test:cov
 - <img width="30" height="30" src="https://img.icons8.com/dusk/30/web.png" alt="web"/>  3ro.: para el **Front**, ir al repositorio en **client** y ya dentro:
 
 -> Instación de dependencias:  ```$ npm install```
+
+-> Para correr la app:
+
+En development: ```$ npm run dev```
+
+---
+
 
 -> Para correr la app:
 

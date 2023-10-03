@@ -1,7 +1,9 @@
 export const FOOTER_STYLES = {
   container: {
     borderTop: '2px solid rgb(234, 236, 239)',
-    margin: '0 auto'
+    margin: '0 auto',
+    position: 'sticky',
+    bottom: '0px'
   },
   gridYear: {
     display: {

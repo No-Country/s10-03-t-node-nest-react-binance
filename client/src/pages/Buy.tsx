@@ -14,7 +14,7 @@ const Buy = () => {
   const location = useLocation()
   const urlPathName = location.pathname
 
-  const handleSearch = (results) => setSearch(results)
+  // const handleSearch = (results) => setSearch(results)
 
   return (
     <Container maxWidth="sm" sx={ { minHeight: '82vh' } }>
@@ -25,7 +25,7 @@ const Buy = () => {
       >
         Elegir activo a comprar
       </Typography>
-      <SearchBar onSearch={ handleSearch } />
+      <SearchBar />
       <Typography
         variant="h3"
         align="left"

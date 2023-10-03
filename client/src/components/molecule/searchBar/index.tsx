@@ -2,21 +2,21 @@ import {useState} from 'react'
 import { InputBase, Paper, IconButton } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 
-const SearchBar = ({onSearch}) => {
+const SearchBar = () => {
   const [searchCoin, setSearchCoin] = useState('')
 
-  const handleSearch = () => {
-    // Hacer la solicitud a la API usando fetch o axios aquí
-    fetch(`https://binance-production.up.railway.app/api/v1/cryptocurrencies?search=${searchTerm}`)
-      .then((response) => response.json())
-      .then((data) => {
-        // Llamar a la función de búsqueda con los datos recibidos de la API
-        onSearch(data);
-      })
-      .catch((error) => {
-        console.error('Error al buscar moneda:', error);
-      });
-  }
+  // const handleSearch = () => {
+  //   // Hacer la solicitud a la API usando fetch o axios aquí
+  //   fetch(`https://binance-production.up.railway.app/api/v1/cryptocurrencies?search=`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       // Llamar a la función de búsqueda con los datos recibidos de la API
+  //       onSearch(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error al buscar moneda:', error);
+  //     });
+  // }
 
   const handleChange = (event) => {
     setSearchCoin(event.target.value);
@@ -34,7 +34,7 @@ const SearchBar = ({onSearch}) => {
         marginBottom: '30px',
       } }
     >
-      <IconButton sx={ { p: '10px' } } aria-label="search" onClick={handleSearch}>
+      <IconButton sx={ { p: '10px' } } aria-label="search" >
         <SearchIcon />
       </IconButton>
       <InputBase

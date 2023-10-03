@@ -1,6 +1,7 @@
 export const HEADER_STYLES = {
   container: {
-    margin: '0 auto'
+    margin: '0 auto',
+    position:'sticky'
   },
   containerLogo: {
     padding: '0.5rem 0.75rem',

@@ -38,6 +38,9 @@ Entendemos que el mundo del trading puede resultar complicado y abrumador para a
 | [Paulo Crosetti](https://www.linkedin.com/in/paulo-crosetti) |
 | [Maria Belen Fernandez Morales](https://www.linkedin.com/in/belen-fernandez-morales) |
 
+| PM |
+| -- |
+| [Frida Azul Varela Lucius](https://www.linkedin.com/in/fridavlucius/) |
 
 ---
 
